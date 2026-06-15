@@ -54,6 +54,17 @@ export function HeroSection() {
           </div>
         </div>
         <div className="hero-dossier" aria-label="핵심 정보">
+          <div className="hero-profile">
+            <Image
+              src="/images/profile/joinseong-profile-hero.webp"
+              alt="조인성 프로필 사진"
+              width={760}
+              height={1062}
+              priority
+              sizes="(max-width: 760px) 320px, 320px"
+              className="hero-profile__image"
+            />
+          </div>
           <div className="hero-dossier__signals">
             {heroSignals.map((signal, index) => {
               const Icon = signalIcons[index];

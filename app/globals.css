@@ -325,9 +325,56 @@ li {
 
 .hero-dossier {
   display: grid;
-  gap: 8px;
+  gap: 10px;
   align-self: center;
   filter: none;
+}
+
+.hero-profile {
+  position: relative;
+  min-height: 292px;
+  overflow: hidden;
+  border: 1px solid rgba(29, 23, 19, 0.14);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 213, 154, 0.58), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 236, 220, 0.9));
+  box-shadow: 0 1px 2px rgba(29, 23, 19, 0.05), 0 18px 44px rgba(29, 23, 19, 0.1);
+}
+
+.hero-profile::before {
+  position: absolute;
+  inset: 16px 16px auto auto;
+  width: 68px;
+  height: 68px;
+  border: 1px solid rgba(242, 106, 33, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.54);
+  content: "";
+}
+
+.hero-profile::after {
+  position: absolute;
+  right: 38px;
+  bottom: 20px;
+  left: 38px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(29, 23, 19, 0.14);
+  filter: blur(16px);
+  content: "";
+}
+
+.hero-profile__image {
+  position: absolute;
+  bottom: -126px;
+  left: 50%;
+  z-index: 1;
+  width: min(90%, 292px);
+  height: auto;
+  max-width: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 18px 28px rgba(29, 23, 19, 0.16));
 }
 
 .hero-dossier__signals span {
@@ -2226,6 +2273,26 @@ li {
   .hero-dossier {
     max-width: none;
     filter: none;
+  }
+
+  .hero-profile {
+    min-height: 218px;
+  }
+
+  .hero-profile::before {
+    width: 52px;
+    height: 52px;
+  }
+
+  .hero-profile::after {
+    right: 54px;
+    left: 54px;
+    height: 20px;
+  }
+
+  .hero-profile__image {
+    bottom: -104px;
+    width: min(76%, 242px);
   }
 
   .hero-dossier__signals div {

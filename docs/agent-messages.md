@@ -986,3 +986,32 @@ npm run lint, npm run build, Chrome headless desktop/tablet/mobile 로컬 검증
 - Skills 섹션에서 Frontend 대형 카드와 오른쪽 4개 카드의 균형이 자연스러운지 확인해주세요.
 - 데스크톱에서 DevOps와 Version / Collaboration 오른쪽 빈 영역이 다시 보이지 않는지 확인해주세요.
 ```
+
+## 2026-06-15 18:23 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 공개 Notion 페이지의 프로필 사진을 추출하고 배경 제거 후 Hero에 배치했습니다.
+최종 asset은 `public/images/profile/joinseong-profile-hero.webp`이며, Hero 우측 핵심 정보 카드 위에 프로필 컷아웃 프레임으로 노출됩니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- src/components/sections/HeroSection.tsx
+- public/images/profile/joinseong-profile-hero.webp
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Hero 프로필 컷아웃이 desktop/mobile에서 면접관에게 자연스럽게 보이는지 확인해주세요.
+- 프로필 이미지가 텍스트 가독성이나 Hero 첫 화면 흐름을 방해하지 않는지 확인해주세요.
+```

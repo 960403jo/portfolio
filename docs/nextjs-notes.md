@@ -849,3 +849,26 @@
 - Tablet 1024px: Skills 2열 흐름 유지, overflowX 0, console error 0
 - Mobile 390px: Skills 1열 흐름 유지, overflowX 0, console error 0
 ```
+
+## 2026-06-15 18:23 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 공개 Notion 페이지에서 프로필 사진 이미지 추출
+- 임시 로컬 배경 제거 도구로 인물 컷아웃 생성 후 Hero용 WebP asset으로 압축
+- 최종 asset: public/images/profile/joinseong-profile-hero.webp
+- Hero 우측 dossier 상단에 프로필 컷아웃 프레임 추가
+- 모바일에서는 프로필 프레임 높이와 이미지 크롭을 줄여 신호 카드 흐름 유지
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: Hero profile card 320x292, profile image WebP 200 OK, image/webp, overflowX 0, console error 0
+- Mobile 390px: Hero profile card 366x218, profile image WebP 200 OK, image/webp, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/hero-profile-desktop-webp.png, tmp/qa/hero-profile-mobile-webp.png
+```
