@@ -786,3 +786,22 @@
 - Mobile 390px production render: Hero `경력 / 역할 / 주요 경험`, caption `운영형 화면 중심`, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/vercel-production-desktop.png, tmp/qa/vercel-production-mobile.png
 ```
+
+## 2026-06-15 15:56 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Header nav label `커리어`를 `Career`로 변경
+- Experience section eyebrow `커리어`를 `Career`로 변경
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Desktop 1440px local render: nav `Career` 노출, section eyebrow `Career` 노출, `커리어` 미노출, overflowX 0, console error 0
+- Mobile 390px local render: nav `Career` 노출, section eyebrow `Career` 노출, `커리어` 미노출, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/career-label-desktop.png, tmp/qa/career-label-mobile.png
+```

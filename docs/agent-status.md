@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-15 15:51 KST
+Last Updated: 2026-06-15 15:56 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-15 15:51 KST | Contact form 정책 미확정 |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-15 15:56 KST | Contact form 정책 미확정 |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-15 15:51 KST
+Updated At: 2026-06-15 15:56 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -125,6 +125,7 @@ Summary:
 - 추가 프로젝트 compact card에서 KPI/담당업무 preview 제거, 기술 태그 최대 4개로 제한
 - Skills에서 Frontend 카드를 왼쪽 대형 강조 카드로 재배치하고 나머지 스킬을 오른쪽 영역에 정렬
 - 화면 노출 `Experience` 표기를 `커리어`로 변경
+- 화면 노출 `커리어` 표기를 `Career`로 변경해 영문 nav 흐름으로 통일
 - TASC 프로젝트(`/Volumes/Data/joinseong/000.source/005.TASC/tasc-platform`)의 컴포넌트 매뉴얼, 커스텀 ESLint rule, lint/build/test/e2e/env 검증 흐름을 확인해 AI Delivery 문구에 하네스 방식으로 병합
 - React Compiler 적용: `next.config.ts` reactCompiler 활성화, `babel-plugin-react-compiler` devDependency 추가
 - 스크롤 진입 이펙트 적용: ScrollReveal + IntersectionObserver 기반 section/card stagger, 커리어 dot 활성화, AI step 활성화, reduced-motion 비활성화 처리
@@ -140,11 +141,12 @@ Summary:
 - Vercel production 환경변수 `NEXT_PUBLIC_SITE_URL=https://portfolio-ashy-five-87.vercel.app` 설정 및 재배포 완료
 - npm run lint, npm run build, Chrome 모바일/데스크톱 렌더링, 상세 페이지, 수평 오버플로, concise intro layout, copy cleanup, explanatory copy removal, project arrow/career title, frontend experience signal, right drawer project panel, Q&A/협업 툴 노출, 섹션별 디자인 차별화, 프로젝트 더보기 overlay/텍스트 잘림, 추가 프로젝트 6개 카드별 hover 안정성, 1열 flex popup, compact card KPI/담당업무 제거, 추가 프로젝트 dark gray labeling, Experience 기간 레일/원형 마커 정렬, AI 아이콘 크기, AI Delivery 하네스 문구와 모바일 줄바꿈, Skills Frontend 강조 배치, AI Development 카드 제거, 프로젝트 role 표기, 대표 카드 성과 제거, Notion 상세 원본 제거, React Compiler build, scroll reveal repeat desktop/mobile, reduced-motion, 모바일 360/390/430 CSS 검증 완료
 - Production URL 200 OK, sitemap/robots production URL 반영, desktop/mobile 배포 페이지 Hero 문구/수평 오버플로/console error 검증 완료
+- Local desktop/mobile 렌더링에서 nav와 section eyebrow `Career` 노출, `커리어` 미노출, overflowX 0, console error 0 확인
 Blocker:
 - docs/open-questions.md Q4: Supabase 기반 Contact form 사용 여부 미확정
 Next:
 - Vercel dashboard에서 custom domain 연결 여부 확인
-- QA-Security Agent가 원본 기반 콘텐츠, 모바일 360/390/430 레이아웃, Footer contact, 프로젝트 overlay 더보기 패널의 1열 리스트 구조, compact card KPI/담당업무 미노출, 추가 프로젝트 6개 카드별 hover/focus 안정성 및 dark gray label tone, React Compiler 적용 빌드 안정성, scroll reveal 반복 진입/reduced-motion 동작, KPI 표기, 대표 프로젝트 상세 bullet 보강 내용, 대표 카드 성과 preview 제거, 상세 페이지 Notion 원본 링크 제거, project card 상단 화살표 affordance, 커리어 좌측 기간 레일/모바일 기간 pill/원형 마커와 `회사명 | 직책` 표기, Front End / Back End role 표기, 프론트엔드 개발 role signal, `주요 경험` / `지도·관제·백오피스 UI` experience signal, 원문형 Q&A 섹션, Skills Frontend 대형 강조 배치와 Version / Collaboration 위치, AI Development 카드 제거, TASC 하네스 방식이 반영된 AI Delivery 문구, AI Delivery 아이콘 크기, 섹션별 디자인 차별화, modern warm orange 스타일의 색상 대비와 읽기 흐름 검증
+- QA-Security Agent가 원본 기반 콘텐츠, 모바일 360/390/430 레이아웃, Footer contact, 프로젝트 overlay 더보기 패널의 1열 리스트 구조, compact card KPI/담당업무 미노출, 추가 프로젝트 6개 카드별 hover/focus 안정성 및 dark gray label tone, React Compiler 적용 빌드 안정성, scroll reveal 반복 진입/reduced-motion 동작, KPI 표기, 대표 프로젝트 상세 bullet 보강 내용, 대표 카드 성과 preview 제거, 상세 페이지 Notion 원본 링크 제거, project card 상단 화살표 affordance, Career 좌측 기간 레일/모바일 기간 pill/원형 마커와 `회사명 | 직책` 표기, Front End / Back End role 표기, 프론트엔드 개발 role signal, `주요 경험` / `지도·관제·백오피스 UI` experience signal, 원문형 Q&A 섹션, Skills Frontend 대형 강조 배치와 Version / Collaboration 위치, AI Development 카드 제거, TASC 하네스 방식이 반영된 AI Delivery 문구, AI Delivery 아이콘 크기, 섹션별 디자인 차별화, modern warm orange 스타일의 색상 대비와 읽기 흐름 검증
 ```
 
 ### Supabase Agent

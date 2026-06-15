@@ -10,7 +10,7 @@ export function ExperienceSection() {
     <section className="section section--experience" id="experience">
       <Container>
         <SectionHeader
-          eyebrow="커리어"
+          eyebrow="Career"
           title="경력 타임라인"
         />
         {experiences.length > 0 ? (

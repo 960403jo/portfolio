@@ -898,3 +898,31 @@ Production alias는 `https://portfolio-ashy-five-87.vercel.app`입니다.
 - Vercel dashboard에서 custom domain 연결 여부를 확인해주세요.
 - production URL 기준으로 실제 기기 QA를 진행해주세요.
 ```
+
+## 2026-06-15 15:56 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 화면 노출 `커리어` 표기를 `Career`로 변경했습니다.
+Header nav와 Experience section eyebrow 모두 `Career`로 통일했습니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 렌더링 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- src/data/portfolio.ts
+- src/components/sections/ExperienceSection.tsx
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Header nav의 `About / Skills / Projects / Career / AI Delivery / Q&A / Contact` 흐름이 자연스러운지 확인해주세요.
+- production 배포 후 `커리어`가 다시 노출되지 않는지 확인해주세요.
+```

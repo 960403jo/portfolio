@@ -12,7 +12,7 @@ export const navItems: NavItem[] = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "커리어", href: "#experience" },
+  { label: "Career", href: "#experience" },
   { label: "AI Delivery", href: "#ai-workflow" },
   { label: "Q&A", href: "#interview" },
   { label: "Contact", href: "#contact" }
