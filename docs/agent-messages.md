@@ -959,3 +959,30 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통
 - Q&A 메뉴 클릭 시 `#interview`로 이동하고 active가 `Q&A`로 유지되는지 production에서 확인해주세요.
 - Hero 이메일 버튼 클릭 후 이메일 주소가 모바일에서 잘리지 않는지 확인해주세요.
 ```
+
+## 2026-06-15 16:17 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 Skills 섹션의 DevOps와 Version / Collaboration 카드 폭을 조정했습니다.
+데스크톱 12-column 배치에서 두 번째 줄 오른쪽에 남던 빈 영역을 제거하기 위해 DevOps는 3컬럼, Version / Collaboration은 4컬럼으로 배치했습니다.
+npm run lint, npm run build, Chrome headless desktop/tablet/mobile 로컬 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Skills 섹션에서 Frontend 대형 카드와 오른쪽 4개 카드의 균형이 자연스러운지 확인해주세요.
+- 데스크톱에서 DevOps와 Version / Collaboration 오른쪽 빈 영역이 다시 보이지 않는지 확인해주세요.
+```

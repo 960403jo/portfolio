@@ -828,3 +828,24 @@
 - Mobile 390px local render: nav Contact 미노출, `#contact` target 미노출, 이메일 button `이메일` -> `joinsseong@gmail.com`, Q&A click active `Q&A`, hash `#interview`, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/qna-email-contact-removed-desktop.png, tmp/qa/qna-email-contact-removed-mobile.png
 ```
+
+## 2026-06-15 16:17 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Skills 섹션 데스크톱 12-column grid에서 DevOps와 Version / Collaboration 카드 폭 조정
+- DevOps는 3컬럼, Version / Collaboration은 4컬럼으로 배치해 Frontend 오른쪽 두 번째 줄의 남은 7컬럼을 모두 사용
+- 기존 모바일/태블릿 breakpoint에서는 auto 배치를 유지해 2열/1열 흐름 보존
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: Skills DevOps/Version Collaboration 같은 행, 우측 gap 0px, overflowX 0, console error 0
+- Tablet 1024px: Skills 2열 흐름 유지, overflowX 0, console error 0
+- Mobile 390px: Skills 1열 흐름 유지, overflowX 0, console error 0
+```
