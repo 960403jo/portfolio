@@ -760,3 +760,29 @@
 - 기존 `품질 기준`/`화면 완성도`/`상태·API·인터랙션 연결` 미노출
 - 스크린샷 확인: tmp/qa/hero-main-experience-desktop.png, tmp/qa/hero-main-experience-mobile.png
 ```
+
+## 2026-06-15 15:51 KST - Next.js App Agent
+
+### 배포 요약
+
+```text
+- GitHub repository: https://github.com/960403jo/portfolio
+- Vercel project: joinseong-s-projects/portfolio
+- Production URL: https://portfolio-ashy-five-87.vercel.app
+- GitHub repository connection: Connected
+- Production env: NEXT_PUBLIC_SITE_URL=https://portfolio-ashy-five-87.vercel.app
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- npx vercel deploy --prod --yes
+- Production URL HTTP 200 OK
+- sitemap.xml loc이 production URL 기준으로 생성됨
+- robots.txt Sitemap이 production URL 기준으로 생성됨
+- Desktop 1440px production render: Hero `경력 / 역할 / 주요 경험`, overflowX 0, console error 0
+- Mobile 390px production render: Hero `경력 / 역할 / 주요 경험`, caption `운영형 화면 중심`, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/vercel-production-desktop.png, tmp/qa/vercel-production-mobile.png
+```
