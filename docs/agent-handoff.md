@@ -96,9 +96,9 @@ Agent 간 전달사항을 기록한다.
 - 상세 콘텐츠: 제공된 Notion DB에서 대표 프로젝트 5개(철도, 춘천 디지털 신분증, 군산-익산 BIS/BMS, Lv4 교통안전 인프라, 안양 자율주행)의 `[주요 업무 및 성과]` 토글 내부까지 추출해 담당 업무 6개/성과 5개 중심으로 정리
 - 스타일: modern editorial warm orange palette. 대각선 band, 반복 그라디언트 카드, 무거운 shadow를 제거하고 flat surface, 얇은 border, 명확한 orange accent, restrained panel accent system(orange/blue/sage/plum/amber) 중심으로 정리. About/Skills/Projects/Experience/AI Delivery/Q&A가 같은 카드 반복으로 보이지 않도록 section-specific layout 적용
 - 모바일: Header 52px, nav 가로 스크롤, active menu aria-current, 프로젝트 카드 상세 목록 모바일 숨김
-- Contact: 간략화된 Footer `#contact`에 copyright와 email 노출, 독립 Contact section 제거
+- Contact: Header nav와 Footer contact 영역 제거. Footer는 copyright와 back-to-top만 유지. Hero 이메일 CTA는 클릭 시 `이메일` 텍스트가 `joinsseong@gmail.com`으로 변경
 - Back to top: 우측 하단 fixed 원형 화살표 버튼
-- Hero/About 문구: Hero headline은 "UI와 데이터 흐름을 잇는 프론트엔드"로 변경. Hero badge는 "실무 프로젝트 기반"으로 변경해 Notion 직접 언급 제거. Hero summary는 "React/TypeScript 기반 지도·관제·백오피스 UI". CTA는 대표 프로젝트/이메일 2개, 우측 핵심 포인트는 경력/역할/주요 경험 3개만 표시. 역할 value는 "프론트엔드 개발", caption은 "React·TypeScript UI". 주요 경험 value는 "지도·관제·백오피스 UI", caption은 "운영형 화면 중심". About 소개 문단은 화면에서 제거하고 Developer Value를 3개 핵심 카드로 축소
+- Hero/About 문구: Hero headline은 "UI와 데이터 흐름을 잇는 프론트엔드"로 변경. Hero badge는 "실무 프로젝트 기반"으로 변경해 Notion 직접 언급 제거. Hero summary는 "React/TypeScript 기반 지도·관제·백오피스 UI". CTA는 대표 프로젝트/이메일 reveal 2개, 우측 핵심 포인트는 경력/역할/주요 경험 3개만 표시. 역할 value는 "프론트엔드 개발", caption은 "React·TypeScript UI". 주요 경험 value는 "지도·관제·백오피스 UI", caption은 "운영형 화면 중심". About 소개 문단은 화면에서 제거하고 Developer Value를 3개 핵심 카드로 축소
 - Skills: AI Development 카드는 제거. Frontend, Backend, Database / Cloud, DevOps, Version / Collaboration 5개 그룹 노출. Version / Collaboration에는 GitLab, Bitbucket, SVN, Jira, Confluence, Slack 노출. 데스크톱에서는 Frontend를 왼쪽 대형 강조 카드로 배치하고 나머지 스킬을 오른쪽 영역에 정렬
 - Q&A: 마지막 영역에 InterviewSection 추가. 프론트엔드 전환 이유, 업무에서 중요한 기준, 역량을 키우는 방식 3개 카드 노출. 사용자가 제공한 원문 답변을 잘라낸 키워드형이 아니라 문단형 인터뷰 노트로 확장
 - Section-specific design: About은 dark positioning board, Skills는 12-column mosaic matrix, Projects는 framed case board + right panel, Experience는 vertical timeline, AI Delivery는 dark process rail, Q&A는 document interview list 형태
@@ -114,14 +114,14 @@ Agent 간 전달사항을 기록한다.
 - 텍스트 줄바꿈: h1/h2/h3/p/li에 word-break keep-all 적용
 - 스크롤 이펙트: `src/components/ui/ScrollReveal.tsx`에서 IntersectionObserver 기반 reveal 처리. SectionHeader, About signal, Skills, Projects card, Career timeline, AI Delivery step, Q&A card에 fade/slide/scale/stagger 적용. viewport 이탈 시 is-visible을 해제하고 재진입 시 다시 reveal. 모바일은 이동 거리 축소, `prefers-reduced-motion: reduce`에서는 모든 reveal 즉시 표시
 - 테스트 명령: npm run lint, npm run build
-- 브라우저 확인: production server http://127.0.0.1:3005, 모바일 360px/390px/430px 기준 수평 오버플로 없음, 주요 섹션 overflow 0건, active menu Projects/Q&A 변경 확인, Hero `주요 경험` / `지도·관제·백오피스 UI` / `운영형 화면 중심` 노출 및 이전 `품질 기준`/`화면 완성도`/`협업 조율`/`일정·리뷰·요구사항 조율`/`강점` label 미노출, 대표 프로젝트 4개 기본 노출, 더보기 클릭 전 panel 미노출/overlay trigger 노출, 더보기 클릭 후 panel 6개 카드 노출, 데스크톱 panel width 640px/card width 608px, 모바일 390px panel width 340px/card width 308px, panel scroll display flex/flex-direction column, 추가 프로젝트 label/role/badge/arrow color rgb(52,57,65)/rgb(96,104,115) dark gray 계열 확인, panel card title/description clipping 0건, 우측 상단 `접기` 버튼 노출, 하단 접기 버튼 미노출, compact card KPI 0건/담당업무 detail 0건/기술 태그 최대 4개, 추가 프로젝트 6개 카드별 hover 시 width 변화 없음/transform none/z-index 0/centerHit 현재 카드/overflow false, featured hover z-index 6, 대표 카드 `성과` heading 0건/상세 페이지 `성과와 경험` 유지, 상세 페이지 `Notion 상세 원본` 미노출/source-link 0건, Skills에서 Frontend 왼쪽 대형 카드와 나머지 오른쪽 정렬 확인, Skills title은 Frontend/Backend/Database / Cloud/DevOps/Version / Collaboration 5개만 노출, AI Development 및 하네스 카드 문구 미노출, `Career` 화면 노출 및 `커리어` 미노출, Career desktop/mobile 원형 마커 deltaX 0 및 period centerY 기준 0~1px 이내, Career desktop/mobile 수평 오버플로 0건 및 텍스트 clipping 0건, Career 좌측 기간 레일/모바일 기간 pill 노출, AI Delivery 하네스 문구(`하네스`, `ESLint`, `test:run`) 노출 및 desktop/mobile clipping 0건, AI Delivery icon 52px 확인, Version / Collaboration 스킬 그룹 노출, Q&A 카드 3개와 원문형 문단 답변 노출, Q&A 질문 `업무 진행 시 가장 중요한 포인트` 노출, 세 프로젝트 role `Front End / Back End` 확인, 섹션별 레이아웃 차별화 확인, scroll reveal skills-enter-1 true -> projects 진입 후 false -> skills-enter-2 true 반복 확인, reduced-motion 30개 즉시 표시, console error 0건, Footer 높이/원형 top 버튼 확인, concise hero/intro desktop/mobile 스크린샷 확인, 제거 요청 문구(GraphQL/Feature-Sliced Design/FSD/SPA/Stack/이전 hero 문구/내부 Agent 문구/Notion 상세 원본) 미노출 확인
+- 브라우저 확인: production server http://127.0.0.1:3005, 모바일 360px/390px/430px 기준 수평 오버플로 없음, 주요 섹션 overflow 0건, active menu Projects/Q&A 변경 확인, Q&A 클릭 시 hash `#interview`와 active `Q&A` 유지 확인, Header nav Contact 미노출, `#contact` target 미노출, Hero 이메일 버튼 클릭 전 `이메일`/클릭 후 `joinsseong@gmail.com` 확인, Hero `주요 경험` / `지도·관제·백오피스 UI` / `운영형 화면 중심` 노출 및 이전 `품질 기준`/`화면 완성도`/`협업 조율`/`일정·리뷰·요구사항 조율`/`강점` label 미노출, 대표 프로젝트 4개 기본 노출, 더보기 클릭 전 panel 미노출/overlay trigger 노출, 더보기 클릭 후 panel 6개 카드 노출, 데스크톱 panel width 640px/card width 608px, 모바일 390px panel width 340px/card width 308px, panel scroll display flex/flex-direction column, 추가 프로젝트 label/role/badge/arrow color rgb(52,57,65)/rgb(96,104,115) dark gray 계열 확인, panel card title/description clipping 0건, 우측 상단 `접기` 버튼 노출, 하단 접기 버튼 미노출, compact card KPI 0건/담당업무 detail 0건/기술 태그 최대 4개, 추가 프로젝트 6개 카드별 hover 시 width 변화 없음/transform none/z-index 0/centerHit 현재 카드/overflow false, featured hover z-index 6, 대표 카드 `성과` heading 0건/상세 페이지 `성과와 경험` 유지, 상세 페이지 `Notion 상세 원본` 미노출/source-link 0건, Skills에서 Frontend 왼쪽 대형 카드와 나머지 오른쪽 정렬 확인, Skills title은 Frontend/Backend/Database / Cloud/DevOps/Version / Collaboration 5개만 노출, AI Development 및 하네스 카드 문구 미노출, `Career` 화면 노출 및 `커리어` 미노출, Career desktop/mobile 원형 마커 deltaX 0 및 period centerY 기준 0~1px 이내, Career desktop/mobile 수평 오버플로 0건 및 텍스트 clipping 0건, Career 좌측 기간 레일/모바일 기간 pill 노출, AI Delivery 하네스 문구(`하네스`, `ESLint`, `test:run`) 노출 및 desktop/mobile clipping 0건, AI Delivery icon 52px 확인, Version / Collaboration 스킬 그룹 노출, Q&A 카드 3개와 원문형 문단 답변 노출, Q&A 질문 `업무 진행 시 가장 중요한 포인트` 노출, 세 프로젝트 role `Front End / Back End` 확인, 섹션별 레이아웃 차별화 확인, scroll reveal skills-enter-1 true -> projects 진입 후 false -> skills-enter-2 true 반복 확인, reduced-motion 30개 즉시 표시, console error 0건, Footer copyright/back-to-top 확인, concise hero/intro desktop/mobile 스크린샷 확인, 제거 요청 문구(GraphQL/Feature-Sliced Design/FSD/SPA/Stack/이전 hero 문구/내부 Agent 문구/Notion 상세 원본) 미노출 확인
 ```
 
 ### 확인 필요
 
 ```text
 - KPI는 원본 기반 역할/구현/기술 포인트이며 임의 정량 성과가 없는지 확인 필요
-- Footer contact와 floating back-to-top 버튼이 모바일에서 콘텐츠를 가리지 않는지 확인 필요
+- Hero 이메일 reveal 버튼과 floating back-to-top 버튼이 모바일에서 콘텐츠를 가리지 않는지 확인 필요
 - 모바일 360px/390px/430px에서 실제 기기 스크롤 감각상 답답하거나 겹치는 구간이 없는지 확인 필요
 - GraphQL/FSD/SPA 및 기존 Domain/Core 문구가 화면에 다시 노출되지 않는지 확인 필요
 - 변경된 modern warm orange 색상이 텍스트 가독성과 대비를 해치지 않는지 확인 필요
@@ -152,7 +152,7 @@ Agent 간 전달사항을 기록한다.
 - React Compiler 적용 후 상호작용 컴포넌트(Header active nav, Projects 더보기 panel, ScrollReveal)가 실제 브라우저에서 안정적인지 확인 필요
 - 스크롤 이펙트가 과하게 느껴지지 않고 정보 읽기 흐름을 보조하는 수준인지 확인 필요
 - Skills에서 AI Development 카드 제거 후 빈 공간이 어색하지 않고 5개 스킬 그룹 균형이 맞는지 확인 필요
-- Contact form은 docs/open-questions.md Q4가 미확정이라 구현하지 않음
+- Contact form과 Contact 영역은 사용자 요청으로 미구현/미노출
 ```
 
 ---

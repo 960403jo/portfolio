@@ -1,13 +1,19 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { Braces, FileSearch, GitBranch, Mail, PanelsTopLeft } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Badge } from "@/components/ui/Badge";
 import { heroSignals, profile } from "@/data/portfolio";
 
-const ctaIcons = [PanelsTopLeft, Mail];
+const ctaIcons = [PanelsTopLeft];
 const signalIcons = [GitBranch, FileSearch, Braces];
 
 export function HeroSection() {
+  const [isEmailVisible, setIsEmailVisible] = useState(false);
+  const emailLabel = isEmailVisible ? profile.email : "이메일";
+
   return (
     <section className="hero" id="top">
       <Image
@@ -36,6 +42,15 @@ export function HeroSection() {
                 {cta.label}
               </ButtonLink>
             ))}
+            <button
+              type="button"
+              className="button-link button-link--secondary"
+              aria-label={isEmailVisible ? `이메일 주소 ${profile.email}` : "이메일 주소 보기"}
+              onClick={() => setIsEmailVisible(true)}
+            >
+              <Mail aria-hidden="true" size={18} />
+              <span aria-live="polite">{emailLabel}</span>
+            </button>
           </div>
         </div>
         <div className="hero-dossier" aria-label="핵심 정보">

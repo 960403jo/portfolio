@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { navItems, profile } from "@/data/portfolio";
 import { Container } from "./Container";
 
@@ -12,15 +12,8 @@ export function Header() {
     let frame = 0;
 
     const updateActiveSection = () => {
-      const remainingScroll =
-        document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
       const viewportMarker = Math.min(window.innerHeight * 0.38, 320);
       let nextActiveHref = navItems[0]?.href ?? "#about";
-
-      if (remainingScroll <= 160) {
-        setActiveHref(navItems[navItems.length - 1]?.href ?? nextActiveHref);
-        return;
-      }
 
       navItems.forEach((item) => {
         const section = document.querySelector<HTMLElement>(item.href);
@@ -67,6 +60,35 @@ export function Header() {
     });
   }, [activeHref]);
 
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
+    const target = document.querySelector<HTMLElement>(href);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    setActiveHref(href);
+    window.history.pushState(null, "", href);
+
+    const header = document.querySelector<HTMLElement>(".site-header");
+    const headerOffset = (header?.getBoundingClientRect().height ?? 72) + 18;
+    const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+    const targetScrollTop = Math.min(
+      Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerOffset),
+      maxScrollTop
+    );
+
+    window.scrollTo({
+      top: targetScrollTop,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  };
+
   return (
     <header className="site-header">
       <Container className="site-header__inner">
@@ -80,7 +102,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={activeHref === item.href ? "page" : undefined}
-              onClick={() => setActiveHref(item.href)}
+              onClick={(event) => handleNavClick(event, item.href)}
             >
               {item.label}
             </a>

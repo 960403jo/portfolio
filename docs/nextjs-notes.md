@@ -805,3 +805,26 @@
 - Mobile 390px local render: nav `Career` 노출, section eyebrow `Career` 노출, `커리어` 미노출, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/career-label-desktop.png, tmp/qa/career-label-mobile.png
 ```
+
+## 2026-06-15 16:06 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Header nav에서 Contact 제거
+- Footer contact 영역과 `#contact` target 제거
+- Footer는 copyright와 back-to-top 버튼만 유지
+- Hero 이메일 CTA는 클릭 시 `이메일` 텍스트가 `joinsseong@gmail.com`으로 변경되는 button으로 구현
+- Header Q&A 클릭 시 하단 Contact active 보정이 끼어들지 않도록 active section 로직 수정
+- section/footer scroll-margin-top 추가로 fixed header 기준 anchor 이동 보정
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Desktop 1440px local render: nav Contact 미노출, `#contact` target 미노출, 이메일 button `이메일` -> `joinsseong@gmail.com`, Q&A click active `Q&A`, hash `#interview`, overflowX 0, console error 0
+- Mobile 390px local render: nav Contact 미노출, `#contact` target 미노출, 이메일 button `이메일` -> `joinsseong@gmail.com`, Q&A click active `Q&A`, hash `#interview`, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/qna-email-contact-removed-desktop.png, tmp/qa/qna-email-contact-removed-mobile.png
+```

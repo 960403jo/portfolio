@@ -926,3 +926,36 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 렌더링 검
 - Header nav의 `About / Skills / Projects / Career / AI Delivery / Q&A / Contact` 흐름이 자연스러운지 확인해주세요.
 - production 배포 후 `커리어`가 다시 노출되지 않는지 확인해주세요.
 ```
+
+## 2026-06-15 16:06 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 Header nav와 Footer에서 Contact 영역을 제거했습니다.
+Hero 이메일 CTA는 유지하되, 클릭 시 버튼 텍스트가 `이메일`에서 `joinsseong@gmail.com`으로 변경되도록 구현했습니다.
+Q&A 메뉴 클릭 시 하단 스크롤 보정 때문에 Contact가 active로 잡히던 Header 로직을 수정했습니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- src/components/layout/Footer.tsx
+- src/components/layout/Header.tsx
+- src/components/sections/HeroSection.tsx
+- src/data/portfolio.ts
+- src/types/portfolio.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Q&A 메뉴 클릭 시 `#interview`로 이동하고 active가 `Q&A`로 유지되는지 production에서 확인해주세요.
+- Hero 이메일 버튼 클릭 후 이메일 주소가 모바일에서 잘리지 않는지 확인해주세요.
+```

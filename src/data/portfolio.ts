@@ -1,5 +1,4 @@
 import type {
-  ContactLink,
   DeveloperSignal,
   Experience,
   InterviewQna,
@@ -14,8 +13,7 @@ export const navItems: NavItem[] = [
   { label: "Projects", href: "#projects" },
   { label: "Career", href: "#experience" },
   { label: "AI Delivery", href: "#ai-workflow" },
-  { label: "Q&A", href: "#interview" },
-  { label: "Contact", href: "#contact" }
+  { label: "Q&A", href: "#interview" }
 ];
 
 export const profile = {
@@ -24,9 +22,9 @@ export const profile = {
   headline: "UI와 데이터 흐름을 잇는 프론트엔드",
   summary: "React/TypeScript 기반 지도·관제·백오피스 UI",
   sourceStatus: "실무 프로젝트 기반",
+  email: "joinsseong@gmail.com",
   ctas: [
-    { label: "대표 프로젝트", href: "#projects" },
-    { label: "이메일", href: "#contact" }
+    { label: "대표 프로젝트", href: "#projects" }
   ]
 };
 
@@ -571,11 +569,3 @@ export const aiWorkflow = {
     "하네스 게이트: lint/build/test/docs/ui-sync/harness와 visual diff 기준을 통과할 때만 완료"
   ]
 };
-
-export const contactLinks: ContactLink[] = [
-  {
-    label: "Email",
-    value: "joinsseong@gmail.com",
-    href: "mailto:joinsseong@gmail.com"
-  }
-];

@@ -48,9 +48,3 @@ export type Experience = {
   organization: string;
   summary: string;
 };
-
-export type ContactLink = {
-  label: string;
-  value: string;
-  href: string;
-};
