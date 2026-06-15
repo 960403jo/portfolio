@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-15 15:11 KST
+Last Updated: 2026-06-15 15:29 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-15 15:11 KST | Contact form 정책 미확정 |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-15 15:29 KST | Vercel 계정 인증 필요 |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-15 15:11 KST
+Updated At: 2026-06-15 15:29 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -134,10 +134,14 @@ Summary:
 - Hero 세 번째 핵심 포인트 label을 `강점`에서 `품질 기준`으로 변경
 - Hero 세 번째 핵심 포인트를 `주요 경험` / `지도·관제·백오피스 UI` / `운영형 화면 중심`으로 변경
 - 추가 프로젝트 더보기 panel compact card 라벨, role, tech badge, arrow accent를 어두운 회색 톤으로 분리
+- GitHub public repository `https://github.com/960403jo/portfolio` 생성 및 main branch push 완료
+- Vercel CLI 실행 준비 완료, Vercel 계정 인증 미완료로 production 배포는 대기
 - npm run lint, npm run build, Chrome 모바일/데스크톱 렌더링, 상세 페이지, 수평 오버플로, concise intro layout, copy cleanup, explanatory copy removal, project arrow/career title, frontend experience signal, right drawer project panel, Q&A/협업 툴 노출, 섹션별 디자인 차별화, 프로젝트 더보기 overlay/텍스트 잘림, 추가 프로젝트 6개 카드별 hover 안정성, 1열 flex popup, compact card KPI/담당업무 제거, 추가 프로젝트 dark gray labeling, Experience 기간 레일/원형 마커 정렬, AI 아이콘 크기, AI Delivery 하네스 문구와 모바일 줄바꿈, Skills Frontend 강조 배치, AI Development 카드 제거, 프로젝트 role 표기, 대표 카드 성과 제거, Notion 상세 원본 제거, React Compiler build, scroll reveal repeat desktop/mobile, reduced-motion, 모바일 360/390/430 CSS 검증 완료
 Blocker:
+- Vercel CLI 배포를 위한 Vercel 계정 인증 필요
 - docs/open-questions.md Q4: Supabase 기반 Contact form 사용 여부 미확정
 Next:
+- Vercel 인증 완료 후 `npx vercel --prod` 또는 Vercel dashboard GitHub import 방식으로 production 배포 진행
 - QA-Security Agent가 원본 기반 콘텐츠, 모바일 360/390/430 레이아웃, Footer contact, 프로젝트 overlay 더보기 패널의 1열 리스트 구조, compact card KPI/담당업무 미노출, 추가 프로젝트 6개 카드별 hover/focus 안정성 및 dark gray label tone, React Compiler 적용 빌드 안정성, scroll reveal 반복 진입/reduced-motion 동작, KPI 표기, 대표 프로젝트 상세 bullet 보강 내용, 대표 카드 성과 preview 제거, 상세 페이지 Notion 원본 링크 제거, project card 상단 화살표 affordance, 커리어 좌측 기간 레일/모바일 기간 pill/원형 마커와 `회사명 | 직책` 표기, Front End / Back End role 표기, 프론트엔드 개발 role signal, `주요 경험` / `지도·관제·백오피스 UI` experience signal, 원문형 Q&A 섹션, Skills Frontend 대형 강조 배치와 Version / Collaboration 위치, AI Development 카드 제거, TASC 하네스 방식이 반영된 AI Delivery 문구, AI Delivery 아이콘 크기, 섹션별 디자인 차별화, modern warm orange 스타일의 색상 대비와 읽기 흐름 검증
 ```
 

@@ -86,6 +86,8 @@ Agent 간 전달사항을 기록한다.
 - 구현 컴포넌트: Header, Footer, Container, HeroSection, AboutSection, SkillsSection, ProjectsSection, ExperienceSection, AIWorkflowSection, InterviewSection, ProjectCard, TimelineItem, ButtonLink, Badge, EmptyState, SectionHeader, ScrollReveal
 - 데이터 파일: src/data/portfolio.ts, src/lib/projects.ts
 - 타입 파일: src/types/portfolio.ts
+- GitHub: `https://github.com/960403jo/portfolio` public repository 생성 및 main branch push 완료
+- Vercel: `npx vercel whoami` 실행 시 Vercel device login flow가 시작되었으나 계정 인증이 완료되지 않아 production 배포는 미진행. 인증 완료 후 배포 재개 필요
 - Next 설정: `next.config.ts`에서 `reactCompiler: true` 활성화. `babel-plugin-react-compiler` 1.0.0을 devDependency로 추가
 - 프로젝트 표시: 기존 대표 4개 비대칭 그리드 디자인 유지. 더보기 버튼은 프로젝트 그리드 영역을 차지하지 않는 absolute overlay pill로 배치. 클릭 시 나머지 6개 프로젝트가 데스크톱 640px, 모바일 340px 기준의 우측 overlay panel로 열림. 패널 내부는 flex column 1열 compact card 리스트로 단순화. 열린 패널에서는 `접기` 버튼을 우측 상단에 노출하고 하단 접기 버튼은 제거. 패널 compact card는 KPI/담당업무 preview를 숨기고 기술 태그는 최대 4개만 표시. 패널 compact card의 기간/role/tech badge/arrow/left rail은 대표 프로젝트 accent와 분리해 어두운 회색 라벨 톤으로 표시. 패널 카드 hover/focus는 폭 확장, translateX, z-index 상승 없이 border/shadow만 반응해 카드 겹침과 포인터 가로막힘을 방지. 대표 프로젝트 카드 hover/focus는 z-index 6으로 다른 카드에 가려지지 않게 처리. 프로젝트 카드 하단 `상세 보기` 텍스트는 제거하고 상단 우측 ArrowUpRight 아이콘으로 상세 이동 표시. 대표 프로젝트 메인 카드에는 `담당 업무` preview만 노출하고 `성과` preview는 상세 페이지에서만 노출
 - 프로젝트 상세: slug 기반 SSG, KPI 3개, 담당 업무, 성과와 경험, 기술 스택 badge list 표시. `Notion 상세 원본` 외부 링크 버튼은 제거. 상단 핵심 정보는 Period/Role만 표시하고 `Stack N items` 요약 제거
