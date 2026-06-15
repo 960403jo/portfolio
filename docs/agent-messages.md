@@ -1015,3 +1015,31 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통
 - Hero 프로필 컷아웃이 desktop/mobile에서 면접관에게 자연스럽게 보이는지 확인해주세요.
 - 프로필 이미지가 텍스트 가독성이나 Hero 첫 화면 흐름을 방해하지 않는지 확인해주세요.
 ```
+
+## 2026-06-15 18:37 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 Hero 프로필 컷아웃을 선명한 카드에서 흐릿한 배경 레이어로 변경했습니다.
+프로필 이미지는 `hero-portrait-bg` 장식 레이어로 이동했고, desktop/mobile 각각 opacity와 blur를 다르게 적용했습니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- src/components/sections/HeroSection.tsx
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Hero 배경 프로필이 너무 흐리거나 강하지 않은지 실제 기기에서 확인해주세요.
+- 모바일에서 텍스트와 CTA 가독성이 유지되는지 확인해주세요.
+```

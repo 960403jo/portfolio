@@ -872,3 +872,26 @@
 - Mobile 390px: Hero profile card 366x218, profile image WebP 200 OK, image/webp, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/hero-profile-desktop-webp.png, tmp/qa/hero-profile-mobile-webp.png
 ```
+
+## 2026-06-15 18:37 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Hero 프로필 이미지를 우측 선명 카드에서 배경 장식 레이어로 변경
+- `hero-portrait-bg`를 Hero shade 위, content 아래에 배치해 텍스트보다 뒤에 보이도록 구성
+- desktop: opacity 0.34, blur 7px, right background 쪽에 얼굴 실루엣이 보이도록 위치 조정
+- mobile: opacity 0.22, blur 8px, CTA/신호 카드 뒤쪽으로 낮춰 텍스트 가독성 유지
+- 기존 `.hero-profile` 선명 카드 제거
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: portrait background 480x620, opacity 0.34, blur 7px, sharp profile card 0개, overflowX 0, console error 0
+- Mobile 390px: portrait background 300x420, opacity 0.22, blur 8px, sharp profile card 0개, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/hero-profile-blur-bg-tuned-desktop.png, tmp/qa/hero-profile-blur-bg-tuned-mobile.png
+```

@@ -99,7 +99,7 @@ Agent 간 전달사항을 기록한다.
 - Contact: Header nav와 Footer contact 영역 제거. Footer는 copyright와 back-to-top만 유지. Hero 이메일 CTA는 클릭 시 `이메일` 텍스트가 `joinsseong@gmail.com`으로 변경
 - Back to top: 우측 하단 fixed 원형 화살표 버튼
 - Hero/About 문구: Hero headline은 "UI와 데이터 흐름을 잇는 프론트엔드"로 변경. Hero badge는 "실무 프로젝트 기반"으로 변경해 Notion 직접 언급 제거. Hero summary는 "React/TypeScript 기반 지도·관제·백오피스 UI". CTA는 대표 프로젝트/이메일 reveal 2개, 우측 핵심 포인트는 경력/역할/주요 경험 3개만 표시. 역할 value는 "프론트엔드 개발", caption은 "React·TypeScript UI". 주요 경험 value는 "지도·관제·백오피스 UI", caption은 "운영형 화면 중심". About 소개 문단은 화면에서 제거하고 Developer Value를 3개 핵심 카드로 축소
-- Hero profile: 공개 Notion 페이지의 `프로필사진_조인성.jpg`를 추출하고 배경 제거 후 `public/images/profile/joinseong-profile-hero.webp`로 저장. Hero 우측 dossier 상단에 프로필 컷아웃 프레임으로 배치, alt는 `조인성 프로필 사진`
+- Hero profile: 공개 Notion 페이지의 `프로필사진_조인성.jpg`를 추출하고 배경 제거 후 `public/images/profile/joinseong-profile-hero.webp`로 저장. 선명한 프로필 카드 노출은 제거하고 Hero 배경 레이어 `hero-portrait-bg`로 배치. desktop은 opacity 0.34 / blur 7px, mobile은 opacity 0.22 / blur 8px로 텍스트 가독성을 유지
 - Skills: AI Development 카드는 제거. Frontend, Backend, Database / Cloud, DevOps, Version / Collaboration 5개 그룹 노출. Version / Collaboration에는 GitLab, Bitbucket, SVN, Jira, Confluence, Slack 노출. 데스크톱에서는 Frontend를 왼쪽 대형 강조 카드로 배치하고 나머지 스킬을 오른쪽 영역에 정렬. DevOps와 Version / Collaboration은 두 번째 줄의 남은 폭을 모두 채워 우측 빈 영역이 생기지 않도록 span 조정
 - Q&A: 마지막 영역에 InterviewSection 추가. 프론트엔드 전환 이유, 업무에서 중요한 기준, 역량을 키우는 방식 3개 카드 노출. 사용자가 제공한 원문 답변을 잘라낸 키워드형이 아니라 문단형 인터뷰 노트로 확장
 - Section-specific design: About은 dark positioning board, Skills는 12-column mosaic matrix, Projects는 framed case board + right panel, Experience는 vertical timeline, AI Delivery는 dark process rail, Q&A는 document interview list 형태
@@ -117,6 +117,7 @@ Agent 간 전달사항을 기록한다.
 - 테스트 명령: npm run lint, npm run build
 - 브라우저 확인: production server http://127.0.0.1:3005, 현재 빌드 확인 server http://127.0.0.1:3006, 모바일 360px/390px/430px 기준 수평 오버플로 없음, 주요 섹션 overflow 0건, active menu Projects/Q&A 변경 확인, Q&A 클릭 시 hash `#interview`와 active `Q&A` 유지 확인, Header nav Contact 미노출, `#contact` target 미노출, Hero 이메일 버튼 클릭 전 `이메일`/클릭 후 `joinsseong@gmail.com` 확인, Hero `주요 경험` / `지도·관제·백오피스 UI` / `운영형 화면 중심` 노출 및 이전 `품질 기준`/`화면 완성도`/`협업 조율`/`일정·리뷰·요구사항 조율`/`강점` label 미노출, 대표 프로젝트 4개 기본 노출, 더보기 클릭 전 panel 미노출/overlay trigger 노출, 더보기 클릭 후 panel 6개 카드 노출, 데스크톱 panel width 640px/card width 608px, 모바일 390px panel width 340px/card width 308px, panel scroll display flex/flex-direction column, 추가 프로젝트 label/role/badge/arrow color rgb(52,57,65)/rgb(96,104,115) dark gray 계열 확인, panel card title/description clipping 0건, 우측 상단 `접기` 버튼 노출, 하단 접기 버튼 미노출, compact card KPI 0건/담당업무 detail 0건/기술 태그 최대 4개, 추가 프로젝트 6개 카드별 hover 시 width 변화 없음/transform none/z-index 0/centerHit 현재 카드/overflow false, featured hover z-index 6, 대표 카드 `성과` heading 0건/상세 페이지 `성과와 경험` 유지, 상세 페이지 `Notion 상세 원본` 미노출/source-link 0건, Skills에서 Frontend 왼쪽 대형 카드와 나머지 오른쪽 정렬 확인, Skills 데스크톱 1440px에서 DevOps/Version Collaboration 두 번째 줄 우측 gap 0px 확인, Skills title은 Frontend/Backend/Database / Cloud/DevOps/Version / Collaboration 5개만 노출, AI Development 및 하네스 카드 문구 미노출, `Career` 화면 노출 및 `커리어` 미노출, Career desktop/mobile 원형 마커 deltaX 0 및 period centerY 기준 0~1px 이내, Career desktop/mobile 수평 오버플로 0건 및 텍스트 clipping 0건, Career 좌측 기간 레일/모바일 기간 pill 노출, AI Delivery 하네스 문구(`하네스`, `ESLint`, `test:run`) 노출 및 desktop/mobile clipping 0건, AI Delivery icon 52px 확인, Version / Collaboration 스킬 그룹 노출, Q&A 카드 3개와 원문형 문단 답변 노출, Q&A 질문 `업무 진행 시 가장 중요한 포인트` 노출, 세 프로젝트 role `Front End / Back End` 확인, 섹션별 레이아웃 차별화 확인, scroll reveal skills-enter-1 true -> projects 진입 후 false -> skills-enter-2 true 반복 확인, reduced-motion 30개 즉시 표시, console error 0건, Footer copyright/back-to-top 확인, concise hero/intro desktop/mobile 스크린샷 확인, 제거 요청 문구(GraphQL/Feature-Sliced Design/FSD/SPA/Stack/이전 hero 문구/내부 Agent 문구/Notion 상세 원본) 미노출 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 WebP 200 OK, content-type image/webp, alt `조인성 프로필 사진`, overflowX 0, console error 0 확인
+- 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 레이어 노출, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 ```
 
 ### 확인 필요
@@ -150,7 +151,7 @@ Agent 간 전달사항을 기록한다.
 - 메인 프로젝트 카드 preview가 너무 장황하지 않고 상세 페이지로 자연스럽게 유도하는지 확인 필요
 - 대표 프로젝트 비대칭 배치 외 영역이 일관된 읽기 기준선을 유지하는지 확인 필요
 - Hero/About를 줄인 뒤 핵심 포인트가 충분히 전달되는지 확인 필요
-- Hero 프로필 컷아웃이 desktop/mobile에서 과하게 크거나 텍스트 흐름을 방해하지 않는지 확인 필요
+- Hero 프로필 흐림 배경이 desktop/mobile에서 너무 강하거나 너무 약하지 않고, 텍스트 흐름을 방해하지 않는지 확인 필요
 - AI 섹션이 개인의 실제 개발 활용 방식으로 읽히고, 현재 포트폴리오 제작 Agent 운용 설명으로 오해되지 않는지 확인 필요
 - React Compiler 적용 후 상호작용 컴포넌트(Header active nav, Projects 더보기 panel, ScrollReveal)가 실제 브라우저에서 안정적인지 확인 필요
 - 스크롤 이펙트가 과하게 느껴지지 않고 정보 읽기 흐름을 보조하는 수준인지 확인 필요

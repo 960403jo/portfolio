@@ -275,6 +275,37 @@ li {
     linear-gradient(0deg, rgba(251, 250, 247, 1) 0%, rgba(251, 250, 247, 0) 30%);
 }
 
+.hero-portrait-bg {
+  position: absolute;
+  top: 92px;
+  right: max(76px, calc((100vw - 1160px) / 2 + 84px));
+  bottom: auto;
+  z-index: 1;
+  width: min(38vw, 480px);
+  min-width: 360px;
+  height: min(68vh, 620px);
+  opacity: 0.34;
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 88%, transparent 100%);
+}
+
+.hero-portrait-bg::before {
+  position: absolute;
+  inset: 18% 8% 12%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(242, 106, 33, 0.22), transparent 68%);
+  content: "";
+  filter: blur(32px);
+}
+
+.hero-portrait-bg__image {
+  object-fit: contain;
+  object-position: center bottom;
+  filter: blur(7px) saturate(0.88) contrast(0.96);
+  transform: scale(1.05);
+  transform-origin: center bottom;
+}
+
 .hero__content {
   position: relative;
   z-index: 2;
@@ -325,56 +356,9 @@ li {
 
 .hero-dossier {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   align-self: center;
   filter: none;
-}
-
-.hero-profile {
-  position: relative;
-  min-height: 292px;
-  overflow: hidden;
-  border: 1px solid rgba(29, 23, 19, 0.14);
-  border-radius: 10px;
-  background:
-    radial-gradient(circle at 50% 24%, rgba(255, 213, 154, 0.58), transparent 42%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 236, 220, 0.9));
-  box-shadow: 0 1px 2px rgba(29, 23, 19, 0.05), 0 18px 44px rgba(29, 23, 19, 0.1);
-}
-
-.hero-profile::before {
-  position: absolute;
-  inset: 16px 16px auto auto;
-  width: 68px;
-  height: 68px;
-  border: 1px solid rgba(242, 106, 33, 0.18);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.54);
-  content: "";
-}
-
-.hero-profile::after {
-  position: absolute;
-  right: 38px;
-  bottom: 20px;
-  left: 38px;
-  height: 26px;
-  border-radius: 999px;
-  background: rgba(29, 23, 19, 0.14);
-  filter: blur(16px);
-  content: "";
-}
-
-.hero-profile__image {
-  position: absolute;
-  bottom: -126px;
-  left: 50%;
-  z-index: 1;
-  width: min(90%, 292px);
-  height: auto;
-  max-width: none;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 18px 28px rgba(29, 23, 19, 0.16));
 }
 
 .hero-dossier__signals span {
@@ -2242,6 +2226,27 @@ li {
       linear-gradient(0deg, rgba(251, 250, 247, 1) 0%, rgba(251, 250, 247, 0) 30%);
   }
 
+  .hero-portrait-bg {
+    top: 250px;
+    right: -54px;
+    bottom: auto;
+    width: 300px;
+    min-width: 0;
+    height: 420px;
+    opacity: 0.22;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 20%, #000 92%, transparent 100%);
+  }
+
+  .hero-portrait-bg::before {
+    inset: 22% 4% 16%;
+    filter: blur(24px);
+  }
+
+  .hero-portrait-bg__image {
+    filter: blur(8px) saturate(0.84) contrast(0.94);
+    transform: scale(1.04);
+  }
+
   .hero__role {
     margin: 18px 0 8px;
     font-size: 13px;
@@ -2273,26 +2278,6 @@ li {
   .hero-dossier {
     max-width: none;
     filter: none;
-  }
-
-  .hero-profile {
-    min-height: 218px;
-  }
-
-  .hero-profile::before {
-    width: 52px;
-    height: 52px;
-  }
-
-  .hero-profile::after {
-    right: 54px;
-    left: 54px;
-    height: 20px;
-  }
-
-  .hero-profile__image {
-    bottom: -104px;
-    width: min(76%, 242px);
   }
 
   .hero-dossier__signals div {
