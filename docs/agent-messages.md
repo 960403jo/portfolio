@@ -1347,3 +1347,29 @@ Production에서 현재 HTML 기반 PDF zip 생성이 기존 60초 제한에 걸
 ```text
 - Production 재배포 후 footer 버튼 실제 클릭 다운로드가 120초 안에 완료되는지 확인해주세요.
 ```
+
+## 2026-06-16 12:43 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+timeout 대응분을 production에 재배포했습니다.
+최신 deployment는 `https://portfolio-5x7508n6l-joinseong-s-projects.vercel.app`이고, alias는 `https://portfolio-ashy-five-87.vercel.app`입니다.
+Production `/api/portfolio-pdf-zip` 직접 호출은 46.8초에 200 응답, zip 내부 PDF 11개로 확인했습니다.
+Production footer 버튼 실제 클릭도 `PDF 생성 중...` 표시 후 `joinseong-portfolio-pdf.zip` 다운로드가 완료됐고 console error는 0건입니다.
+```
+
+### Related Files
+
+```text
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 현재 HTML 기준 PDF가 화면 디자인을 잘 반영하는지 육안 확인해주세요.
+```

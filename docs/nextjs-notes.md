@@ -1172,3 +1172,24 @@
 - zip 크기 3,830,646 bytes
 - zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
 ```
+
+## 2026-06-16 12:43 KST - Next.js App Agent
+
+### Production 재검증
+
+```text
+- Vercel production 재배포 완료
+- Production deployment: https://portfolio-5x7508n6l-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production `/api/portfolio-pdf-zip` 응답 200
+- Production API 생성 시간 46,835ms
+- Production API zip 크기 3,036,938 bytes
+- Production API zip 내부 PDF 11개 확인
+- Production footer button click 전 label `PDF 다운로드`, click 후 label `PDF 생성 중...`, 완료 후 label `PDF 다운로드` 확인
+- 다운로드 파일명 `joinseong-portfolio-pdf.zip` 확인
+- 실제 클릭 다운로드 zip 크기 3,036,937 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- 첫 파일: 00-joinseong-portfolio-main.pdf
+- 마지막 파일: projects/10-jinju-transport-support.pdf
+- console error 0
+```
