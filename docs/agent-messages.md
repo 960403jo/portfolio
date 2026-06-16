@@ -1196,3 +1196,33 @@ npm run lint, npm run build, 로컬 API zip 생성 검증을 통과했습니다.
 - Footer `PDF 다운로드` 버튼 클릭 시 zip 다운로드가 자연스러운지 확인해주세요.
 - zip 내부 11개 PDF 파일명과 각 PDF의 페이지 분할이 지원서 제출 용도에 맞는지 확인해주세요.
 ```
+
+## 2026-06-16 12:08 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 피드백에 따라 footer PDF 다운로드 UX를 재검토하고 수정했습니다.
+기존 raw link 방식은 zip 생성 중 피드백이 없어 다운로드가 멈춘 것처럼 보일 수 있어, 클라이언트 버튼으로 변경했습니다.
+버튼 클릭 시 `PDF 생성 중...` 상태를 표시하고, API 응답 blob을 받아 `joinseong-portfolio-pdf.zip`으로 다운로드합니다.
+npm run lint, npm run build, 로컬 실제 클릭 다운로드 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- src/components/layout/FooterDownloadButton.tsx
+- src/components/layout/Footer.tsx
+- app/globals.css
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Production footer 버튼 클릭 시 `PDF 생성 중...` 상태와 zip 다운로드가 자연스럽게 동작하는지 확인해주세요.
+- 생성 대기 시간이 지원자가 기다릴 수 있는 수준인지 확인해주세요.
+```

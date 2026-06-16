@@ -93,7 +93,7 @@ Agent 간 전달사항을 기록한다.
 - Next 설정: `next.config.ts`에서 `reactCompiler: true` 활성화. `babel-plugin-react-compiler` 1.0.0을 devDependency로 추가
 - 프로젝트 표시: 기존 대표 4개 비대칭 그리드 디자인 유지. 더보기 버튼은 프로젝트 그리드 영역을 차지하지 않는 absolute overlay pill로 배치. 클릭 시 나머지 6개 프로젝트가 데스크톱 640px, 모바일 340px 기준의 우측 overlay panel로 열림. 패널 내부는 flex column 1열 compact card 리스트로 단순화. 열린 패널에서는 `접기` 버튼을 우측 상단에 노출하고 하단 접기 버튼은 제거. 패널 compact card는 KPI/담당업무 preview를 숨기고 기술 태그는 최대 4개만 표시. 패널 compact card의 기간/role/tech badge/arrow/left rail은 대표 프로젝트 accent와 분리해 어두운 회색 라벨 톤으로 표시. 패널 카드 hover/focus는 폭 확장, translateX, z-index 상승 없이 border/shadow만 반응해 카드 겹침과 포인터 가로막힘을 방지. 대표 프로젝트 카드 hover/focus는 z-index 6으로 다른 카드에 가려지지 않게 처리. 프로젝트 카드 하단 `상세 보기` 텍스트는 제거하고 상단 우측 ArrowUpRight 아이콘으로 상세 이동 표시. 대표 프로젝트 메인 카드에는 `담당 업무` preview만 노출하고 `성과` preview는 상세 페이지에서만 노출
 - 프로젝트 상세: slug 기반 SSG, KPI 3개, 담당 업무, 성과와 경험, 기술 스택 badge list 표시. `Notion 상세 원본` 외부 링크 버튼은 제거. 상단 핵심 정보는 Period/Role만 표시하고 `Stack N items` 요약 제거
-- PDF: 지원서용 `/pdf` 화면과 프로젝트별 `/projects/[slug]/pdf` 화면은 PDF 출력 소스로 유지. 실제 사용자 다운로드 흐름은 footer `PDF 다운로드` 버튼 하나로 정리했고, `/api/portfolio-pdf-zip`에서 Puppeteer + headless Chromium으로 메인 PDF 1개와 프로젝트 상세 PDF 10개를 생성해 zip으로 반환. Hero `PDF 저장` CTA와 프로젝트 상세 `프로젝트 PDF` 버튼은 제거
+- PDF: 지원서용 `/pdf` 화면과 프로젝트별 `/projects/[slug]/pdf` 화면은 PDF 출력 소스로 유지. 실제 사용자 다운로드 흐름은 footer `PDF 다운로드` 버튼 하나로 정리했고, `/api/portfolio-pdf-zip`에서 Puppeteer + headless Chromium으로 메인 PDF 1개와 프로젝트 상세 PDF 10개를 생성해 zip으로 반환. Footer 버튼은 클라이언트 컴포넌트로 `PDF 생성 중...` 상태를 표시하고 blob 다운로드를 실행. Hero `PDF 저장` CTA와 프로젝트 상세 `프로젝트 PDF` 버튼은 제거
 - 상세 콘텐츠: 제공된 Notion DB에서 대표 프로젝트 5개(철도, 춘천 디지털 신분증, 군산-익산 BIS/BMS, Lv4 교통안전 인프라, 안양 자율주행)의 `[주요 업무 및 성과]` 토글 내부까지 추출해 담당 업무 6개/성과 5개 중심으로 정리
 - 스타일: modern editorial warm orange palette. 대각선 band, 반복 그라디언트 카드, 무거운 shadow를 제거하고 flat surface, 얇은 border, 명확한 orange accent, restrained panel accent system(orange/blue/sage/plum/amber) 중심으로 정리. About/Skills/Projects/Experience/AI Delivery/Q&A가 같은 카드 반복으로 보이지 않도록 section-specific layout 적용
 - 모바일: Header 52px, nav 가로 스크롤, active menu aria-current, 프로젝트 카드 상세 목록 모바일 숨김
@@ -124,6 +124,7 @@ Agent 간 전달사항을 기록한다.
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 opacity 1, filter none, mask none, glow pseudo display none, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, `/pdf`, `/projects/railway-standards-platform/pdf`, `/projects/railway-standards-platform`에서 PDF source routes/print media toolbar hidden/overflowX 0/console error 0 확인. Footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출 확인. `/api/portfolio-pdf-zip` 응답 200, application/zip, 약 1.97MB, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인
 - Production 확인: `https://portfolio-ashy-five-87.vercel.app/api/portfolio-pdf-zip` 응답 200, application/zip, 1.25MB, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인. Production footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출, overflowX 0, console error 0 확인
+- Local 실제 클릭 확인: footer `PDF 다운로드` 클릭 시 `PDF 생성 중...` 상태 표시 후 `joinseong-portfolio-pdf.zip` 다운로드, zip 내부 PDF 11개, console error 0 확인
 ```
 
 ### 확인 필요

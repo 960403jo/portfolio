@@ -2030,7 +2030,14 @@ li {
   font-weight: 900;
 }
 
+.footer-download-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
 .footer-download {
+  appearance: none;
   display: inline-flex;
   min-height: 40px;
   align-items: center;
@@ -2039,7 +2046,10 @@ li {
   border-radius: 999px;
   background: var(--teal);
   color: #fff !important;
+  cursor: pointer;
+  font: inherit;
   font-size: 13px;
+  font-weight: 900;
   padding: 9px 13px;
   text-decoration: none;
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
@@ -2051,6 +2061,18 @@ li {
   box-shadow: 0 10px 24px rgba(29, 23, 19, 0.12);
   outline: 0;
   transform: translateY(-1px);
+}
+
+.footer-download:disabled {
+  cursor: wait;
+  opacity: 0.78;
+  transform: none;
+}
+
+.footer-download-error {
+  color: #9f2f13;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .back-to-top-floating {

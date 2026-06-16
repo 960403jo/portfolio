@@ -1048,3 +1048,30 @@
 - Production zip 파일 확인: tmp/qa/prod-joinseong-portfolio-pdf.zip
 - Production 스크린샷 확인: tmp/qa/prod-footer-zip-download-desktop.png
 ```
+
+## 2026-06-16 12:08 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 다운로드가 제대로 되는지 사용자 피드백 기준으로 재검토
+- raw anchor download 방식은 서버 PDF 생성 중 상태 피드백이 없어 멈춘 것처럼 보일 수 있음
+- Footer 다운로드를 `FooterDownloadButton` client component로 변경
+- 클릭 시 `PDF 생성 중...` 상태 표시
+- `/api/portfolio-pdf-zip` 응답을 blob으로 받아 `joinseong-portfolio-pdf.zip` 파일로 programmatic download
+- 실패 시 `다운로드 실패. 다시 시도해주세요.` 상태 문구 노출
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Footer button click 전 label `PDF 다운로드`, click 후 label `PDF 생성 중...`, 완료 후 label `PDF 다운로드` 확인
+- 다운로드 파일명 `joinseong-portfolio-pdf.zip` 확인
+- zip 크기 1,973,416 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- console error 0
+- 다운로드 파일 확인: tmp/qa/downloads/joinseong-portfolio-pdf.zip
+```
