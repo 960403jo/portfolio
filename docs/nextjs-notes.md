@@ -895,3 +895,25 @@
 - Mobile 390px: portrait background 300x420, opacity 0.22, blur 8px, sharp profile card 0개, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/hero-profile-blur-bg-tuned-desktop.png, tmp/qa/hero-profile-blur-bg-tuned-mobile.png
 ```
+
+## 2026-06-16 09:30 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Hero 프로필 흐림 배경이 너무 투명하다는 피드백 반영
+- desktop `hero-portrait-bg` opacity를 0.34에서 0.48로 올리고 이미지 blur를 7px에서 5px로 조정
+- mobile `hero-portrait-bg` opacity를 0.22에서 0.34로 올리고 이미지 blur를 8px에서 6px로 조정
+- orange radial glow를 소폭 강화해 배경 안에서 인물 실루엣이 더 읽히도록 조정
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: portrait background 480x620, opacity 0.48, blur 5px, sharp profile card 0개, overflowX 0, console error 0
+- Mobile 390px: portrait background 300x420, opacity 0.34, blur 6px, sharp profile card 0개, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/hero-profile-visibility-desktop.png, tmp/qa/hero-profile-visibility-mobile.png
+```
