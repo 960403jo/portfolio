@@ -137,6 +137,12 @@ Agent 간 전달사항을 기록한다.
 - Production 재배포 확인: `https://portfolio-5x7508n6l-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production API 재검증: 현재 HTML 라우트 기준 zip 생성 46.8초, 내부 PDF 11개 확인
 - Production 실제 클릭 확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
+- PDF 한글 깨짐 대응: `@fontsource-variable/noto-sans-kr` self-host 폰트 추가, Inter latin-only body class 제거, body 기본 폰트를 Noto Sans KR로 변경
+- PDF 비율: A4 print media 출력이 아니라 1440px desktop web screen layout을 그대로 긴 PDF 페이지로 출력. MediaBox 폭은 1080pt로 확인
+- PDF 메뉴바 숨김: PDF 생성 직전 Puppeteer에서 `.site-header`, `.footer-download-wrap`, `.back-to-top-floating`을 강제 숨김 처리
+- Production 재배포 확인: `https://portfolio-93qtr7q67-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production API 재검증: zip 생성 74.2초, 내부 PDF 11개, PDF 내부 `Noto Sans KR` 폰트 포함 확인
+- Production 실제 클릭 확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
 ```
 
 ### 확인 필요

@@ -1193,3 +1193,42 @@
 - 마지막 파일: projects/10-jinju-transport-support.pdf
 - console error 0
 ```
+
+## 2026-06-16 12:58 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 한글 깨짐 대응을 위해 `@fontsource-variable/noto-sans-kr` dependency 추가
+- `app/layout.tsx`에서 Inter latin-only font 제거, Noto Sans KR CSS import 추가
+- `app/globals.css` body 기본 font-family를 Noto Sans KR 중심으로 변경
+- PDF 출력 비율을 A4 print에서 1440px desktop web screen layout 기준으로 변경
+- Puppeteer PDF 생성 시 `emulateMediaType("screen")`, width 1440px, height는 실제 document height로 계산
+- PDF 생성 직전 `.site-header`, `.footer-download-wrap`, `.back-to-top-floating` 숨김 처리
+- PDF 생성 직전 scroll reveal 강제 노출, 애니메이션/트랜지션 비활성화
+- PDF 생성 전 Noto Sans KR font load를 명시적으로 대기
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 크기 5,024,198 bytes, 내부 PDF 11개 확인
+- Local PDF 내부 `Noto Sans KR` 폰트 포함 확인
+- Local MediaBox: main 1080 x 4389.1201pt, sample project 1080 x 1209.12pt
+- Local footer 실제 클릭 다운로드 성공, zip 내부 PDF 11개, console error 0
+- Production deployment: https://portfolio-93qtr7q67-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production `/api/portfolio-pdf-zip` 응답 200
+- Production API 생성 시간 74,247ms
+- Production API zip 크기 4,970,969 bytes
+- Production PDF 내부 `Noto Sans KR` 폰트 포함 확인
+- Production MediaBox: main 1080 x 4389.1201pt, sample project 1080 x 1209.12pt
+- Production footer button click 전 label `PDF 다운로드`, click 후 label `PDF 생성 중...`, 완료 후 label `PDF 다운로드` 확인
+- 실제 클릭 다운로드 파일명 `joinseong-portfolio-pdf.zip`
+- 실제 클릭 다운로드 zip 크기 4,970,970 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- console error 0
+```

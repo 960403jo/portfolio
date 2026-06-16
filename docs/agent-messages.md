@@ -1373,3 +1373,37 @@ Production footer 버튼 실제 클릭도 `PDF 생성 중...` 표시 후 `joinse
 ```text
 - QA 시 현재 HTML 기준 PDF가 화면 디자인을 잘 반영하는지 육안 확인해주세요.
 ```
+
+## 2026-06-16 12:58 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 피드백에 따라 PDF 한글 깨짐과 비율 문제를 수정했습니다.
+`@fontsource-variable/noto-sans-kr`를 추가하고 Inter latin-only body class를 제거해 앱과 PDF 모두 Noto Sans KR self-host 폰트를 사용합니다.
+PDF는 A4 print media가 아니라 1440px desktop web screen layout 기준의 긴 페이지로 출력하도록 변경했습니다.
+PDF 생성 직전 Puppeteer에서 `.site-header`, `.footer-download-wrap`, `.back-to-top-floating`을 숨겨 메뉴바와 조작 UI가 PDF에 나오지 않게 했습니다.
+Production PDF 내부 `Noto Sans KR` 폰트 포함, MediaBox 1080pt 폭, zip 내부 PDF 11개를 확인했습니다.
+Production footer 실제 클릭 다운로드도 성공했고 console error는 0건입니다.
+```
+
+### Related Files
+
+```text
+- app/layout.tsx
+- app/globals.css
+- src/lib/pdf-export.ts
+- package.json
+- package-lock.json
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 다운로드한 PDF에서 한글이 깨지지 않는지 육안 확인해주세요.
+- PDF가 웹 화면 비율로 보이고 메뉴바가 노출되지 않는지 확인해주세요.
+```
