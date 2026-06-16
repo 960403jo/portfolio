@@ -228,7 +228,10 @@ async function rewriteProjectLinkAnnotations(pdf: Uint8Array) {
       const relativePdfPath = projectPdfLinks.find((link) => uri.endsWith(`/${link}`));
 
       if (relativePdfPath) {
-        action.set(PDFName.of("URI"), PDFString.of(relativePdfPath));
+        action.set(PDFName.of("S"), PDFName.of("GoToR"));
+        action.set(PDFName.of("F"), PDFString.of(relativePdfPath));
+        action.set(PDFName.of("D"), pdfDocument.context.obj([0, PDFName.of("Fit")]));
+        action.delete(PDFName.of("URI"));
         didRewrite = true;
       }
     }
