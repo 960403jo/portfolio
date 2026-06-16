@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 10:11 KST
+Last Updated: 2026-06-16 11:01 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 10:11 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 11:01 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 10:11 KST
+Updated At: 2026-06-16 11:01 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -131,7 +131,9 @@ Summary:
 - Hero 프로필 흐림 배경 opacity를 desktop/mobile 공통 0.1로 낮춰 배경 질감 수준으로 조정
 - Hero 프로필 배경의 opacity, blur, mask, glow 효과를 제거하고 모바일 위치를 내려 텍스트 겹침 완화
 - 지원서용 PDF 화면 `/pdf`와 프로젝트별 상세 PDF 화면 `/projects/[slug]/pdf` 구현
-- Hero `PDF 저장` CTA, 프로젝트 상세 `프로젝트 PDF` 버튼, PDF 전용 `window.print()` toolbar 구현
+- Footer `PDF 다운로드` 버튼과 `/api/portfolio-pdf-zip` zip 다운로드 API 구현
+- zip 내부에 메인 PDF 1개와 프로젝트 상세 PDF 10개가 포함되도록 Chromium 기반 PDF 출력/압축 구현
+- Hero `PDF 저장` CTA와 프로젝트 상세 `프로젝트 PDF` 버튼 제거, PDF 다운로드 진입점을 footer로 정리
 - sitemap에 지원서 PDF 및 프로젝트별 PDF 라우트 추가
 - 화면 노출 `Experience` 표기를 `커리어`로 변경
 - 화면 노출 `커리어` 표기를 `Career`로 변경해 영문 nav 흐름으로 통일
@@ -161,8 +163,10 @@ Summary:
 - Local desktop/mobile 렌더링에서 Hero 프로필 배경 desktop opacity 0.48/blur 5px, mobile opacity 0.34/blur 6px, overflowX 0, console error 0 확인
 - Local desktop/mobile 렌더링에서 Hero 프로필 배경 desktop/mobile opacity 0.1, overflowX 0, console error 0 확인
 - Local desktop/mobile 렌더링에서 Hero 프로필 배경 opacity 1, filter none, mask none, glow pseudo display none, overflowX 0, console error 0 확인
-- Local desktop/mobile 렌더링에서 `/pdf`, `/projects/railway-standards-platform/pdf`, 프로젝트 상세 PDF 버튼, PDF print media, 수평 오버플로 0, console error 0 확인
+- Local desktop/mobile 렌더링에서 `/pdf`, `/projects/railway-standards-platform/pdf`, PDF print media, 수평 오버플로 0, console error 0 확인
 - Chrome headless PDF 생성 확인: `tmp/qa/portfolio-application.pdf`, `tmp/qa/railway-project-detail.pdf`
+- Local `/api/portfolio-pdf-zip` 응답 200, application/zip, 1.8MB zip, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인
+- Footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출, overflowX 0, console error 0 확인
 Blocker:
 - 없음
 Next:

@@ -1160,3 +1160,39 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증, Chrom
 - `/pdf`를 실제 브라우저에서 PDF 저장했을 때 지원서 제출용으로 정보량과 페이지 분할이 적절한지 확인해주세요.
 - 대표 프로젝트와 추가 프로젝트 각각의 `/projects/[slug]/pdf` 라우트가 해당 프로젝트 데이터로 잘 연결되는지 확인해주세요.
 ```
+
+## 2026-06-16 11:01 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 맞춰 PDF 다운로드 흐름을 footer zip 다운로드 방식으로 변경했습니다.
+Footer에 `PDF 다운로드` 버튼을 추가했고, `/api/portfolio-pdf-zip`에서 headless Chromium으로 `/pdf`와 전체 `/projects/[slug]/pdf`를 PDF로 출력한 뒤 zip으로 반환합니다.
+zip 내부에는 `00-joinseong-portfolio-main.pdf`와 `projects/01-...pdf`부터 `projects/10-...pdf`까지 프로젝트 상세 PDF 10개가 포함됩니다.
+Hero `PDF 저장` CTA와 프로젝트 상세 `프로젝트 PDF` 버튼은 제거했습니다.
+npm run lint, npm run build, 로컬 API zip 생성 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/api/portfolio-pdf-zip/route.ts
+- src/lib/pdf-export.ts
+- src/components/layout/Footer.tsx
+- src/components/sections/HeroSection.tsx
+- app/projects/[slug]/page.tsx
+- app/globals.css
+- package.json
+- package-lock.json
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Footer `PDF 다운로드` 버튼 클릭 시 zip 다운로드가 자연스러운지 확인해주세요.
+- zip 내부 11개 PDF 파일명과 각 PDF의 페이지 분할이 지원서 제출 용도에 맞는지 확인해주세요.
+```

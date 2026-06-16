@@ -1819,12 +1819,6 @@ li {
   gap: 28px;
 }
 
-.project-detail-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 .back-link {
   display: inline-flex;
   width: fit-content;
@@ -1843,12 +1837,6 @@ li {
 .back-link:focus-visible {
   box-shadow: 0 10px 24px rgba(29, 23, 19, 0.1);
   outline: 0;
-}
-
-.back-link--pdf {
-  border-color: var(--teal);
-  background: var(--teal);
-  color: #fff;
 }
 
 .project-detail-hero__copy {
@@ -2040,6 +2028,29 @@ li {
 .site-footer a {
   color: inherit;
   font-weight: 900;
+}
+
+.footer-download {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(29, 23, 19, 0.12);
+  border-radius: 999px;
+  background: var(--teal);
+  color: #fff !important;
+  font-size: 13px;
+  padding: 9px 13px;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.footer-download:hover,
+.footer-download:focus-visible {
+  background: var(--teal-dark);
+  box-shadow: 0 10px 24px rgba(29, 23, 19, 0.12);
+  outline: 0;
+  transform: translateY(-1px);
 }
 
 .back-to-top-floating {

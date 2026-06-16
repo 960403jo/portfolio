@@ -995,3 +995,48 @@
 - Chrome headless PDF 생성 확인: tmp/qa/portfolio-application.pdf, tmp/qa/railway-project-detail.pdf
 - 스크린샷 확인: tmp/qa/resume-pdf-desktop.png, tmp/qa/project-pdf-desktop.png, tmp/qa/resume-pdf-mobile.png, tmp/qa/project-pdf-mobile.png
 ```
+
+## 2026-06-16 11:01 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 사용자 요청에 따라 PDF 다운로드 진입점을 footer로 변경
+- Footer에 `PDF 다운로드` 버튼 추가
+- `/api/portfolio-pdf-zip` route handler 추가
+- API는 headless Chromium + Playwright로 `/pdf`와 전체 `/projects/[slug]/pdf` 라우트를 A4 PDF로 출력
+- fflate로 `joinseong-portfolio-pdf.zip` 생성 후 application/zip attachment로 반환
+- zip 내부 파일:
+  - 00-joinseong-portfolio-main.pdf
+  - projects/01-taean-smart-city.pdf
+  - projects/02-railway-standards-platform.pdf
+  - projects/03-chuncheon-digital-id-admin.pdf
+  - projects/04-gunsan-iksan-bis-bms.pdf
+  - projects/05-traffic-safety-infra.pdf
+  - projects/06-anyang-autonomous-driving.pdf
+  - projects/07-carbon-neutral-admin.pdf
+  - projects/08-daejeon-its.pdf
+  - projects/09-yongin-seoul-toll-system.pdf
+  - projects/10-jinju-transport-support.pdf
+- Hero `PDF 저장` CTA 제거
+- 프로젝트 상세 `프로젝트 PDF` 버튼 제거
+- `@sparticuz/chromium`, `playwright-core`, `fflate`를 runtime dependency로 사용
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- build 결과 `/api/portfolio-pdf-zip` dynamic route 확인
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Footer `PDF 다운로드` 버튼 href `/api/portfolio-pdf-zip` 확인
+- Hero action은 `대표 프로젝트`, `이메일`만 남고 PDF CTA 미노출 확인
+- `/api/portfolio-pdf-zip` 응답 200, content-type application/zip, content-disposition attachment 확인
+- zip 크기 1,805,326 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- 내부 PDF 최소 280,698 bytes / 최대 818,960 bytes
+- Desktop footer overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/footer-zip-download-desktop.png
+- zip 파일 확인: tmp/qa/joinseong-portfolio-pdf-browser.zip
+```

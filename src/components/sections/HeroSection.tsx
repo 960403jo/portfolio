@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Braces, FileDown, FileSearch, GitBranch, Mail, PanelsTopLeft } from "lucide-react";
+import { Braces, FileSearch, GitBranch, Mail, PanelsTopLeft } from "lucide-react";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Badge } from "@/components/ui/Badge";
 import { heroSignals, profile } from "@/data/portfolio";
@@ -52,9 +52,6 @@ export function HeroSection() {
                 {cta.label}
               </ButtonLink>
             ))}
-            <ButtonLink href="/pdf" icon={FileDown} variant="secondary">
-              PDF 저장
-            </ButtonLink>
             <button
               type="button"
               className="button-link button-link--secondary"
