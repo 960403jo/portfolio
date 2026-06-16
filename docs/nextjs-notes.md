@@ -1291,6 +1291,33 @@
 - 실제 클릭 다운로드 zip 내부 PDF 11개, 상대 링크 유지, console error 0
 ```
 
+## 2026-06-16 15:37 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- macOS Preview `-50` 오류 대응을 위해 main PDF 프로젝트 카드 링크를 URI action에서 remote go-to action(`/S /GoToR`)으로 변경
+- 프로젝트 상세 PDF 대상은 zip 내부 상대 파일 경로 `/F projects/01-*.pdf`와 첫 페이지 맞춤 destination `/D [0 /Fit]`로 지정
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local main PDF 프로젝트 링크 4개 모두 `/GoToR`
+- Local main PDF project URI 0개
+- Production deployment: https://portfolio-e0nywy6ag-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production `/api/portfolio-pdf-zip` 응답 200
+- Production zip 내부 PDF 11개
+- Production main PDF 프로젝트 링크 4개 모두 `/GoToR`
+- Production main PDF project URI 0개
+- Production annotation 검사 failures 0
+```
+
 ### Production 검증
 
 ```text
