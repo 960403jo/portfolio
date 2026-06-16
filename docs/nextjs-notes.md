@@ -1039,4 +1039,12 @@
 - Desktop footer overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/footer-zip-download-desktop.png
 - zip 파일 확인: tmp/qa/joinseong-portfolio-pdf-puppeteer.zip
+- Production deployment: https://portfolio-ashy-five-87.vercel.app
+- Production `/api/portfolio-pdf-zip` 응답 200, application/zip, content-disposition attachment 확인
+- Production zip 크기 1,251,348 bytes
+- Production zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- Production 내부 PDF 최소 203,459 bytes / 최대 580,513 bytes
+- Production footer `PDF 다운로드` 버튼 href `/api/portfolio-pdf-zip`, download `joinseong-portfolio-pdf.zip`, Hero PDF CTA 미노출, overflowX 0, console error 0 확인
+- Production zip 파일 확인: tmp/qa/prod-joinseong-portfolio-pdf.zip
+- Production 스크린샷 확인: tmp/qa/prod-footer-zip-download-desktop.png
 ```

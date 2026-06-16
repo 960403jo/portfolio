@@ -123,6 +123,7 @@ Agent 간 전달사항을 기록한다.
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 desktop/mobile opacity 0.1, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 opacity 1, filter none, mask none, glow pseudo display none, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, `/pdf`, `/projects/railway-standards-platform/pdf`, `/projects/railway-standards-platform`에서 PDF source routes/print media toolbar hidden/overflowX 0/console error 0 확인. Footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출 확인. `/api/portfolio-pdf-zip` 응답 200, application/zip, 약 1.97MB, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인
+- Production 확인: `https://portfolio-ashy-five-87.vercel.app/api/portfolio-pdf-zip` 응답 200, application/zip, 1.25MB, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인. Production footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출, overflowX 0, console error 0 확인
 ```
 
 ### 확인 필요
