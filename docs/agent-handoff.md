@@ -127,6 +127,8 @@ Agent 간 전달사항을 기록한다.
 - Local 실제 클릭 확인: footer `PDF 다운로드` 클릭 시 `PDF 생성 중...` 상태 표시 후 `joinseong-portfolio-pdf.zip` 다운로드, zip 내부 PDF 11개, console error 0 확인
 - Production 재배포 확인: `https://portfolio-ashy-five-87.vercel.app` alias가 새 배포로 연결됨
 - Production 실제 클릭 확인: footer `PDF 다운로드` 클릭 시 `PDF 생성 중...` 상태 표시 후 `joinseong-portfolio-pdf.zip` 다운로드, zip 내부 PDF 11개, console error 0 확인
+- 최신 Production 재배포 확인: `https://portfolio-24zn6z21w-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- 최신 Production 실제 클릭 재확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
 ```
 
 ### 확인 필요

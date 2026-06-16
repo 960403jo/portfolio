@@ -1257,3 +1257,29 @@ console error는 0건입니다.
 - Production에서 사용자가 기다릴 수 있는 수준의 생성 시간인지 확인해주세요.
 - 다운로드된 zip의 PDF 페이지 분할과 파일명이 지원서 제출용으로 적절한지 최종 확인해주세요.
 ```
+
+## 2026-06-16 12:18 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+문서 업데이트 커밋까지 포함해 production을 다시 배포했습니다.
+최신 deployment는 `https://portfolio-24zn6z21w-joinseong-s-projects.vercel.app`이고, alias는 `https://portfolio-ashy-five-87.vercel.app`입니다.
+최신 alias에서 footer 버튼 실제 클릭을 재검증했고, `PDF 생성 중...` 표시 후 `joinseong-portfolio-pdf.zip` 다운로드가 완료됐습니다.
+zip 내부 PDF는 11개이며 console error는 0건입니다.
+```
+
+### Related Files
+
+```text
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 최신 alias 기준으로 버튼 클릭 다운로드와 PDF 파일 내용을 확인해주세요.
+```
