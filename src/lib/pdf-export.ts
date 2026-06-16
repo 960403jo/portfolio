@@ -162,6 +162,24 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
         contain: layout paint;
       }
 
+      .section--projects,
+      .section--interview {
+        background: #fffaf4 !important;
+      }
+
+      .section--projects .project-showcase,
+      .section--interview .interview-grid,
+      .project-side-panel {
+        background: #ffffff !important;
+        box-shadow: none !important;
+      }
+
+      .section--projects .project-card,
+      .section--interview .interview-card {
+        background: #ffffff !important;
+        box-shadow: none !important;
+      }
+
       .project-side {
         position: static !important;
         inset: auto !important;

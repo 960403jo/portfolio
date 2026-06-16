@@ -1611,3 +1611,30 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 `00-joinseong-portfolio-main.pdf` 안에서 프로젝트 카드 클릭이 같은 PDF 내부 상세 페이지로 이동하는지 확인해주세요.
 - macOS Preview에서 `projects/*.pdf` 외부 파일 권한 오류가 더 이상 발생하지 않는지 확인해주세요.
 ```
+
+## 2026-06-16 17:04 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 PDF 다운로드 결과에서 Projects/Q&A 영역에 회색 가로 띠가 보인다고 보고했습니다.
+원인은 PDF 캡처 시 screen layout의 gradient background와 shadow가 PDF/Preview 렌더링에서 회색 레이어처럼 합성되는 문제로 판단했습니다.
+웹 화면 디자인은 유지하고, PDF 캡처 CSS에서 Projects/Q&A 섹션과 관련 카드의 background를 흰색으로 고정하고 shadow를 제거했습니다.
+Local PDF zip 재생성 후 link action 구조가 유지되는지 확인했고, QuickLook 렌더링 이미지에서 Projects/Q&A 회색 가로 띠가 사라진 것을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 PDF 첫 페이지의 Projects/Q&A 영역에 회색 가로 띠가 남아 있지 않은지 육안 확인해주세요.
+```

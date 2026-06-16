@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 16:59 KST
+Last Updated: 2026-06-16 17:04 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 16:59 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 17:04 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 16:59 KST
+Updated At: 2026-06-16 17:04 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -225,6 +225,8 @@ Summary:
 - Local PDF zip 재검증: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 - Production 재배포 완료: `https://portfolio-5upz721x4-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF zip 재검증: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
+- PDF Projects/Q&A 회색 띠 제거: PDF 캡처 전용 CSS에서 섹션 gradient background와 카드/project-showcase/interview shadow를 흰색 배경으로 정리
+- Local PDF zip 재검증: link action 구조 유지, QuickLook 렌더링 이미지에서 Projects/Q&A 회색 가로 띠 미노출 확인
 Blocker:
 - 없음
 Next:
