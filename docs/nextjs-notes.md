@@ -1318,6 +1318,29 @@
 - Production annotation 검사 failures 0
 ```
 
+## 2026-06-16 16:02 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Q&A 섹션 태블릿/모바일 밀림 완화
+- 1040px 이하에서 `.interview-card` 질문/답변 레이아웃을 2컬럼에서 1컬럼으로 전환
+- `.interview-card__question`, `.interview-card__answer`에 min-width 0 적용
+- 답변 영역 상단 divider와 모바일 padding/line-height 보정
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local 1440/1024/768/430/390/360px Q&A 렌더링 확인
+- overflowX 0
+- 질문/답변 겹침 0
+- 카드 내부 self-overflow 0
+- console error 0
+```
+
 ### Production 검증
 
 ```text

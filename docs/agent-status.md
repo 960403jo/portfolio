@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 15:42 KST
+Last Updated: 2026-06-16 16:02 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 15:42 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 16:02 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 15:42 KST
+Updated At: 2026-06-16 16:02 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -209,6 +209,9 @@ Summary:
 - Local `/api/portfolio-pdf-zip` 재검증: main PDF 프로젝트 링크 4개 모두 `/GoToR`, `/F projects/01-*.pdf`, `/D [0 /Fit]`, project URI 0개
 - Production 재배포 완료: `https://portfolio-jpirzdbpk-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias `/api/portfolio-pdf-zip` 최종 재검증: zip 내부 PDF 11개, main PDF 프로젝트 링크 4개 모두 `/GoToR`, project URI 0개, failures 0
+- Q&A 섹션 태블릿/모바일 CSS 밀림 완화: 1040px 이하에서 질문/답변 2컬럼을 1컬럼 문서형 카드로 전환
+- Q&A 카드 내부 min-width, 답변 상단 divider, 모바일 padding/line-height 조정
+- Local 렌더링 재검증: 1440/1024/768/430/390/360px에서 overflowX 0, 질문/답변 겹침 0, 카드 내부 self-overflow 0, console error 0
 Blocker:
 - 없음
 Next:

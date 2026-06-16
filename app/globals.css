@@ -1262,8 +1262,8 @@ li {
   --panel-accent-line: var(--accent-line-orange);
   position: relative;
   display: grid;
-  grid-template-columns: minmax(180px, 0.34fr) minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: minmax(220px, 0.32fr) minmax(0, 1fr);
+  gap: 28px;
   align-items: start;
   border: 1px solid var(--panel-accent-line);
   border-radius: 8px;
@@ -1311,6 +1311,11 @@ li {
   font-weight: 950;
   line-height: 1.2;
   padding: 5px 9px;
+}
+
+.interview-card__question,
+.interview-card__answer {
+  min-width: 0;
 }
 
 .interview-card h3 {
@@ -2602,6 +2607,25 @@ li {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .section--interview .interview-grid {
+    max-width: 760px;
+  }
+
+  .interview-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .interview-card__top {
+    margin-bottom: 14px;
+  }
+
+  .interview-card__answer {
+    border-top: 1px solid var(--panel-accent-line);
+    padding-top: 18px;
+  }
+
   .project-grid--featured {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3011,19 +3035,28 @@ li {
   }
 
   .interview-card {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 14px;
     min-height: auto;
-    padding: 18px;
+    padding: 20px;
   }
 
   .interview-card h3 {
     font-size: 20px;
+    line-height: 1.22;
+  }
+
+  .interview-card__top {
+    margin-bottom: 12px;
+  }
+
+  .interview-card__answer {
+    padding-top: 16px;
   }
 
   .interview-card__answer p,
   .interview-card__answer strong {
     font-size: 14px;
+    line-height: 1.68;
   }
 
   .skill-panel,

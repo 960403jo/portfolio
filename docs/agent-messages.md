@@ -1520,3 +1520,30 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 최신 배포 `h
 - QA 시 zip을 압축 해제한 뒤 main PDF와 `projects/` 폴더를 같은 위치에 둔 상태에서 대표 프로젝트 카드 링크가 상세 PDF로 이동하는지 확인해주세요.
 - Preview 외 PDF viewer에서도 상대 파일 이동이 정상인지 확인해주세요.
 ```
+
+## 2026-06-16 16:02 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 피드백에 따라 Q&A 섹션이 태블릿/모바일에서 밀려 보이는 문제를 재검토했습니다.
+768px 구간에서 질문/답변 2컬럼이 좁게 눌려 보이는 것을 확인해 1040px 이하에서는 1컬럼 문서형 카드로 전환했습니다.
+답변 영역에는 상단 divider와 padding을 추가하고, 모바일 padding/line-height를 조정했습니다.
+1440/1024/768/430/390/360px에서 overflowX 0, 질문/답변 겹침 0, 카드 내부 overflow 0, console error 0을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 Q&A 섹션을 768px, 390px, 360px 기준으로 다시 육안 확인해주세요.
+```
