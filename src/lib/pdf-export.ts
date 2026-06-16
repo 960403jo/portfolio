@@ -44,11 +44,11 @@ function getPdfTargets(origin: string): PdfTarget[] {
   return [
     {
       filename: "00-joinseong-portfolio-main.pdf",
-      url: `${origin}/pdf`
+      url: `${origin}/`
     },
     ...projects.map((project, index) => ({
       filename: `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`,
-      url: `${origin}/projects/${project.slug}/pdf`
+      url: `${origin}/projects/${project.slug}`
     }))
   ];
 }
@@ -67,6 +67,9 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
       waitUntil: "networkidle0",
       timeout: 45_000
     });
+
+    await page.emulateMediaType("print");
+    await page.evaluate(() => document.fonts.ready.then(() => true));
 
     const pdf = await page.pdf({
       format: "A4",

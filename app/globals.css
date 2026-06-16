@@ -2459,9 +2459,39 @@ li {
     print-color-adjust: exact;
   }
 
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal--left,
+  .scroll-reveal--right,
+  .scroll-reveal--scale,
+  .scroll-reveal--line {
+    opacity: 1 !important;
+    filter: none !important;
+    scale: 1 !important;
+    translate: 0 0 !important;
+  }
+
+  .site-header,
   .pdf-toolbar,
+  .footer-download-wrap,
   .back-to-top-floating {
     display: none !important;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 24px;
+  }
+
+  .section,
+  .project-detail-hero {
+    scroll-margin-top: 0;
   }
 
   .pdf-page {
@@ -2487,7 +2517,12 @@ li {
   .pdf-project-card,
   .pdf-kpi-card,
   .pdf-career-item,
-  .pdf-qna-item {
+  .pdf-qna-item,
+  .project-card,
+  .detail-panel,
+  .timeline-item,
+  .workflow-card,
+  .interview-card {
     break-inside: avoid;
     page-break-inside: avoid;
   }

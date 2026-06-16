@@ -1283,3 +1283,40 @@ zip 내부 PDF는 11개이며 console error는 0건입니다.
 ```text
 - QA 시 최신 alias 기준으로 버튼 클릭 다운로드와 PDF 파일 내용을 확인해주세요.
 ```
+
+## 2026-06-16 12:31 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 피드백에 따라 PDF zip 생성 소스를 전용 PDF 화면에서 현재 HTML 화면으로 변경했습니다.
+이제 `/api/portfolio-pdf-zip`은 `/pdf`, `/projects/[slug]/pdf`가 아니라 `/`, `/projects/[slug]`를 직접 print-to-PDF로 출력합니다.
+전용 `/pdf` 라우트, 프로젝트별 `/pdf` 라우트, `PrintToolbar` 컴포넌트를 제거했고 sitemap에서도 PDF 전용 경로를 제거했습니다.
+현재 HTML 출력 시 scroll reveal 요소가 투명하게 찍히지 않도록 print media에서 reveal을 강제 노출하고, 고정 header/download/back-to-top 조작 UI만 숨겼습니다.
+ScrollReveal hydration mismatch도 함께 수정했습니다.
+npm run lint, npm run build, 로컬 API zip 생성, 로컬 footer 실제 클릭 다운로드 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- app/globals.css
+- app/sitemap.ts
+- src/components/ui/ScrollReveal.tsx
+- app/pdf/page.tsx
+- app/projects/[slug]/pdf/page.tsx
+- src/components/pdf/PrintToolbar.tsx
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 zip 내부 PDF가 현재 웹 화면 디자인을 기준으로 출력되는지 확인해주세요.
+- `/pdf`와 `/projects/[slug]/pdf`가 더 이상 접근되지 않는지 확인해주세요.
+- 현재 HTML print media에서 하단 섹션이 누락되거나 투명하게 찍히지 않는지 확인해주세요.
+```

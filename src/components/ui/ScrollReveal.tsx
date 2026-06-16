@@ -35,9 +35,20 @@ export function ScrollReveal({
   variant = "up"
 }: ScrollRevealProps) {
   const revealId = useId().replaceAll(":", "");
+  const [hasMounted, setHasMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setHasMounted(true));
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) {
+      return;
+    }
+
     const element = document.querySelector<HTMLElement>(
       `[data-scroll-reveal-id="${revealId}"]`
     );
@@ -67,9 +78,13 @@ export function ScrollReveal({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [revealId, threshold]);
+  }, [hasMounted, revealId, threshold]);
 
   if (!isValidElement(children)) {
+    return children;
+  }
+
+  if (!hasMounted) {
     return children;
   }
 

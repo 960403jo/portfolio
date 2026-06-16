@@ -1113,3 +1113,40 @@
 - 마지막 파일: projects/10-jinju-transport-support.pdf
 - console error 0
 ```
+
+## 2026-06-16 12:31 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF zip 생성 소스를 전용 PDF 화면에서 현재 HTML 화면으로 변경
+- `src/lib/pdf-export.ts` targets:
+  - main: `/pdf` -> `/`
+  - project: `/projects/[slug]/pdf` -> `/projects/[slug]`
+- Puppeteer 출력 전 `page.emulateMediaType("print")`와 `document.fonts.ready` 대기 추가
+- `/pdf`, `/projects/[slug]/pdf`, `PrintToolbar` 제거
+- sitemap에서 PDF 전용 경로 제거
+- print media에서 현재 HTML의 scroll reveal 요소를 강제 노출
+- print media에서 fixed header, footer download button, back-to-top 조작 UI 제외
+- ScrollReveal은 mount 이후 reveal class를 붙이도록 변경해 hydration mismatch 제거
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- build route에서 `/pdf`, `/projects/[slug]/pdf` 미노출 확인
+- Local `/api/portfolio-pdf-zip` 응답 200, application/zip
+- Local zip 크기 3,827,526 bytes, 내부 PDF 11개 확인
+- Local `/pdf` 응답 404
+- Local `/projects/taean-smart-city/pdf` 응답 404
+- Local sitemap에서 `/pdf`, `/projects/[slug]/pdf` 미노출 확인
+- Local footer button click 전 label `PDF 다운로드`, click 후 label `PDF 생성 중...`, 완료 후 label `PDF 다운로드` 확인
+- 다운로드 파일명 `joinseong-portfolio-pdf.zip` 확인
+- 실제 클릭 다운로드 zip 크기 3,830,646 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- 첫 파일: 00-joinseong-portfolio-main.pdf
+- 마지막 파일: projects/10-jinju-transport-support.pdf
+- console error 0
+```
