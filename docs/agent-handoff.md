@@ -171,6 +171,8 @@ Agent 간 전달사항을 기록한다.
 - Production alias PDF 확인: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 - PDF Projects/Q&A 배경 보정: PDF 캡처 CSS에서 `.section--projects`, `.section--interview`, `.project-showcase`, `.interview-grid`, project/interview card의 gradient/shadow를 제거하고 흰색 배경으로 고정
 - Local 확인: PDF link action 구조 유지, QuickLook 렌더링 이미지에서 Projects/Q&A 회색 가로 띠 미노출
+- Production 재배포 확인: `https://portfolio-k8p3vh4ld-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 ```
 
 ### 확인 필요

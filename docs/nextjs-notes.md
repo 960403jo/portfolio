@@ -1406,7 +1406,7 @@
 - Production main PDF 외부 URL/file action 0개
 ```
 
-## 2026-06-16 17:04 KST - Next.js App Agent
+## 2026-06-16 17:09 KST - Next.js App Agent
 
 ### 구현 요약
 
@@ -1427,6 +1427,11 @@
 - Local `00-joinseong-portfolio-main.pdf` pageCount 11
 - Local main PDF 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개 유지
 - QuickLook 렌더링 이미지에서 Projects/Q&A 회색 가로 띠 미노출 확인
+- Production deployment: https://portfolio-k8p3vh4ld-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 11
+- Production main PDF 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 ```
 
 ### Production 검증
