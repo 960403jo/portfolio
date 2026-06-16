@@ -1320,3 +1320,30 @@ npm run lint, npm run build, 로컬 API zip 생성, 로컬 footer 실제 클릭 
 - `/pdf`와 `/projects/[slug]/pdf`가 더 이상 접근되지 않는지 확인해주세요.
 - 현재 HTML print media에서 하단 섹션이 누락되거나 투명하게 찍히지 않는지 확인해주세요.
 ```
+
+## 2026-06-16 12:39 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+Production에서 현재 HTML 기반 PDF zip 생성이 기존 60초 제한에 걸려 `FUNCTION_INVOCATION_TIMEOUT`이 발생하는 것을 확인했습니다.
+`/api/portfolio-pdf-zip`의 `maxDuration`을 120초로 조정하고, Puppeteer navigation 대기를 `networkidle0`에서 `domcontentloaded` + fonts/images 준비 확인으로 변경했습니다.
+로컬 `/api/portfolio-pdf-zip` 재검증 결과 현재 HTML 라우트 기준 zip 11개 PDF가 약 5.9초에 생성됩니다.
+```
+
+### Related Files
+
+```text
+- app/api/portfolio-pdf-zip/route.ts
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Production 재배포 후 footer 버튼 실제 클릭 다운로드가 120초 안에 완료되는지 확인해주세요.
+```

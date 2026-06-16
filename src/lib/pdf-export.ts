@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
-import puppeteer, { type Browser } from "puppeteer-core";
+import puppeteer, { type Browser, type Page } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
 type PdfTarget = {
@@ -63,13 +63,12 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
       deviceScaleFactor: 1
     });
 
-    await page.goto(target.url, {
-      waitUntil: "networkidle0",
-      timeout: 45_000
-    });
-
     await page.emulateMediaType("print");
-    await page.evaluate(() => document.fonts.ready.then(() => true));
+    await page.goto(target.url, {
+      waitUntil: "domcontentloaded",
+      timeout: 20_000
+    });
+    await waitForPrintableHtml(page);
 
     const pdf = await page.pdf({
       format: "A4",
@@ -84,6 +83,28 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
   } finally {
     await page.close();
   }
+}
+
+async function waitForPrintableHtml(page: Page) {
+  await page.evaluate(async () => {
+    const waitForImages = Promise.all(
+      Array.from(document.images).map((image) => {
+        if (image.complete) {
+          return true;
+        }
+
+        return new Promise((resolve) => {
+          image.addEventListener("load", resolve, { once: true });
+          image.addEventListener("error", resolve, { once: true });
+        });
+      })
+    );
+
+    await Promise.race([
+      Promise.all([document.fonts.ready, waitForImages]),
+      new Promise((resolve) => window.setTimeout(resolve, 2500))
+    ]);
+  });
 }
 
 async function launchBrowser() {

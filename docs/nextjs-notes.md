@@ -1150,3 +1150,25 @@
 - 마지막 파일: projects/10-jinju-transport-support.pdf
 - console error 0
 ```
+
+## 2026-06-16 12:39 KST - Next.js App Agent
+
+### Timeout 대응
+
+```text
+- Production 현재 HTML 기반 PDF zip 생성에서 60초 제한으로 `FUNCTION_INVOCATION_TIMEOUT` 확인
+- `/api/portfolio-pdf-zip` route handler `maxDuration` 60 -> 120 조정
+- Puppeteer page navigation을 `networkidle0`에서 `domcontentloaded`로 변경
+- 출력 전 fonts/images 준비를 최대 2.5초까지만 기다리도록 변경
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local 생성 시간 5,884ms
+- zip 크기 3,830,646 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+```

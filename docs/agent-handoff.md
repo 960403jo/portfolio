@@ -131,6 +131,9 @@ Agent 간 전달사항을 기록한다.
 - 최신 Production 실제 클릭 재확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
 - Local 확인: `/pdf`와 `/projects/taean-smart-city/pdf`는 404, sitemap에는 PDF 전용 경로 미노출
 - Local 실제 클릭 확인: 현재 HTML 라우트 기준 footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
+- Production timeout 확인: 현재 HTML 출력 방식은 기존 60초 제한에서 `FUNCTION_INVOCATION_TIMEOUT` 발생
+- Timeout 대응: `/api/portfolio-pdf-zip` `maxDuration` 120초 조정, Puppeteer navigation을 `domcontentloaded` 기준으로 변경하고 fonts/images 준비만 확인
+- Local API 재검증: 현재 HTML 라우트 기준 zip 생성 5.9초, 내부 PDF 11개 확인
 ```
 
 ### 확인 필요
