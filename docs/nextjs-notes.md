@@ -1595,6 +1595,15 @@
 - Local 상세 PDF back FileSpec 10개: `../00-joinseong-portfolio-main.pdf`
 - Local URI action 0개
 - Local unexpected action 0개
+- Production deployment: https://portfolio-ck8h6iwp4-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 6
+- Production main PDF 고유 프로젝트 FileSpec 10개: `projects/01-*.pdf`
+- Production 상세 PDF 10개 모두 pageCount 1
+- Production 상세 PDF back FileSpec 10개: `../00-joinseong-portfolio-main.pdf`
+- Production URI action 0개
+- Production unexpected action 0개
 ```
 
 ### Production 검증

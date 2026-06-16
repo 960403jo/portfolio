@@ -198,6 +198,8 @@ Agent 간 전달사항을 기록한다.
 - macOS Preview `-50` 오류 대응: 상대 `/URI`가 앱 실행 링크처럼 처리되는 문제를 피하기 위해 FileSpec dictionary 기반 상대 `/GoToR`로 변경
 - main PDF 프로젝트 링크는 FileSpec `projects/01-*.pdf`, 상세 PDF 목록 링크는 FileSpec `../00-joinseong-portfolio-main.pdf`로 설정
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
+- Production 재배포 확인: `https://portfolio-ck8h6iwp4-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
 ```
 
 ### 확인 필요

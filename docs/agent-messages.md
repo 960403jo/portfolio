@@ -1776,6 +1776,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 상대 경로 자체는 유지하되, PDF action을 일반 URI에서 FileSpec dictionary 기반 `/GoToR`로 변경했습니다.
 main PDF 프로젝트 카드 링크는 FileSpec `projects/01-*.pdf`, 상세 PDF의 `프로젝트 목록` 링크는 FileSpec `../00-joinseong-portfolio-main.pdf`입니다.
 Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-ck8h6iwp4-joinseong-s-projects.vercel.app`로 재배포했고, 동일 기준으로 재검증했습니다.
 ```
 
 ### Related Files
