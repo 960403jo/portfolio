@@ -1062,6 +1062,14 @@ li {
   pointer-events: auto;
 }
 
+.project-side:not(.project-side--open) .project-side-panel {
+  display: none;
+}
+
+.project-side--open .project-side-trigger {
+  display: none;
+}
+
 .project-side-trigger {
   display: inline-flex;
   min-height: 40px;

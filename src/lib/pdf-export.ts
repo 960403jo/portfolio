@@ -145,6 +145,45 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
       .project-showcase {
         contain: layout paint;
       }
+
+      .project-side {
+        position: static !important;
+        inset: auto !important;
+        width: 100% !important;
+        margin-top: 16px !important;
+        pointer-events: auto !important;
+      }
+
+      .project-side-trigger,
+      .project-side-panel__collapse {
+        display: none !important;
+      }
+
+      .project-side-panel {
+        display: block !important;
+        width: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+      }
+
+      .project-side-panel__top {
+        margin-bottom: 12px !important;
+      }
+
+      .project-side-panel__scroll {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
+      }
+
+      .project-side-panel .project-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
     `
   });
 

@@ -1345,6 +1345,31 @@
 - Production overflowX 0, 질문/답변 겹침 0, 카드 내부 self-overflow 0, console error 0
 ```
 
+## 2026-06-16 16:17 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 내 `더보기` 비동작 문제 대응
+- 추가 프로젝트 패널을 항상 DOM에 렌더링하고 일반 화면은 CSS로 접힘/열림 제어
+- PDF 캡처 CSS에서 더보기/접기 버튼을 숨기고 추가 프로젝트 패널을 본문형 2열 정적 목록으로 출력
+- PDF main 페이지에서 대표 4개뿐 아니라 전체 프로젝트 10개가 상세 PDF 링크를 갖도록 변경
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local 일반 화면 desktop: 더보기 접힘/열림, 추가 프로젝트 6개, overflowX 0, console error 0
+- Local 일반 화면 390/360px: 더보기 접힘/열림, 추가 프로젝트 6개, overflowX 0, console error 0
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local main PDF 프로젝트 링크 10개 모두 `/GoToR`
+- Local main PDF project URI 0개, failures 0
+- QuickLook 렌더링 이미지에서 PDF Projects 영역 하단 추가 프로젝트 6개 노출 확인
+```
+
 ### Production 검증
 
 ```text

@@ -35,45 +35,47 @@ export function ProjectsSection() {
                 className={isExpanded ? "project-side project-side--open" : "project-side"}
                 aria-label="추가 프로젝트"
               >
-                {!isExpanded ? (
-                  <button
-                    className="project-side-trigger"
-                    type="button"
-                    aria-expanded="false"
-                    onClick={() => setIsExpanded(true)}
-                  >
-                    <span>더보기</span>
-                    <ChevronRight aria-hidden="true" size={18} />
-                  </button>
-                ) : (
-                  <div className="project-side-panel">
-                    <div className="project-side-panel__top">
-                      <div>
-                        <span>추가 프로젝트</span>
-                        <strong>{remainingProjects.length}개</strong>
-                      </div>
-                      <button
-                        className="project-side-panel__collapse"
-                        type="button"
-                        aria-label="추가 프로젝트 접기"
-                        onClick={() => setIsExpanded(false)}
-                      >
-                        <ChevronLeft aria-hidden="true" size={16} />
-                        <span>접기</span>
-                      </button>
+                <button
+                  className="project-side-trigger"
+                  type="button"
+                  aria-expanded={isExpanded}
+                  aria-controls="additional-projects-panel"
+                  onClick={() => setIsExpanded(true)}
+                >
+                  <span>더보기</span>
+                  <ChevronRight aria-hidden="true" size={18} />
+                </button>
+                <div
+                  className="project-side-panel"
+                  id="additional-projects-panel"
+                  aria-hidden={!isExpanded}
+                >
+                  <div className="project-side-panel__top">
+                    <div>
+                      <span>추가 프로젝트</span>
+                      <strong>{remainingProjects.length}개</strong>
                     </div>
-                    <div className="project-side-panel__scroll">
-                      {remainingProjects.map((project, index) => (
-                        <ProjectCard
-                          key={project.slug}
-                          project={project}
-                          compact
-                          revealDelay={index * 45}
-                        />
-                      ))}
-                    </div>
+                    <button
+                      className="project-side-panel__collapse"
+                      type="button"
+                      aria-label="추가 프로젝트 접기"
+                      onClick={() => setIsExpanded(false)}
+                    >
+                      <ChevronLeft aria-hidden="true" size={16} />
+                      <span>접기</span>
+                    </button>
                   </div>
-                )}
+                  <div className="project-side-panel__scroll">
+                    {remainingProjects.map((project, index) => (
+                      <ProjectCard
+                        key={project.slug}
+                        project={project}
+                        compact
+                        revealDelay={index * 45}
+                      />
+                    ))}
+                  </div>
+                </div>
               </aside>
             ) : null}
           </div>

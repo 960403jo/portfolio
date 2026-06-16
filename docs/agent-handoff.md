@@ -160,6 +160,8 @@ Agent 간 전달사항을 기록한다.
 - Local 확인: 1440/1024/768/430/390/360px에서 Q&A overflowX 0, 카드 내부 overflow 0, 질문/답변 겹침 0, console error 0
 - Production 재배포 확인: `https://portfolio-mliqyl7w5-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias 확인: 768/390/360px에서 Q&A overflowX 0, 카드 내부 overflow 0, 질문/답변 겹침 0, console error 0
+- PDF 내 더보기 처리: 추가 프로젝트 패널을 조건부 렌더링에서 항상 DOM에 두는 구조로 변경. 일반 화면은 `.project-side:not(.project-side--open) .project-side-panel { display: none; }`으로 접고, PDF 캡처 CSS는 패널을 정적 2열 목록으로 펼침
+- Local 확인: 일반 화면 desktop/390/360px에서 더보기 접힘/열림 정상, PDF zip main PDF 프로젝트 링크 10개 모두 `/GoToR`, 추가 프로젝트 6개가 PDF 렌더링 이미지에 노출
 ```
 
 ### 확인 필요
