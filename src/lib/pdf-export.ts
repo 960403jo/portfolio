@@ -1,11 +1,13 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
+import { PDFDict, PDFDocument, PDFHexString, PDFName, PDFString } from "pdf-lib";
 import puppeteer, { type Browser, type Page } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
 type PdfTarget = {
   filename: string;
+  kind: "main" | "project";
   url: string;
 };
 
@@ -50,10 +52,12 @@ function getPdfTargets(origin: string): PdfTarget[] {
   return [
     {
       filename: "00-joinseong-portfolio-main.pdf",
+      kind: "main",
       url: `${origin}/`
     },
     ...projects.map((project, index) => ({
       filename: `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`,
+      kind: "project" as const,
       url: `${origin}/projects/${project.slug}`
     }))
   ];
@@ -74,7 +78,7 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
       waitUntil: "domcontentloaded",
       timeout: 20_000
     });
-    await prepareHtmlForPdf(page);
+    await prepareHtmlForPdf(page, target);
 
     const pageHeight = await getPageHeight(page);
 
@@ -90,17 +94,18 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
       printBackground: true,
       preferCSSPageSize: false
     });
+    const pdfBytes = new Uint8Array(pdf);
 
     return {
       filename: target.filename,
-      pdf: new Uint8Array(pdf)
+      pdf: target.kind === "main" ? await rewriteProjectLinkAnnotations(pdfBytes) : pdfBytes
     };
   } finally {
     await page.close();
   }
 }
 
-async function prepareHtmlForPdf(page: Page) {
+async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
   await page.addStyleTag({
     content: `
       html {
@@ -109,6 +114,8 @@ async function prepareHtmlForPdf(page: Page) {
 
       body {
         font-family: "Noto Sans KR Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif !important;
+        width: ${pdfViewport.width}px !important;
+        min-width: ${pdfViewport.width}px !important;
       }
 
       *,
@@ -134,10 +141,27 @@ async function prepareHtmlForPdf(page: Page) {
         scale: 1 !important;
         translate: 0 0 !important;
       }
+
+      .project-showcase {
+        contain: layout paint;
+      }
     `
   });
 
-  await page.evaluate(async () => {
+  const projectPdfLinks = getProjectPdfLinks();
+
+  await page.evaluate(async ({ kind, links }) => {
+    if (kind === "main") {
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="/projects/"]').forEach((anchor) => {
+        const slug = anchor.getAttribute("href")?.replace(/^\/projects\//, "").split(/[?#]/)[0];
+        const pdfPath = slug ? links[slug] : undefined;
+
+        if (pdfPath) {
+          anchor.setAttribute("href", pdfPath);
+        }
+      });
+    }
+
     await Promise.all([
       document.fonts.load('400 16px "Noto Sans KR Variable"', "한글"),
       document.fonts.load('700 24px "Noto Sans KR Variable"', "프로젝트"),
@@ -159,7 +183,70 @@ async function prepareHtmlForPdf(page: Page) {
 
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
     window.scrollTo(0, 0);
+  }, {
+    kind: target.kind,
+    links: projectPdfLinks
   });
+}
+
+function getProjectPdfLinks() {
+  return Object.fromEntries(
+    projects.map((project, index) => [
+      project.slug,
+      `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`
+    ])
+  );
+}
+
+async function rewriteProjectLinkAnnotations(pdf: Uint8Array) {
+  const pdfDocument = await PDFDocument.load(pdf);
+  const projectPdfLinks = Object.values(getProjectPdfLinks());
+  let didRewrite = false;
+
+  for (const page of pdfDocument.getPages()) {
+    const annotations = page.node.Annots();
+
+    if (!annotations) {
+      continue;
+    }
+
+    for (let index = 0; index < annotations.size(); index += 1) {
+      const annotation = pdfDocument.context.lookup(annotations.get(index));
+
+      if (!(annotation instanceof PDFDict)) {
+        continue;
+      }
+
+      const action = pdfDocument.context.lookup(annotation.get(PDFName.of("A")));
+
+      if (!(action instanceof PDFDict)) {
+        continue;
+      }
+
+      const uriObject = action.get(PDFName.of("URI"));
+      const uri = decodePdfText(uriObject);
+      const relativePdfPath = projectPdfLinks.find((link) => uri.endsWith(`/${link}`));
+
+      if (relativePdfPath) {
+        action.set(PDFName.of("URI"), PDFString.of(relativePdfPath));
+        didRewrite = true;
+      }
+    }
+  }
+
+  if (!didRewrite) {
+    return pdf;
+  }
+
+  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
+}
+
+function decodePdfText(value: unknown) {
+  if (value instanceof PDFString || value instanceof PDFHexString) {
+    return value.decodeText();
+  }
+
+  return "";
 }
 
 async function getPageHeight(page: Page) {
