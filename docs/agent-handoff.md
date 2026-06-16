@@ -145,6 +145,8 @@ Agent 간 전달사항을 기록한다.
 - Production 실제 클릭 확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> `joinseong-portfolio-pdf.zip`, zip 내부 PDF 11개, console error 0 확인
 - 프로젝트 상세 hero의 `Project Detail` eyebrow 문구 제거
 - Local `/projects/taean-smart-city` 확인: `Project Detail` 미노출, hero eyebrow 0개, console error 0
+- Production 재배포 확인: `https://portfolio-i6lq8vpax-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production `/projects/taean-smart-city` 확인: `Project Detail` 미노출, hero eyebrow 0개, console error 0
 ```
 
 ### 확인 필요

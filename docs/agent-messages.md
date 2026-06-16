@@ -1433,3 +1433,29 @@ npm run lint, npm run build를 통과했습니다.
 ```text
 - QA 시 프로젝트 상세 페이지와 PDF 출력에서 `Project Detail` 문구가 보이지 않는지 확인해주세요.
 ```
+
+## 2026-06-16 13:30 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+프로젝트 상세 eyebrow 제거분을 production에 재배포했습니다.
+최신 deployment는 `https://portfolio-i6lq8vpax-joinseong-s-projects.vercel.app`이고, alias는 `https://portfolio-ashy-five-87.vercel.app`입니다.
+Production `/projects/taean-smart-city` 렌더링에서 `Project Detail` 미노출, hero eyebrow 0개, console error 0을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- app/projects/[slug]/page.tsx
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 다른 프로젝트 상세 페이지에서도 동일하게 eyebrow가 보이지 않는지 확인해주세요.
+```

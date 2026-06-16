@@ -1252,3 +1252,14 @@
 - `.project-detail-hero .eyebrow` 0개
 - console error 0
 ```
+
+### Production 검증
+
+```text
+- Production deployment: https://portfolio-i6lq8vpax-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production `/projects/taean-smart-city` 렌더링 확인
+- document body에 `Project Detail` 미포함
+- `.project-detail-hero .eyebrow` 0개
+- console error 0
+```
