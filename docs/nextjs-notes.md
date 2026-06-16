@@ -963,3 +963,35 @@
 - Mobile 390px: portrait background 300x420, top 300px, opacity 1, filter none, mask none, glow pseudo display none, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/hero-profile-no-effects-desktop.png, tmp/qa/hero-profile-no-effects-mobile.png
 ```
+
+## 2026-06-16 10:11 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 지원서 제출용 PDF 전용 라우트 `/pdf` 추가
+- 프로젝트별 상세 PDF 전용 라우트 `/projects/[slug]/pdf` 추가
+- `/pdf`에는 프로필, 핵심 개발 방향, 경력, 기술 스택, 프로젝트 요약, AI Delivery, Q&A를 지원서용 문서 형태로 구성
+- `/pdf`의 프로젝트 카드에는 각 프로젝트별 상세 PDF 라우트(`/projects/[slug]/pdf`) 링크 제공
+- 프로젝트별 PDF에는 해당 slug의 KPI, 담당 업무, 성과와 경험, 기술 스택을 상세 구성
+- Hero에 `PDF 저장` CTA 추가
+- 프로젝트 상세 페이지에 해당 프로젝트 PDF로 이동하는 `프로젝트 PDF` 버튼 추가
+- PDF 화면 공통 toolbar `PrintToolbar` 추가. 저장 버튼은 `window.print()`로 브라우저 PDF 저장 대화상자 호출
+- print media에서 toolbar, 화면용 background, shadow, border를 제거해 PDF 출력에 맞게 정리
+- sitemap에 `/pdf` 및 전체 프로젝트별 `/projects/[slug]/pdf` 라우트 추가
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- build 결과 `/pdf`, `/projects/[slug]/pdf` 포함 26개 static page 생성 확인
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: `/`, `/pdf`, `/projects/railway-standards-platform`, `/projects/railway-standards-platform/pdf` 200 OK, PDF 버튼/toolbar 노출, overflowX 0, console error 0
+- Mobile 390px: `/pdf`, `/projects/railway-standards-platform/pdf` 200 OK, 1열 PDF layout, overflowX 0, console error 0
+- `/pdf` 프로젝트 상세 PDF 링크 10개 확인
+- print media: toolbar display none, pdf-page white background, pdf-document shadow none 확인
+- Chrome headless PDF 생성 확인: tmp/qa/portfolio-application.pdf, tmp/qa/railway-project-detail.pdf
+- 스크린샷 확인: tmp/qa/resume-pdf-desktop.png, tmp/qa/project-pdf-desktop.png, tmp/qa/resume-pdf-mobile.png, tmp/qa/project-pdf-mobile.png
+```

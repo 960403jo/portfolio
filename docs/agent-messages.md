@@ -1125,3 +1125,38 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통
 - 선명한 프로필 배경이 Hero 우측 카드 뒤에서 자연스럽게 보이는지 확인해주세요.
 - 모바일에서 프로필 이미지가 CTA/카드 뒤로 들어가며 헤드라인 가독성을 해치지 않는지 확인해주세요.
 ```
+
+## 2026-06-16 10:11 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 요청에 따라 지원서 제출용 PDF 화면과 프로젝트별 상세 PDF 화면을 추가했습니다.
+`/pdf`는 지원서용 요약 PDF 화면이고, `/projects/[slug]/pdf`는 각 프로젝트 상세 데이터에 맞춰 생성되는 PDF 전용 라우트입니다.
+Hero에는 `PDF 저장` CTA를 추가했고, 프로젝트 상세에는 해당 프로젝트 PDF로 이동하는 `프로젝트 PDF` 버튼을 추가했습니다.
+PDF 화면의 저장 버튼은 `window.print()`로 브라우저의 PDF 저장 대화상자를 열며, print media에서는 toolbar와 화면용 shadow/background가 제거됩니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증, Chrome headless PDF 파일 생성 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/pdf/page.tsx
+- app/projects/[slug]/pdf/page.tsx
+- app/projects/[slug]/page.tsx
+- app/sitemap.ts
+- app/globals.css
+- src/components/pdf/PrintToolbar.tsx
+- src/components/sections/HeroSection.tsx
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- `/pdf`를 실제 브라우저에서 PDF 저장했을 때 지원서 제출용으로 정보량과 페이지 분할이 적절한지 확인해주세요.
+- 대표 프로젝트와 추가 프로젝트 각각의 `/projects/[slug]/pdf` 라우트가 해당 프로젝트 데이터로 잘 연결되는지 확인해주세요.
+```

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FileDown } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/layout/Container";
 import { Footer } from "@/components/layout/Footer";
@@ -49,10 +49,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <main className="project-detail-page" id="top">
         <section className="project-detail-hero">
           <Container className="project-detail-hero__inner">
-            <Link className="back-link" href="/#projects">
-              <ArrowLeft aria-hidden="true" size={18} />
-              <span>프로젝트 목록</span>
-            </Link>
+            <div className="project-detail-hero__actions">
+              <Link className="back-link" href="/#projects">
+                <ArrowLeft aria-hidden="true" size={18} />
+                <span>프로젝트 목록</span>
+              </Link>
+              <Link className="back-link back-link--pdf" href={`/projects/${project.slug}/pdf`}>
+                <FileDown aria-hidden="true" size={18} />
+                <span>프로젝트 PDF</span>
+              </Link>
+            </div>
             <div className="project-detail-hero__copy">
               <p className="eyebrow">Project Detail</p>
               <h1>{project.name}</h1>

@@ -1819,6 +1819,12 @@ li {
   gap: 28px;
 }
 
+.project-detail-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .back-link {
   display: inline-flex;
   width: fit-content;
@@ -1837,6 +1843,12 @@ li {
 .back-link:focus-visible {
   box-shadow: 0 10px 24px rgba(29, 23, 19, 0.1);
   outline: 0;
+}
+
+.back-link--pdf {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: #fff;
 }
 
 .project-detail-hero__copy {
@@ -2051,6 +2063,407 @@ li {
   background: var(--teal-dark);
   outline: 0;
   transform: translateY(-2px);
+}
+
+.pdf-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(255, 246, 236, 0.94), rgba(246, 244, 239, 1)),
+    var(--paper);
+  color: var(--ink);
+  padding: 22px 0 56px;
+}
+
+.pdf-toolbar {
+  position: sticky;
+  top: 14px;
+  z-index: 20;
+  display: flex;
+  width: min(1040px, calc(100% - 32px));
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid rgba(29, 23, 19, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(29, 23, 19, 0.12);
+  margin: 0 auto 18px;
+  padding: 8px;
+  backdrop-filter: blur(18px);
+}
+
+.pdf-toolbar__link,
+.pdf-toolbar__button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 950;
+  padding: 9px 14px;
+  text-decoration: none;
+}
+
+.pdf-toolbar__button {
+  background: var(--teal);
+  color: #fff;
+}
+
+.pdf-toolbar__link:hover,
+.pdf-toolbar__button:hover,
+.pdf-toolbar__link:focus-visible,
+.pdf-toolbar__button:focus-visible {
+  box-shadow: 0 10px 24px rgba(29, 23, 19, 0.1);
+  outline: 0;
+}
+
+.pdf-document {
+  width: min(1040px, calc(100% - 32px));
+  border: 1px solid rgba(29, 23, 19, 0.12);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 72px rgba(29, 23, 19, 0.12);
+  margin: 0 auto;
+  padding: 44px;
+}
+
+.pdf-document--project {
+  width: min(920px, calc(100% - 32px));
+}
+
+.pdf-cover,
+.pdf-project-cover {
+  display: grid;
+  gap: 24px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 30px;
+}
+
+.pdf-cover {
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  align-items: end;
+}
+
+.pdf-eyebrow {
+  margin: 0;
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.pdf-cover__copy {
+  display: grid;
+  gap: 8px;
+}
+
+.pdf-cover h1,
+.pdf-project-cover h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 42px;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+
+.pdf-cover__role,
+.pdf-cover__copy span,
+.pdf-project-cover p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.pdf-cover__copy strong {
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.pdf-cover__meta,
+.pdf-project-meta {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.pdf-cover__meta div,
+.pdf-project-meta div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  padding-top: 9px;
+}
+
+.pdf-cover__meta dt,
+.pdf-project-meta dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pdf-cover__meta dd,
+.pdf-project-meta dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.pdf-section {
+  display: grid;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+  padding: 30px 0;
+}
+
+.pdf-section:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.pdf-section--compact {
+  gap: 14px;
+}
+
+.pdf-section__title {
+  display: grid;
+  gap: 6px;
+}
+
+.pdf-section__title span {
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pdf-section__title h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.pdf-signal-grid,
+.pdf-skill-grid,
+.pdf-project-grid,
+.pdf-kpi-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.pdf-signal-grid,
+.pdf-skill-grid,
+.pdf-kpi-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pdf-project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pdf-signal-card,
+.pdf-skill-card,
+.pdf-project-card,
+.pdf-kpi-card,
+.pdf-career-item,
+.pdf-qna-item {
+  break-inside: avoid;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffdf9;
+  padding: 16px;
+}
+
+.pdf-signal-card span,
+.pdf-project-card__head span,
+.pdf-kpi-card span,
+.pdf-career-item span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.pdf-signal-card h3,
+.pdf-skill-card h3,
+.pdf-project-card h3,
+.pdf-kpi-card h3,
+.pdf-career-item h3,
+.pdf-qna-item h3 {
+  margin: 6px 0 8px;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.pdf-signal-card p,
+.pdf-skill-card p,
+.pdf-project-card p,
+.pdf-kpi-card p,
+.pdf-career-item p,
+.pdf-qna-item p,
+.pdf-lead {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.pdf-career-list,
+.pdf-qna-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pdf-project-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pdf-project-card__head strong {
+  color: var(--teal-dark);
+  font-size: 12px;
+}
+
+.pdf-project-link {
+  display: inline-flex;
+  width: fit-content;
+  border-bottom: 1px solid currentColor;
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 950;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.pdf-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.pdf-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(29, 23, 19, 0.12);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 5px 8px;
+}
+
+.pdf-list,
+.pdf-flow-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pdf-list--columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 22px;
+}
+
+.pdf-list li,
+.pdf-flow-list li {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.55;
+}
+
+.pdf-project-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pdf-project-meta div {
+  grid-template-columns: 76px 1fr;
+}
+
+.pdf-kpi-card h3 {
+  color: var(--teal);
+}
+
+.pdf-qna-item strong {
+  display: block;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .pdf-toolbar,
+  .back-to-top-floating {
+    display: none !important;
+  }
+
+  .pdf-page {
+    min-height: auto;
+    background: #fff !important;
+    padding: 0;
+  }
+
+  .pdf-document,
+  .pdf-document--project {
+    width: auto;
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pdf-section,
+  .pdf-signal-card,
+  .pdf-skill-card,
+  .pdf-project-card,
+  .pdf-kpi-card,
+  .pdf-career-item,
+  .pdf-qna-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .pdf-project-link::after {
+    color: var(--muted);
+    content: " (" attr(href) ")";
+    font-weight: 700;
+  }
 }
 
 @media (max-width: 1040px) {
@@ -2656,6 +3069,48 @@ li {
 
   .detail-check-list li {
     padding-left: 24px;
+  }
+
+  .pdf-page {
+    padding: 12px 0 28px;
+  }
+
+  .pdf-toolbar {
+    position: static;
+    width: calc(100% - 24px);
+    align-items: stretch;
+    flex-direction: column;
+    border-radius: 18px;
+  }
+
+  .pdf-toolbar__link,
+  .pdf-toolbar__button {
+    width: 100%;
+  }
+
+  .pdf-document,
+  .pdf-document--project {
+    width: calc(100% - 24px);
+    padding: 22px;
+  }
+
+  .pdf-cover,
+  .pdf-project-meta,
+  .pdf-signal-grid,
+  .pdf-skill-grid,
+  .pdf-project-grid,
+  .pdf-kpi-grid,
+  .pdf-list--columns {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-cover h1,
+  .pdf-project-cover h1 {
+    font-size: 34px;
+  }
+
+  .pdf-cover__copy strong {
+    font-size: 20px;
   }
 
   .site-footer__inner {
