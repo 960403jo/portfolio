@@ -1464,6 +1464,31 @@
 - Production 상세 PDF 10개 모두 pageCount 1/action 0
 ```
 
+## 2026-06-16 17:49 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- main PDF 프로젝트 카드 ZIP 내부 상세 PDF 이동 복구
+- main PDF는 1페이지 유지, 프로젝트 카드 10개를 `projects/*.pdf` remote PDF action으로 연결
+- 상세 PDF 10개의 `프로젝트 목록` 링크를 `../00-joinseong-portfolio-main.pdf` remote PDF action으로 연결
+- 상세 PDF 흰색 배경 보정 유지
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 1/action 10
+- Local main PDF project link 10개: `projects/*.pdf`
+- Local 상세 PDF 10개 모두 pageCount 1/action 1
+- Local 상세 PDF back link 10개: `../00-joinseong-portfolio-main.pdf`
+- QuickLook 렌더링 이미지에서 `05-traffic-safety-infra.pdf` 회색 배경 미노출 확인
+```
+
 ### Production 검증
 
 ```text

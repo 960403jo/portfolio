@@ -1670,3 +1670,32 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 main PDF가 1페이지 메인 화면만 포함하는지 확인해주세요.
 - QA 시 상세 PDF 10개가 별도 파일로 존재하고 회색 배경 없이 렌더링되는지 확인해주세요.
 ```
+
+## 2026-06-16 17:49 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 main PDF 프로젝트 카드 클릭 시 ZIP 내부 `projects/*.pdf`로 이동하고, 상세 PDF의 `프로젝트 목록`도 main PDF로 이동하도록 요청했습니다.
+main PDF는 1페이지 메인 화면만 유지하면서 프로젝트 카드 10개를 remote PDF action으로 `projects/*.pdf`에 연결했습니다.
+상세 PDF 10개는 각각 `프로젝트 목록` 링크를 `../00-joinseong-portfolio-main.pdf`에 연결했습니다.
+상세 PDF 흰색 배경 보정은 유지했습니다.
+Local PDF zip에서 PDF 11개, main pageCount 1/action 10, 상세 PDF 10개 모두 pageCount 1/action 1을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 ZIP 압축 해제 후 main PDF 프로젝트 카드가 `projects/*.pdf`로 이동하는지 확인해주세요.
+- QA 시 상세 PDF의 `프로젝트 목록` 링크가 `../00-joinseong-portfolio-main.pdf`로 이동하는지 확인해주세요.
+```
