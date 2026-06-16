@@ -1733,3 +1733,34 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 상세 PDF의 `프로젝트 목록` 클릭이 웹 메인 `/#projects`로 이동하는지 확인해주세요.
 - QA 시 main PDF가 긴 단일 페이지가 아니라 여러 페이지로 나뉘어 브라우저 뷰어에서 덜 버벅이는지 확인해주세요.
 ```
+
+## 2026-06-16 18:13 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 프로젝트 카드 클릭은 ZIP 내부 PDF 상대 이동이 맞다고 정정했습니다.
+웹 URL annotation 방식은 제거하고, `/GoToR` remote PDF action도 다시 쓰지 않았습니다.
+대신 일반 `/URI` action의 값을 상대 경로로 후처리했습니다.
+main PDF 프로젝트 카드 링크는 `projects/01-*.pdf`, 상세 PDF의 `프로젝트 목록` 링크는 `../00-joinseong-portfolio-main.pdf`입니다.
+main PDF는 1200px 높이 기준 6페이지 분할을 유지해 웹 PDF 뷰어 렌더링 부담을 낮춥니다.
+Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 ZIP 압축 해제 후 웹 PDF 뷰어에서 main PDF 프로젝트 카드 클릭이 `projects/01-*.pdf` 상대 파일로 이동하는지 확인해주세요.
+- QA 시 상세 PDF의 `프로젝트 목록` 클릭이 `../00-joinseong-portfolio-main.pdf` 상대 파일로 이동하는지 확인해주세요.
+- QA 시 `/GoToR`가 아닌 상대 `/URI` 방식으로 들어갔을 때 대상 뷰어에서 권한 오류가 없는지 확인해주세요.
+```

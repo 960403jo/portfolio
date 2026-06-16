@@ -1531,6 +1531,34 @@
 - Production unexpected action 0개
 ```
 
+## 2026-06-16 18:13 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 사용자 정정 반영: 프로젝트 카드 클릭은 ZIP 내부 PDF 상대 이동 기준으로 유지
+- `/GoToR` remote PDF action은 사용하지 않고, 일반 `/URI` action의 값을 상대 경로로 후처리
+- main PDF 프로젝트 카드 링크: `projects/01-*.pdf`
+- 상세 PDF 프로젝트 목록 링크: `../00-joinseong-portfolio-main.pdf`
+- main PDF 1200px 높이 기준 페이지 분할은 유지해 웹 PDF 뷰어 렌더링 부담 완화
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 6
+- Local main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Local 상세 PDF 10개 모두 pageCount 1
+- Local 상세 PDF 상대 back URI 10개: `../00-joinseong-portfolio-main.pdf`
+- Local remote PDF action(`/GoToR`) 0개
+- Local absolute URI 0개
+- Local unexpected action 0개
+```
+
 ### Production 검증
 
 ```text

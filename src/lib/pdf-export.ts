@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
+import { PDFDict, PDFDocument, PDFHexString, PDFName, PDFString } from "pdf-lib";
 import puppeteer, { type Browser, type Page } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
@@ -104,7 +105,7 @@ async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedP
       filename: target.filename,
       kind: target.kind,
       url: target.url,
-      pdf: pdfBytes
+      pdf: await rewriteRelativeNavigationLinks(pdfBytes, target)
     };
   } finally {
     await page.close();
@@ -251,6 +252,90 @@ async function prepareHtmlForPdf(page: Page) {
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
     window.scrollTo(0, 0);
   });
+}
+
+function getProjectPdfLinks() {
+  return Object.fromEntries(
+    projects.map((project, index) => [
+      project.slug,
+      `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`
+    ])
+  );
+}
+
+async function rewriteRelativeNavigationLinks(pdf: Uint8Array, target: PdfTarget) {
+  const pdfDocument = await PDFDocument.load(pdf);
+  const projectPdfLinks = getProjectPdfLinks();
+  let didRewrite = false;
+
+  for (const page of pdfDocument.getPages()) {
+    const annotations = page.node.Annots();
+
+    if (!annotations) {
+      continue;
+    }
+
+    for (let index = 0; index < annotations.size(); index += 1) {
+      const annotation = pdfDocument.context.lookup(annotations.get(index));
+
+      if (!(annotation instanceof PDFDict)) {
+        continue;
+      }
+
+      const action = pdfDocument.context.lookup(annotation.get(PDFName.of("A")));
+
+      if (!(action instanceof PDFDict)) {
+        continue;
+      }
+
+      const uri = decodePdfText(action.get(PDFName.of("URI")));
+      const projectLink = target.kind === "main" ? findProjectPdfLink(uri, projectPdfLinks) : null;
+
+      if (projectLink) {
+        setRelativeUriAction(action, projectLink);
+        didRewrite = true;
+        continue;
+      }
+
+      if (target.kind === "project" && (uri === "#projects" || uri.endsWith("/#projects"))) {
+        setRelativeUriAction(action, "../00-joinseong-portfolio-main.pdf");
+        didRewrite = true;
+      }
+    }
+  }
+
+  if (!didRewrite) {
+    return pdf;
+  }
+
+  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
+}
+
+function findProjectPdfLink(uri: string, projectPdfLinks: Record<string, string>) {
+  const match = Object.entries(projectPdfLinks).find(
+    ([slug, pdfPath]) =>
+      uri.endsWith(`/projects/${slug}`) ||
+      uri.endsWith(`/projects/${slug}/`) ||
+      uri === pdfPath ||
+      uri.endsWith(`/${pdfPath}`)
+  );
+
+  return match?.[1] ?? null;
+}
+
+function setRelativeUriAction(action: PDFDict, filePath: string) {
+  action.set(PDFName.of("S"), PDFName.of("URI"));
+  action.set(PDFName.of("URI"), PDFString.of(filePath));
+  action.delete(PDFName.of("F"));
+  action.delete(PDFName.of("D"));
+}
+
+function decodePdfText(value: unknown) {
+  if (value instanceof PDFString || value instanceof PDFHexString) {
+    return value.decodeText();
+  }
+
+  return "";
 }
 
 async function getPageHeight(page: Page) {

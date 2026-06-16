@@ -190,6 +190,9 @@ Agent 간 전달사항을 기록한다.
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개
 - Production 재배포 확인: `https://portfolio-461gleeyx-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개
+- 사용자 정정 반영: 프로젝트 카드 클릭은 ZIP 내부 PDF 상대 이동이 맞으므로 main/detail PDF 링크를 절대 웹 URL이 아닌 상대 `/URI` annotation으로 변경
+- main PDF 프로젝트 링크는 `projects/01-*.pdf`, 상세 PDF 목록 링크는 `../00-joinseong-portfolio-main.pdf`로 설정
+- Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개
 ```
 
 ### 확인 필요
@@ -230,8 +233,8 @@ Agent 간 전달사항을 기록한다.
 - Skills에서 AI Development 카드 제거 후 빈 공간이 어색하지 않고 5개 스킬 그룹 균형이 맞는지 확인 필요
 - Contact form과 Contact 영역은 사용자 요청으로 미구현/미노출
 - Footer zip 다운로드를 실제 브라우저에서 클릭했을 때 다운로드 UX, 압축 파일명, 내부 PDF 파일명, 페이지 분할이 제출 용도에 적절한지 확인 필요
-- 웹 PDF 뷰어에서 `00-joinseong-portfolio-main.pdf` 프로젝트 카드 클릭 시 웹 상세 페이지(`/projects/[slug]`)로 이동하는지 확인 필요
-- 웹 PDF 뷰어에서 상세 PDF의 `프로젝트 목록` 클릭 시 웹 메인 `/#projects`로 이동하는지 확인 필요
+- ZIP 압축 해제 후 웹 PDF 뷰어에서 `00-joinseong-portfolio-main.pdf` 프로젝트 카드 클릭 시 `projects/01-*.pdf` 상대 파일로 이동하는지 확인 필요
+- ZIP 압축 해제 후 상세 PDF의 `프로젝트 목록` 클릭 시 `../00-joinseong-portfolio-main.pdf` 상대 파일로 이동하는지 확인 필요
 ```
 
 ---
