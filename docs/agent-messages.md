@@ -1167,7 +1167,7 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증, Chrom
 
 ```text
 사용자 요청에 맞춰 PDF 다운로드 흐름을 footer zip 다운로드 방식으로 변경했습니다.
-Footer에 `PDF 다운로드` 버튼을 추가했고, `/api/portfolio-pdf-zip`에서 headless Chromium으로 `/pdf`와 전체 `/projects/[slug]/pdf`를 PDF로 출력한 뒤 zip으로 반환합니다.
+Footer에 `PDF 다운로드` 버튼을 추가했고, `/api/portfolio-pdf-zip`에서 Puppeteer + headless Chromium으로 `/pdf`와 전체 `/projects/[slug]/pdf`를 PDF로 출력한 뒤 zip으로 반환합니다.
 zip 내부에는 `00-joinseong-portfolio-main.pdf`와 `projects/01-...pdf`부터 `projects/10-...pdf`까지 프로젝트 상세 PDF 10개가 포함됩니다.
 Hero `PDF 저장` CTA와 프로젝트 상세 `프로젝트 PDF` 버튼은 제거했습니다.
 npm run lint, npm run build, 로컬 API zip 생성 검증을 통과했습니다.

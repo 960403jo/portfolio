@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
-import { chromium, type Browser } from "playwright-core";
+import puppeteer, { type Browser } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
 type PdfTarget = {
@@ -54,17 +54,17 @@ function getPdfTargets(origin: string): PdfTarget[] {
 }
 
 async function renderPdf(browser: Browser, target: PdfTarget) {
-  const page = await browser.newPage({
-    viewport: {
-      width: 1240,
-      height: 1754
-    },
-    deviceScaleFactor: 1
-  });
+  const page = await browser.newPage();
 
   try {
+    await page.setViewport({
+      width: 1240,
+      height: 1754,
+      deviceScaleFactor: 1
+    });
+
     await page.goto(target.url, {
-      waitUntil: "networkidle",
+      waitUntil: "networkidle0",
       timeout: 45_000
     });
 
@@ -86,10 +86,15 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
 async function launchBrowser() {
   const executablePath = await getExecutablePath();
 
-  return chromium.launch({
-    args: process.env.VERCEL ? chromiumPack.args : [],
+  return puppeteer.launch({
+    args: process.env.VERCEL ? chromiumPack.args : ["--no-sandbox", "--disable-setuid-sandbox"],
     executablePath,
-    headless: true
+    headless: true,
+    defaultViewport: {
+      width: 1240,
+      height: 1754,
+      deviceScaleFactor: 1
+    }
   });
 }
 

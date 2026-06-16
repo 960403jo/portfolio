@@ -165,7 +165,7 @@ Summary:
 - Local desktop/mobile 렌더링에서 Hero 프로필 배경 opacity 1, filter none, mask none, glow pseudo display none, overflowX 0, console error 0 확인
 - Local desktop/mobile 렌더링에서 `/pdf`, `/projects/railway-standards-platform/pdf`, PDF print media, 수평 오버플로 0, console error 0 확인
 - Chrome headless PDF 생성 확인: `tmp/qa/portfolio-application.pdf`, `tmp/qa/railway-project-detail.pdf`
-- Local `/api/portfolio-pdf-zip` 응답 200, application/zip, 1.8MB zip, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인
+- Local `/api/portfolio-pdf-zip` 응답 200, application/zip, 약 1.97MB zip, 메인 PDF 1개 + 프로젝트 상세 PDF 10개 포함 확인
 - Footer `PDF 다운로드` 버튼 노출, Hero PDF CTA 미노출, overflowX 0, console error 0 확인
 Blocker:
 - 없음
