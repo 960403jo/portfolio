@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 17:49 KST
+Last Updated: 2026-06-16 17:53 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 17:49 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 17:53 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 17:49 KST
+Updated At: 2026-06-16 17:53 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -238,6 +238,8 @@ Summary:
 - 사용자 요청에 따라 PDF 내 화면 이동 복구: main PDF 프로젝트 카드 10개를 ZIP 내부 `projects/*.pdf`로 연결
 - 상세 PDF의 `프로젝트 목록` 링크를 `../00-joinseong-portfolio-main.pdf`로 연결
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 1/action 10, 상세 PDF 10개 모두 pageCount 1/action 1, 상세 PDF 회색 배경 미노출
+- Production 재배포 완료: `https://portfolio-d6oiqke48-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF zip 재검증: zip 내부 PDF 11개, main pageCount 1/action 10, main project link 10개, 상세 PDF 10개 모두 pageCount 1/action 1, detail back link 10개
 Blocker:
 - 없음
 Next:

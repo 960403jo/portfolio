@@ -182,6 +182,8 @@ Agent 간 전달사항을 기록한다.
 - 사용자 최신 요청 반영: main PDF 프로젝트 카드 링크를 ZIP 내부 `projects/*.pdf`로 복구
 - 상세 PDF `프로젝트 목록` 링크를 `../00-joinseong-portfolio-main.pdf`로 복구
 - Local 확인: zip 내부 PDF 11개, main pageCount 1/action 10, 상세 PDF 10개 모두 pageCount 1/action 1, `05-traffic-safety-infra.pdf` 회색 배경 미노출
+- Production 재배포 확인: `https://portfolio-d6oiqke48-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main project link 10개, detail back link 10개, unexpected action 0개
 ```
 
 ### 확인 필요
