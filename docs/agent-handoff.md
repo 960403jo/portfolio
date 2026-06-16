@@ -147,6 +147,12 @@ Agent 간 전달사항을 기록한다.
 - Local `/projects/taean-smart-city` 확인: `Project Detail` 미노출, hero eyebrow 0개, console error 0
 - Production 재배포 확인: `https://portfolio-i6lq8vpax-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production `/projects/taean-smart-city` 확인: `Project Detail` 미노출, hero eyebrow 0개, console error 0
+- PDF 프로젝트 링크: Chromium PDF 출력 후 `pdf-lib`으로 main PDF annotation URI를 후처리해 `projects/01-*.pdf` zip 내부 상대 경로로 변경
+- PDF layout 보강: PDF 캡처용 body width/min-width 1440px 고정, `.project-showcase` layout containment 추가
+- Local/Production layout 비교: web prepared 1080x4389, PDF render 1080x4389, meanAbsDiff 3.18 수준
+- Production 재배포 확인: `https://portfolio-no8h92w8u-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production API 확인: zip 내부 PDF 11개, main PDF URI 4개 모두 `projects/01-*.pdf`, 외부 project URL 0개
+- Production 실제 클릭 확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> zip 다운로드, 내부 PDF 11개, zip 내부 상대 링크 유지, console error 0
 ```
 
 ### 확인 필요

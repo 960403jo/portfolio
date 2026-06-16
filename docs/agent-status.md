@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 13:30 KST
+Last Updated: 2026-06-16 14:21 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 13:30 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 14:21 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 13:30 KST
+Updated At: 2026-06-16 14:21 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -197,6 +197,14 @@ Summary:
 - Local `/projects/taean-smart-city` 렌더링에서 `Project Detail` 미노출, hero eyebrow 0개, console error 0 확인
 - Production 재배포 완료: `https://portfolio-i6lq8vpax-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production `/projects/taean-smart-city` 렌더링에서 `Project Detail` 미노출, hero eyebrow 0개, console error 0 확인
+- PDF 프로젝트 카드 링크 후처리 추가: 메인 PDF 내부 project URI를 외부 웹 URL이 아닌 zip 내부 상대 경로 `projects/01-*.pdf`로 변경
+- `pdf-lib` dependency 추가: Chromium이 절대 URL로 변환한 PDF annotation URI를 구조적으로 재작성
+- PDF 캡처용 screen layout 보강: body width/min-width 1440px 고정, 프로젝트 영역 layout containment 추가
+- Local PDF layout 비교: web prepared 1080x4389 vs PDF render 1080x4389, meanAbsDiff 3.18, highDiffRatio 0.0216
+- Production 재배포 완료: `https://portfolio-no8h92w8u-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production API 재검증: zip 내부 PDF 11개, main PDF URI 4개 모두 `projects/01-*.pdf` 상대 경로, 외부 `/projects` URL 0개
+- Production PDF layout 비교: web prepared 1080x4389 vs PDF render 1080x4389, meanAbsDiff 3.18, MediaBox 1080pt 폭 확인
+- Production footer 실제 클릭 재검증: `PDF 생성 중...` 표시 후 `joinseong-portfolio-pdf.zip` 다운로드, 내부 PDF 11개, zip 내부 상대 링크 확인, console error 0
 Blocker:
 - 없음
 Next:

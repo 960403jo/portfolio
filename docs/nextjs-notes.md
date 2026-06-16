@@ -1253,6 +1253,44 @@
 - console error 0
 ```
 
+## 2026-06-16 14:21 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 캡처용 body width/min-width를 1440px로 고정
+- PDF 캡처용 `.project-showcase`에 `contain: layout paint` 적용
+- main PDF 내부 프로젝트 카드 링크를 zip 내부 상대 경로로 후처리
+- Chromium이 anchor href를 절대 URL로 변환하므로 `pdf-lib`으로 PDF annotation URI를 구조적으로 재작성
+- `pdf-lib` dependency 추가
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local main PDF URI:
+  - projects/01-taean-smart-city.pdf
+  - projects/02-railway-standards-platform.pdf
+  - projects/03-chuncheon-digital-id-admin.pdf
+  - projects/04-gunsan-iksan-bis-bms.pdf
+- Local main PDF 외부 project URL 0개
+- Local layout 비교: web prepared 1080x4389, PDF render 1080x4389, meanAbsDiff 3.18, highDiffRatio 0.0216
+- Production deployment: https://portfolio-no8h92w8u-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production `/api/portfolio-pdf-zip` 응답 200
+- Production zip 내부 PDF 11개
+- Production main PDF URI 4개 모두 `projects/01-*.pdf` zip 내부 상대 경로
+- Production main PDF 외부 project URL 0개
+- Production layout 비교: web prepared 1080x4389, PDF render 1080x4389, meanAbsDiff 3.18, highDiffRatio 0.0216
+- Production MediaBox: main 1080 x 4389.1201pt, sample project 1080 x 1155.12pt
+- Production footer 실제 클릭 다운로드 성공
+- 실제 클릭 다운로드 zip 내부 PDF 11개, 상대 링크 유지, console error 0
+```
+
 ### Production 검증
 
 ```text
