@@ -1318,7 +1318,7 @@
 - Production annotation 검사 failures 0
 ```
 
-## 2026-06-16 16:02 KST - Next.js App Agent
+## 2026-06-16 16:05 KST - Next.js App Agent
 
 ### 구현 요약
 
@@ -1339,6 +1339,10 @@
 - 질문/답변 겹침 0
 - 카드 내부 self-overflow 0
 - console error 0
+- Production deployment: https://portfolio-mliqyl7w5-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production 768/390/360px Q&A 렌더링 확인
+- Production overflowX 0, 질문/답변 겹침 0, 카드 내부 self-overflow 0, console error 0
 ```
 
 ### Production 검증

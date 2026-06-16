@@ -158,6 +158,8 @@ Agent 간 전달사항을 기록한다.
 - Production alias API 확인: zip 내부 PDF 11개, main PDF 프로젝트 링크 4개 모두 `/GoToR`, `/F projects/01-*.pdf`, `/D [0 /Fit]`, project URI 0개, failures 0
 - Q&A 섹션 CSS 조정: 1040px 이하에서 `.interview-card`를 1컬럼으로 전환하고 답변 영역 divider/padding/line-height를 조정해 태블릿·모바일에서 질문/답변이 밀려 보이지 않게 수정
 - Local 확인: 1440/1024/768/430/390/360px에서 Q&A overflowX 0, 카드 내부 overflow 0, 질문/답변 겹침 0, console error 0
+- Production 재배포 확인: `https://portfolio-mliqyl7w5-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias 확인: 768/390/360px에서 Q&A overflowX 0, 카드 내부 overflow 0, 질문/답변 겹침 0, console error 0
 ```
 
 ### 확인 필요
