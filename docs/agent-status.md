@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 18:13 KST
+Last Updated: 2026-06-16 18:17 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 18:13 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 18:17 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 18:13 KST
+Updated At: 2026-06-16 18:17 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -249,6 +249,8 @@ Summary:
 - 사용자 정정 반영: 프로젝트 카드 클릭은 ZIP 내부 PDF 상대 이동이 맞으므로 main/detail PDF 링크를 절대 웹 URL이 아닌 상대 `/URI` annotation으로 변경
 - main PDF 프로젝트 링크는 `projects/01-*.pdf`, 상세 PDF 목록 링크는 `../00-joinseong-portfolio-main.pdf`로 설정
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개
+- Production 재배포 완료: `https://portfolio-b7q8tb93c-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개
 Blocker:
 - 없음
 Next:

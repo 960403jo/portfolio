@@ -1745,6 +1745,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 main PDF 프로젝트 카드 링크는 `projects/01-*.pdf`, 상세 PDF의 `프로젝트 목록` 링크는 `../00-joinseong-portfolio-main.pdf`입니다.
 main PDF는 1200px 높이 기준 6페이지 분할을 유지해 웹 PDF 뷰어 렌더링 부담을 낮춥니다.
 Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-b7q8tb93c-joinseong-s-projects.vercel.app`로 재배포했고, 동일 기준으로 재검증했습니다.
 ```
 
 ### Related Files

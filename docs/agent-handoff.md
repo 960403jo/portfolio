@@ -193,6 +193,8 @@ Agent 간 전달사항을 기록한다.
 - 사용자 정정 반영: 프로젝트 카드 클릭은 ZIP 내부 PDF 상대 이동이 맞으므로 main/detail PDF 링크를 절대 웹 URL이 아닌 상대 `/URI` annotation으로 변경
 - main PDF 프로젝트 링크는 `projects/01-*.pdf`, 상세 PDF 목록 링크는 `../00-joinseong-portfolio-main.pdf`로 설정
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개
+- Production 재배포 확인: `https://portfolio-b7q8tb93c-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 상대 URI 10개, 상세 상대 URI 10개, `/GoToR` 0개, absolute URI 0개, unexpected action 0개
 ```
 
 ### 확인 필요
