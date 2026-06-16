@@ -1374,7 +1374,7 @@
 - Production main PDF 프로젝트 링크 10개 모두 `/GoToR`, failures 0
 ```
 
-## 2026-06-16 16:55 KST - Next.js App Agent
+## 2026-06-16 16:59 KST - Next.js App Agent
 
 ### 구현 요약
 
@@ -1397,6 +1397,13 @@
 - Local main PDF 프로젝트 내부 이동 `/GoTo` 10개
 - Local main PDF 목록 복귀 내부 이동 `/GoTo` 10개
 - Local main PDF 외부 URL/file action 0개
+- Production deployment: https://portfolio-5upz721x4-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 11
+- Production main PDF 프로젝트 내부 이동 `/GoTo` 10개
+- Production main PDF 목록 복귀 내부 이동 `/GoTo` 10개
+- Production main PDF 외부 URL/file action 0개
 ```
 
 ### Production 검증

@@ -1581,7 +1581,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - 압축 해제 후 main PDF의 전체 프로젝트 카드 10개가 각각 `projects/*.pdf` 상세 PDF로 이동하는지 확인해주세요.
 ```
 
-## 2026-06-16 16:55 - Next.js App Agent → QA-Security Agent
+## 2026-06-16 16:59 - Next.js App Agent → QA-Security Agent
 
 ### Message
 
@@ -1592,6 +1592,7 @@ main PDF 뒤에 프로젝트 상세 PDF 10개를 append해 `00-joinseong-portfol
 프로젝트 카드 링크 10개는 외부 파일 열기가 아니라 같은 PDF 내부 상세 페이지로 이동하는 `/GoTo` action으로 변경했습니다.
 상세 페이지의 목록 복귀 링크 10개도 외부 `#projects` URL 대신 main PDF 1페이지 내부 이동으로 변경했습니다.
 Local PDF zip에서 zip 내부 PDF 11개 유지, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-5upz721x4-joinseong-s-projects.vercel.app`로 재배포했고, 동일 기준으로 재검증했습니다.
 ```
 
 ### Related Files

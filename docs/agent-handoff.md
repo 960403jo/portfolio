@@ -167,6 +167,8 @@ Agent 간 전달사항을 기록한다.
 - macOS Preview 권한 오류 대응: main PDF가 외부 `projects/*.pdf`를 열지 않도록 변경. main PDF 뒤에 프로젝트 상세 PDF 10개를 append하고, 프로젝트 카드 링크는 같은 PDF 내부 page destination(`/GoTo`)으로 이동
 - 프로젝트 상세 페이지의 목록 복귀 링크도 외부 URL이 아닌 main PDF 1페이지 내부 이동으로 변경
 - Local 확인: zip 내부 PDF 11개 유지, `00-joinseong-portfolio-main.pdf`는 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, `/GoToR`/URI/file action 0개
+- Production 재배포 확인: `https://portfolio-5upz721x4-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 ```
 
 ### 확인 필요
