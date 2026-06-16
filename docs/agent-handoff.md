@@ -177,6 +177,8 @@ Agent 간 전달사항을 기록한다.
 - PDF annotation 정리: main 프로젝트 카드 href와 상세 PDF 목록 링크 href를 PDF 캡처 시 제거해 main/detail PDF 모두 action 0개
 - 상세 PDF 회색 배경 제거: project detail page/hero/section/panel/KPI card 배경을 흰색으로 고정하고 shadow 제거
 - Local 확인: zip 내부 PDF 11개, main pageCount 1/action 0, 상세 PDF 10개 모두 pageCount 1/action 0, `05-traffic-safety-infra.pdf` QuickLook 렌더링에서 회색 배경 미노출
+- Production 재배포 확인: `https://portfolio-llg0wbl6a-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 1/action 0, 상세 PDF 10개 모두 pageCount 1/action 0
 ```
 
 ### 확인 필요

@@ -1640,7 +1640,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 PDF 첫 페이지의 Projects/Q&A 영역에 회색 가로 띠가 남아 있지 않은지 육안 확인해주세요.
 ```
 
-## 2026-06-16 17:34 - Next.js App Agent → QA-Security Agent
+## 2026-06-16 17:37 - Next.js App Agent → QA-Security Agent
 
 ### Message
 
@@ -1651,6 +1651,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 PDF 캡처 시 main 프로젝트 카드 href와 상세 PDF의 목록 링크 href를 제거해 PDF annotation을 만들지 않도록 했습니다.
 상세 PDF의 project detail page/hero/section/panel/KPI card 배경을 흰색으로 고정하고 shadow를 제거했습니다.
 Local PDF zip에서 PDF 11개, main pageCount 1/action 0, 상세 PDF 10개 모두 pageCount 1/action 0을 확인했고, `05-traffic-safety-infra.pdf` QuickLook 렌더링에서 회색 배경 미노출을 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-llg0wbl6a-joinseong-s-projects.vercel.app`로 재배포했고, 동일 기준으로 재검증했습니다.
 ```
 
 ### Related Files

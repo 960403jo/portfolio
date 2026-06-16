@@ -1434,7 +1434,7 @@
 - Production main PDF 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 ```
 
-## 2026-06-16 17:34 KST - Next.js App Agent
+## 2026-06-16 17:37 KST - Next.js App Agent
 
 ### 구현 요약
 
@@ -1457,6 +1457,11 @@
 - Local `00-joinseong-portfolio-main.pdf` pageCount 1/action 0
 - Local 상세 PDF 10개 모두 pageCount 1/action 0
 - QuickLook 렌더링 이미지에서 `05-traffic-safety-infra.pdf` 회색 배경 미노출 확인
+- Production deployment: https://portfolio-llg0wbl6a-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 1/action 0
+- Production 상세 PDF 10개 모두 pageCount 1/action 0
 ```
 
 ### Production 검증
