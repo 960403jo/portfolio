@@ -1549,7 +1549,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 Q&A 섹션을 768px, 390px, 360px 기준으로 다시 육안 확인해주세요.
 ```
 
-## 2026-06-16 16:17 - Next.js App Agent → QA-Security Agent
+## 2026-06-16 16:22 - Next.js App Agent → QA-Security Agent
 
 ### Message
 
@@ -1559,6 +1559,7 @@ PDF에서는 `더보기` 같은 JS 상호작용이 동작하지 않으므로, PD
 PDF 캡처 CSS에서는 더보기/접기 버튼을 숨기고 추가 프로젝트 패널을 본문 흐름 안의 2열 목록으로 펼칩니다.
 Local 일반 화면 desktop/390/360px에서 더보기 접힘/열림, 추가 프로젝트 6개, overflowX 0, console error 0을 확인했습니다.
 Local PDF zip에서 main PDF 프로젝트 링크가 4개에서 10개로 확장되었고, 모두 `/GoToR`로 zip 내부 상세 PDF를 가리키는 것을 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-mjvimk9c9-joinseong-s-projects.vercel.app`로 재배포했고, main PDF 프로젝트 링크 10개와 zip 내부 PDF 11개를 재검증했습니다.
 ```
 
 ### Related Files
