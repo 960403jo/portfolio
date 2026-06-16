@@ -1075,3 +1075,22 @@
 - console error 0
 - 다운로드 파일 확인: tmp/qa/downloads/joinseong-portfolio-pdf.zip
 ```
+
+## 2026-06-16 12:13 KST - Next.js App Agent
+
+### 배포 및 검증
+
+```text
+- commit: b66a5d3 Improve portfolio PDF download
+- git push origin main 완료
+- Vercel production 배포 완료
+- Production deployment: https://portfolio-paicj6mtf-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production footer button click 전 label `PDF 다운로드`, click 후 label `PDF 생성 중...`, 완료 후 label `PDF 다운로드` 확인
+- 다운로드 파일명 `joinseong-portfolio-pdf.zip` 확인
+- zip 크기 1,251,349 bytes
+- zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
+- 첫 파일: 00-joinseong-portfolio-main.pdf
+- 마지막 파일: projects/10-jinju-transport-support.pdf
+- console error 0
+```
