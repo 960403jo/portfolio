@@ -1070,3 +1070,30 @@ npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통
 - Hero 배경 프로필이 실제 기기에서 충분히 보이는지 확인해주세요.
 - 강화된 프로필 배경이 Hero 텍스트와 CTA 가독성을 방해하지 않는지 확인해주세요.
 ```
+
+## 2026-06-16 09:50 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 피드백에 따라 Hero 흐림 배경 프로필 opacity를 desktop/mobile 모두 0.1로 낮췄습니다.
+blur는 desktop 5px, mobile 6px를 유지해 프로필을 배경 질감 수준으로만 보이게 조정했습니다.
+npm run lint, npm run build, Chrome headless desktop/mobile 로컬 검증을 통과했습니다.
+```
+
+### Related Files
+
+```text
+- app/globals.css
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- Hero 프로필이 너무 사라지지 않고 은은한 배경 신호로 남는지 확인해주세요.
+- desktop/mobile에서 CTA와 핵심 카드 가독성이 유지되는지 확인해주세요.
+```

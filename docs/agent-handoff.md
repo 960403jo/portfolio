@@ -99,7 +99,7 @@ Agent 간 전달사항을 기록한다.
 - Contact: Header nav와 Footer contact 영역 제거. Footer는 copyright와 back-to-top만 유지. Hero 이메일 CTA는 클릭 시 `이메일` 텍스트가 `joinsseong@gmail.com`으로 변경
 - Back to top: 우측 하단 fixed 원형 화살표 버튼
 - Hero/About 문구: Hero headline은 "UI와 데이터 흐름을 잇는 프론트엔드"로 변경. Hero badge는 "실무 프로젝트 기반"으로 변경해 Notion 직접 언급 제거. Hero summary는 "React/TypeScript 기반 지도·관제·백오피스 UI". CTA는 대표 프로젝트/이메일 reveal 2개, 우측 핵심 포인트는 경력/역할/주요 경험 3개만 표시. 역할 value는 "프론트엔드 개발", caption은 "React·TypeScript UI". 주요 경험 value는 "지도·관제·백오피스 UI", caption은 "운영형 화면 중심". About 소개 문단은 화면에서 제거하고 Developer Value를 3개 핵심 카드로 축소
-- Hero profile: 공개 Notion 페이지의 `프로필사진_조인성.jpg`를 추출하고 배경 제거 후 `public/images/profile/joinseong-profile-hero.webp`로 저장. 선명한 프로필 카드 노출은 제거하고 Hero 배경 레이어 `hero-portrait-bg`로 배치. 너무 투명해 보인다는 피드백을 반영해 desktop은 opacity 0.48 / blur 5px, mobile은 opacity 0.34 / blur 6px로 인물감을 강화
+- Hero profile: 공개 Notion 페이지의 `프로필사진_조인성.jpg`를 추출하고 배경 제거 후 `public/images/profile/joinseong-profile-hero.webp`로 저장. 선명한 프로필 카드 노출은 제거하고 Hero 배경 레이어 `hero-portrait-bg`로 배치. 최신 피드백 기준으로 desktop/mobile 모두 opacity 0.1, desktop blur 5px, mobile blur 6px로 조정해 아주 약한 배경 질감 수준으로 노출
 - Skills: AI Development 카드는 제거. Frontend, Backend, Database / Cloud, DevOps, Version / Collaboration 5개 그룹 노출. Version / Collaboration에는 GitLab, Bitbucket, SVN, Jira, Confluence, Slack 노출. 데스크톱에서는 Frontend를 왼쪽 대형 강조 카드로 배치하고 나머지 스킬을 오른쪽 영역에 정렬. DevOps와 Version / Collaboration은 두 번째 줄의 남은 폭을 모두 채워 우측 빈 영역이 생기지 않도록 span 조정
 - Q&A: 마지막 영역에 InterviewSection 추가. 프론트엔드 전환 이유, 업무에서 중요한 기준, 역량을 키우는 방식 3개 카드 노출. 사용자가 제공한 원문 답변을 잘라낸 키워드형이 아니라 문단형 인터뷰 노트로 확장
 - Section-specific design: About은 dark positioning board, Skills는 12-column mosaic matrix, Projects는 framed case board + right panel, Experience는 vertical timeline, AI Delivery는 dark process rail, Q&A는 document interview list 형태
@@ -119,6 +119,7 @@ Agent 간 전달사항을 기록한다.
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 WebP 200 OK, content-type image/webp, alt `조인성 프로필 사진`, overflowX 0, console error 0 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 레이어 노출, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 - 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 desktop opacity 0.48/blur 5px, mobile opacity 0.34/blur 6px, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
+- 추가 브라우저 확인: 현재 빌드 확인 server http://127.0.0.1:3006, desktop 1440px/mobile 390px에서 Hero 프로필 배경 desktop/mobile opacity 0.1, 선명한 `.hero-profile` 카드 0개, overflowX 0, console error 0 확인
 ```
 
 ### 확인 필요
