@@ -60,6 +60,7 @@ body {
     linear-gradient(180deg, rgba(255, 249, 243, 0.98) 0%, rgba(251, 250, 247, 1) 44%, rgba(255, 255, 255, 1) 100%),
     var(--paper);
   color: var(--ink);
+  font-family: "Noto Sans KR Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.65;
 }

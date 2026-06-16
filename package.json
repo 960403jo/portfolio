@@ -9,6 +9,7 @@
     "lint": "eslint app src --max-warnings=0"
   },
   "dependencies": {
+    "@fontsource-variable/noto-sans-kr": "^5.2.10",
     "@sparticuz/chromium": "^149.0.0",
     "fflate": "^0.8.3",
     "lucide-react": "1.17.0",

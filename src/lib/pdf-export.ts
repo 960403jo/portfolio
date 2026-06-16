@@ -9,6 +9,12 @@ type PdfTarget = {
   url: string;
 };
 
+const pdfViewport = {
+  width: 1440,
+  height: 1200,
+  deviceScaleFactor: 1
+} as const;
+
 const localChromePaths = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
@@ -23,7 +29,7 @@ export async function createPortfolioPdfZip(origin: string) {
   try {
     const targets = getPdfTargets(origin);
     const files: Record<string, Uint8Array> = {};
-    const batchSize = 3;
+    const batchSize = 2;
 
     for (let index = 0; index < targets.length; index += batchSize) {
       const batch = targets.slice(index, index + batchSize);
@@ -58,22 +64,31 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
 
   try {
     await page.setViewport({
-      width: 1240,
-      height: 1754,
-      deviceScaleFactor: 1
+      width: pdfViewport.width,
+      height: pdfViewport.height,
+      deviceScaleFactor: pdfViewport.deviceScaleFactor
     });
 
-    await page.emulateMediaType("print");
+    await page.emulateMediaType("screen");
     await page.goto(target.url, {
       waitUntil: "domcontentloaded",
       timeout: 20_000
     });
-    await waitForPrintableHtml(page);
+    await prepareHtmlForPdf(page);
+
+    const pageHeight = await getPageHeight(page);
 
     const pdf = await page.pdf({
-      format: "A4",
+      width: `${pdfViewport.width}px`,
+      height: `${pageHeight}px`,
+      margin: {
+        top: "0",
+        right: "0",
+        bottom: "0",
+        left: "0"
+      },
       printBackground: true,
-      preferCSSPageSize: true
+      preferCSSPageSize: false
     });
 
     return {
@@ -85,8 +100,50 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
   }
 }
 
-async function waitForPrintableHtml(page: Page) {
+async function prepareHtmlForPdf(page: Page) {
+  await page.addStyleTag({
+    content: `
+      html {
+        scroll-behavior: auto !important;
+      }
+
+      body {
+        font-family: "Noto Sans KR Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .site-header,
+      .footer-download-wrap,
+      .back-to-top-floating {
+        display: none !important;
+      }
+
+      .scroll-reveal,
+      .scroll-reveal--left,
+      .scroll-reveal--right,
+      .scroll-reveal--scale,
+      .scroll-reveal--line {
+        opacity: 1 !important;
+        filter: none !important;
+        scale: 1 !important;
+        translate: 0 0 !important;
+      }
+    `
+  });
+
   await page.evaluate(async () => {
+    await Promise.all([
+      document.fonts.load('400 16px "Noto Sans KR Variable"', "한글"),
+      document.fonts.load('700 24px "Noto Sans KR Variable"', "프로젝트"),
+      document.fonts.ready
+    ]);
+
     const waitForImages = Promise.all(
       Array.from(document.images).map((image) => {
         if (image.complete) {
@@ -100,11 +157,28 @@ async function waitForPrintableHtml(page: Page) {
       })
     );
 
-    await Promise.race([
-      Promise.all([document.fonts.ready, waitForImages]),
-      new Promise((resolve) => window.setTimeout(resolve, 2500))
-    ]);
+    await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
+    window.scrollTo(0, 0);
   });
+}
+
+async function getPageHeight(page: Page) {
+  const height = await page.evaluate(() => {
+    const body = document.body;
+    const html = document.documentElement;
+
+    return Math.ceil(
+      Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      )
+    );
+  });
+
+  return Math.max(height, pdfViewport.height);
 }
 
 async function launchBrowser() {
@@ -115,9 +189,9 @@ async function launchBrowser() {
     executablePath,
     headless: true,
     defaultViewport: {
-      width: 1240,
-      height: 1754,
-      deviceScaleFactor: 1
+      width: pdfViewport.width,
+      height: pdfViewport.height,
+      deviceScaleFactor: pdfViewport.deviceScaleFactor
     }
   });
 }
