@@ -1639,3 +1639,33 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 ```text
 - QA 시 PDF 첫 페이지의 Projects/Q&A 영역에 회색 가로 띠가 남아 있지 않은지 육안 확인해주세요.
 ```
+
+## 2026-06-16 17:34 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 main PDF에 상세 PDF 페이지가 전부 포함되지 않도록 요청했고, 상세 PDF의 회색 배경 제거도 요청했습니다.
+`00-joinseong-portfolio-main.pdf`는 다시 메인 화면 1페이지만 포함하도록 변경했습니다.
+상세 PDF 10개는 ZIP 내부 `projects/*.pdf`로 별도 유지합니다.
+PDF 캡처 시 main 프로젝트 카드 href와 상세 PDF의 목록 링크 href를 제거해 PDF annotation을 만들지 않도록 했습니다.
+상세 PDF의 project detail page/hero/section/panel/KPI card 배경을 흰색으로 고정하고 shadow를 제거했습니다.
+Local PDF zip에서 PDF 11개, main pageCount 1/action 0, 상세 PDF 10개 모두 pageCount 1/action 0을 확인했고, `05-traffic-safety-infra.pdf` QuickLook 렌더링에서 회색 배경 미노출을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 main PDF가 1페이지 메인 화면만 포함하는지 확인해주세요.
+- QA 시 상세 PDF 10개가 별도 파일로 존재하고 회색 배경 없이 렌더링되는지 확인해주세요.
+```

@@ -1434,6 +1434,31 @@
 - Production main PDF 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
 ```
 
+## 2026-06-16 17:34 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- main PDF 상세 페이지 append 제거
+- `00-joinseong-portfolio-main.pdf`는 메인 화면 1페이지만 출력
+- 상세 PDF 10개는 ZIP 내부 `projects/*.pdf` 별도 파일로 유지
+- PDF 캡처 시 main 프로젝트 카드 href 제거
+- PDF 캡처 시 상세 PDF의 프로젝트 목록 링크 href 제거
+- 상세 PDF project detail page/hero/section/panel/KPI card 배경을 흰색으로 고정하고 shadow 제거
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 1/action 0
+- Local 상세 PDF 10개 모두 pageCount 1/action 0
+- QuickLook 렌더링 이미지에서 `05-traffic-safety-infra.pdf` 회색 배경 미노출 확인
+```
+
 ### Production 검증
 
 ```text

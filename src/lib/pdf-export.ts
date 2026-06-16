@@ -1,7 +1,6 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
-import { PDFDict, PDFDocument, PDFHexString, PDFName, PDFString } from "pdf-lib";
 import puppeteer, { type Browser, type Page } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
@@ -34,26 +33,16 @@ export async function createPortfolioPdfZip(origin: string) {
 
   try {
     const targets = getPdfTargets(origin);
-    const entries: RenderedPdf[] = [];
+    const files: Record<string, Uint8Array> = {};
     const batchSize = 2;
 
     for (let index = 0; index < targets.length; index += batchSize) {
       const batch = targets.slice(index, index + batchSize);
       const batchEntries = await Promise.all(batch.map((target) => renderPdf(browser, target)));
 
-      entries.push(...batchEntries);
-    }
-
-    const mainEntry = entries.find((entry) => entry.kind === "main");
-    const projectEntries = entries.filter((entry) => entry.kind === "project");
-    const files: Record<string, Uint8Array> = {};
-
-    for (const entry of entries) {
-      files[entry.filename] = entry.pdf;
-    }
-
-    if (mainEntry) {
-      files[mainEntry.filename] = await createLinkedPortfolioPdf(mainEntry.pdf, projectEntries);
+      batchEntries.forEach(({ filename, pdf }) => {
+        files[filename] = pdf;
+      });
     }
 
     return zipSync(files, { level: 6 });
@@ -130,6 +119,7 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
 
       body {
         font-family: "Noto Sans KR Variable", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif !important;
+        background: #ffffff !important;
         width: ${pdfViewport.width}px !important;
         min-width: ${pdfViewport.width}px !important;
       }
@@ -163,19 +153,27 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
       }
 
       .section--projects,
-      .section--interview {
-        background: #fffaf4 !important;
+      .section--interview,
+      .project-detail-page,
+      .project-detail-hero,
+      .project-detail-page .section,
+      .project-detail-page .section--light {
+        background: #ffffff !important;
       }
 
       .section--projects .project-showcase,
       .section--interview .interview-grid,
-      .project-side-panel {
+      .project-side-panel,
+      .project-detail-page .detail-kpi-grid,
+      .project-detail-page .detail-panel,
+      .project-detail-page .project-kpi-card {
         background: #ffffff !important;
         box-shadow: none !important;
       }
 
       .section--projects .project-card,
-      .section--interview .interview-card {
+      .section--interview .interview-card,
+      .project-detail-page .detail-kpi-grid div {
         background: #ffffff !important;
         box-shadow: none !important;
       }
@@ -221,17 +219,16 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
     `
   });
 
-  const projectPdfLinks = getProjectPdfLinks();
-
-  await page.evaluate(async ({ kind, links }) => {
+  await page.evaluate(async ({ kind }) => {
     if (kind === "main") {
       document.querySelectorAll<HTMLAnchorElement>('a[href^="/projects/"]').forEach((anchor) => {
-        const slug = anchor.getAttribute("href")?.replace(/^\/projects\//, "").split(/[?#]/)[0];
-        const pdfPath = slug ? links[slug] : undefined;
+        anchor.removeAttribute("href");
+      });
+    }
 
-        if (pdfPath) {
-          anchor.setAttribute("href", pdfPath);
-        }
+    if (kind === "project") {
+      document.querySelectorAll<HTMLAnchorElement>(".back-link").forEach((anchor) => {
+        anchor.removeAttribute("href");
       });
     }
 
@@ -257,104 +254,8 @@ async function prepareHtmlForPdf(page: Page, target: PdfTarget) {
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
     window.scrollTo(0, 0);
   }, {
-    kind: target.kind,
-    links: projectPdfLinks
+    kind: target.kind
   });
-}
-
-function getProjectPdfLinks() {
-  return Object.fromEntries(
-    projects.map((project, index) => [
-      project.slug,
-      `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`
-    ])
-  );
-}
-
-async function createLinkedPortfolioPdf(mainPdf: Uint8Array, projectEntries: RenderedPdf[]) {
-  const pdfDocument = await PDFDocument.load(mainPdf);
-  const projectStartPageByLink = new Map<string, number>();
-  let nextProjectPageIndex = pdfDocument.getPageCount();
-
-  for (const entry of projectEntries) {
-    const projectPdf = await PDFDocument.load(entry.pdf);
-    const copiedPages = await pdfDocument.copyPages(projectPdf, projectPdf.getPageIndices());
-
-    projectStartPageByLink.set(entry.filename, nextProjectPageIndex);
-    copiedPages.forEach((page) => pdfDocument.addPage(page));
-    nextProjectPageIndex += copiedPages.length;
-  }
-
-  rewriteProjectLinkAnnotations(pdfDocument, projectStartPageByLink);
-
-  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
-}
-
-function rewriteProjectLinkAnnotations(
-  pdfDocument: PDFDocument,
-  projectStartPageByLink: Map<string, number>
-) {
-  const projectPdfLinks = Object.values(getProjectPdfLinks());
-
-  for (const page of pdfDocument.getPages()) {
-    const annotations = page.node.Annots();
-
-    if (!annotations) {
-      continue;
-    }
-
-    for (let index = 0; index < annotations.size(); index += 1) {
-      const annotation = pdfDocument.context.lookup(annotations.get(index));
-
-      if (!(annotation instanceof PDFDict)) {
-        continue;
-      }
-
-      const action = pdfDocument.context.lookup(annotation.get(PDFName.of("A")));
-
-      if (!(action instanceof PDFDict)) {
-        continue;
-      }
-
-      const uriObject = action.get(PDFName.of("URI"));
-      const fileObject = action.get(PDFName.of("F"));
-      const uri = decodePdfText(uriObject);
-      const filePath = decodePdfText(fileObject);
-      const relativePdfPath = projectPdfLinks.find(
-        (link) => uri === link || uri.endsWith(`/${link}`) || filePath === link
-      );
-      const startPageIndex = relativePdfPath
-        ? projectStartPageByLink.get(relativePdfPath)
-        : undefined;
-
-      if (startPageIndex !== undefined) {
-        const targetPage = pdfDocument.getPage(startPageIndex);
-
-        action.set(PDFName.of("S"), PDFName.of("GoTo"));
-        action.set(PDFName.of("D"), pdfDocument.context.obj([targetPage.ref, PDFName.of("Fit")]));
-        action.delete(PDFName.of("URI"));
-        action.delete(PDFName.of("F"));
-        continue;
-      }
-
-      if (uri === "#projects" || uri.endsWith("/#projects")) {
-        const targetPage = pdfDocument.getPage(0);
-
-        action.set(PDFName.of("S"), PDFName.of("GoTo"));
-        action.set(PDFName.of("D"), pdfDocument.context.obj([targetPage.ref, PDFName.of("Fit")]));
-        action.delete(PDFName.of("URI"));
-        action.delete(PDFName.of("F"));
-      }
-    }
-  }
-}
-
-function decodePdfText(value: unknown) {
-  if (value instanceof PDFString || value instanceof PDFHexString) {
-    return value.decodeText();
-  }
-
-  return "";
 }
 
 async function getPageHeight(page: Page) {

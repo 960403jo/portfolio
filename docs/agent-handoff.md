@@ -173,6 +173,10 @@ Agent 간 전달사항을 기록한다.
 - Local 확인: PDF link action 구조 유지, QuickLook 렌더링 이미지에서 Projects/Q&A 회색 가로 띠 미노출
 - Production 재배포 확인: `https://portfolio-k8p3vh4ld-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: zip 내부 PDF 11개, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개
+- 사용자 최신 요청 반영: main PDF에 상세 PDF를 append하지 않고 `00-joinseong-portfolio-main.pdf`는 1페이지 메인 화면만 포함
+- PDF annotation 정리: main 프로젝트 카드 href와 상세 PDF 목록 링크 href를 PDF 캡처 시 제거해 main/detail PDF 모두 action 0개
+- 상세 PDF 회색 배경 제거: project detail page/hero/section/panel/KPI card 배경을 흰색으로 고정하고 shadow 제거
+- Local 확인: zip 내부 PDF 11개, main pageCount 1/action 0, 상세 PDF 10개 모두 pageCount 1/action 0, `05-traffic-safety-infra.pdf` QuickLook 렌더링에서 회색 배경 미노출
 ```
 
 ### 확인 필요
