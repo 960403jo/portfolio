@@ -1232,3 +1232,23 @@
 - zip 내부 PDF 11개 확인: 메인 PDF 1개 + 프로젝트 상세 PDF 10개
 - console error 0
 ```
+
+## 2026-06-16 13:27 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 프로젝트 상세 hero 영역의 `Project Detail` eyebrow 문구 제거
+```
+
+### 검증
+
+```text
+- `rg -n "Project Detail" app src` 결과 없음
+- npm run lint
+- npm run build
+- Local `/projects/taean-smart-city` 렌더링 확인
+- document body에 `Project Detail` 미포함
+- `.project-detail-hero .eyebrow` 0개
+- console error 0
+```

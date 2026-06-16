@@ -54,7 +54,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               <span>프로젝트 목록</span>
             </Link>
             <div className="project-detail-hero__copy">
-              <p className="eyebrow">Project Detail</p>
               <h1>{project.name}</h1>
               <p>{project.description}</p>
             </div>
