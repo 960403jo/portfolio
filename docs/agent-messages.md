@@ -1765,3 +1765,33 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 상세 PDF의 `프로젝트 목록` 클릭이 `../00-joinseong-portfolio-main.pdf` 상대 파일로 이동하는지 확인해주세요.
 - QA 시 `/GoToR`가 아닌 상대 `/URI` 방식으로 들어갔을 때 대상 뷰어에서 권한 오류가 없는지 확인해주세요.
 ```
+
+## 2026-06-16 18:26 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 macOS Preview/Finder에서 프로젝트 카드 클릭 시 `해당 응용 프로그램을 열 수 없습니다. -50` 오류가 난다고 보고했습니다.
+원인은 상대 `/URI` 링크가 Preview에서 PDF 기준 파일 경로가 아니라 앱 실행 링크처럼 처리되는 문제로 판단했습니다.
+상대 경로 자체는 유지하되, PDF action을 일반 URI에서 FileSpec dictionary 기반 `/GoToR`로 변경했습니다.
+main PDF 프로젝트 카드 링크는 FileSpec `projects/01-*.pdf`, 상세 PDF의 `프로젝트 목록` 링크는 FileSpec `../00-joinseong-portfolio-main.pdf`입니다.
+Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 ZIP 압축 해제 후 macOS Preview에서 main PDF 프로젝트 카드 클릭이 `projects/01-*.pdf`를 여는지 확인해주세요.
+- QA 시 상세 PDF의 `프로젝트 목록` 클릭이 `../00-joinseong-portfolio-main.pdf`를 여는지 확인해주세요.
+- Preview가 외부 파일 접근 자체를 차단할 경우 self-contained internal navigation PDF 또는 웹 URL 링크 방식으로 fallback 여부를 사용자에게 확인해주세요.
+```

@@ -1569,6 +1569,34 @@
 - Production unexpected action 0개
 ```
 
+## 2026-06-16 18:26 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- macOS Preview에서 상대 `/URI` 링크 클릭 시 `해당 응용 프로그램을 열 수 없습니다. -50` 오류가 발생하는 문제 대응
+- Preview가 `projects/01-*.pdf` URI를 파일 경로가 아니라 앱 실행 대상처럼 처리하는 것으로 판단
+- 상대 경로는 유지하되, 일반 URI action 대신 PDF FileSpec dictionary 기반 `/GoToR` action으로 변경
+- main PDF 프로젝트 카드 링크: FileSpec `projects/01-*.pdf`
+- 상세 PDF 프로젝트 목록 링크: FileSpec `../00-joinseong-portfolio-main.pdf`
+- main PDF 1200px 높이 기준 페이지 분할은 유지
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 6
+- Local main PDF 고유 프로젝트 FileSpec 10개: `projects/01-*.pdf`
+- Local 상세 PDF 10개 모두 pageCount 1
+- Local 상세 PDF back FileSpec 10개: `../00-joinseong-portfolio-main.pdf`
+- Local URI action 0개
+- Local unexpected action 0개
+```
+
 ### Production 검증
 
 ```text

@@ -292,13 +292,13 @@ async function rewriteRelativeNavigationLinks(pdf: Uint8Array, target: PdfTarget
       const projectLink = target.kind === "main" ? findProjectPdfLink(uri, projectPdfLinks) : null;
 
       if (projectLink) {
-        setRelativeUriAction(action, projectLink);
+        setRelativeFileAction(pdfDocument, action, projectLink);
         didRewrite = true;
         continue;
       }
 
       if (target.kind === "project" && (uri === "#projects" || uri.endsWith("/#projects"))) {
-        setRelativeUriAction(action, "../00-joinseong-portfolio-main.pdf");
+        setRelativeFileAction(pdfDocument, action, "../00-joinseong-portfolio-main.pdf");
         didRewrite = true;
       }
     }
@@ -323,11 +323,18 @@ function findProjectPdfLink(uri: string, projectPdfLinks: Record<string, string>
   return match?.[1] ?? null;
 }
 
-function setRelativeUriAction(action: PDFDict, filePath: string) {
-  action.set(PDFName.of("S"), PDFName.of("URI"));
-  action.set(PDFName.of("URI"), PDFString.of(filePath));
-  action.delete(PDFName.of("F"));
-  action.delete(PDFName.of("D"));
+function setRelativeFileAction(pdfDocument: PDFDocument, action: PDFDict, filePath: string) {
+  action.set(PDFName.of("S"), PDFName.of("GoToR"));
+  action.set(
+    PDFName.of("F"),
+    pdfDocument.context.obj({
+      Type: PDFName.of("Filespec"),
+      F: PDFString.of(filePath),
+      UF: PDFString.of(filePath)
+    })
+  );
+  action.set(PDFName.of("D"), pdfDocument.context.obj([0, PDFName.of("Fit")]));
+  action.delete(PDFName.of("URI"));
 }
 
 function decodePdfText(value: unknown) {
