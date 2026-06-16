@@ -154,8 +154,8 @@ Agent 간 전달사항을 기록한다.
 - Production API 확인: zip 내부 PDF 11개, main PDF URI 4개 모두 `projects/01-*.pdf`, 외부 project URL 0개
 - Production 실제 클릭 확인: footer `PDF 다운로드` -> `PDF 생성 중...` -> zip 다운로드, 내부 PDF 11개, zip 내부 상대 링크 유지, console error 0
 - macOS Preview `-50` 오류 대응: main PDF 프로젝트 카드 링크를 URI action에서 PDF remote go-to action(`/S /GoToR`)으로 변경
-- Production 재배포 확인: `https://portfolio-e0nywy6ag-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
-- Production API 확인: zip 내부 PDF 11개, main PDF 프로젝트 링크 4개 모두 `/GoToR`, `/F projects/01-*.pdf`, `/D [0 /Fit]`, project URI 0개, failures 0
+- Production 재배포 확인: `https://portfolio-jpirzdbpk-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias API 확인: zip 내부 PDF 11개, main PDF 프로젝트 링크 4개 모두 `/GoToR`, `/F projects/01-*.pdf`, `/D [0 /Fit]`, project URI 0개, failures 0
 ```
 
 ### 확인 필요

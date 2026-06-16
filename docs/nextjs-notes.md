@@ -1291,7 +1291,7 @@
 - 실제 클릭 다운로드 zip 내부 PDF 11개, 상대 링크 유지, console error 0
 ```
 
-## 2026-06-16 15:37 KST - Next.js App Agent
+## 2026-06-16 15:42 KST - Next.js App Agent
 
 ### 구현 요약
 
@@ -1309,7 +1309,7 @@
 - Local zip 내부 PDF 11개
 - Local main PDF 프로젝트 링크 4개 모두 `/GoToR`
 - Local main PDF project URI 0개
-- Production deployment: https://portfolio-e0nywy6ag-joinseong-s-projects.vercel.app
+- Production deployment: https://portfolio-jpirzdbpk-joinseong-s-projects.vercel.app
 - Production alias: https://portfolio-ashy-five-87.vercel.app
 - Production `/api/portfolio-pdf-zip` 응답 200
 - Production zip 내부 PDF 11개
