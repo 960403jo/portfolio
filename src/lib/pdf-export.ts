@@ -11,6 +11,10 @@ type PdfTarget = {
   url: string;
 };
 
+type RenderedPdf = PdfTarget & {
+  pdf: Uint8Array;
+};
+
 const pdfViewport = {
   width: 1440,
   height: 1200,
@@ -30,16 +34,26 @@ export async function createPortfolioPdfZip(origin: string) {
 
   try {
     const targets = getPdfTargets(origin);
-    const files: Record<string, Uint8Array> = {};
+    const entries: RenderedPdf[] = [];
     const batchSize = 2;
 
     for (let index = 0; index < targets.length; index += batchSize) {
       const batch = targets.slice(index, index + batchSize);
-      const entries = await Promise.all(batch.map((target) => renderPdf(browser, target)));
+      const batchEntries = await Promise.all(batch.map((target) => renderPdf(browser, target)));
 
-      entries.forEach(({ filename, pdf }) => {
-        files[filename] = pdf;
-      });
+      entries.push(...batchEntries);
+    }
+
+    const mainEntry = entries.find((entry) => entry.kind === "main");
+    const projectEntries = entries.filter((entry) => entry.kind === "project");
+    const files: Record<string, Uint8Array> = {};
+
+    for (const entry of entries) {
+      files[entry.filename] = entry.pdf;
+    }
+
+    if (mainEntry) {
+      files[mainEntry.filename] = await createLinkedPortfolioPdf(mainEntry.pdf, projectEntries);
     }
 
     return zipSync(files, { level: 6 });
@@ -63,7 +77,7 @@ function getPdfTargets(origin: string): PdfTarget[] {
   ];
 }
 
-async function renderPdf(browser: Browser, target: PdfTarget) {
+async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedPdf> {
   const page = await browser.newPage();
 
   try {
@@ -98,7 +112,9 @@ async function renderPdf(browser: Browser, target: PdfTarget) {
 
     return {
       filename: target.filename,
-      pdf: target.kind === "main" ? await rewriteProjectLinkAnnotations(pdfBytes) : pdfBytes
+      kind: target.kind,
+      url: target.url,
+      pdf: pdfBytes
     };
   } finally {
     await page.close();
@@ -237,10 +253,30 @@ function getProjectPdfLinks() {
   );
 }
 
-async function rewriteProjectLinkAnnotations(pdf: Uint8Array) {
-  const pdfDocument = await PDFDocument.load(pdf);
+async function createLinkedPortfolioPdf(mainPdf: Uint8Array, projectEntries: RenderedPdf[]) {
+  const pdfDocument = await PDFDocument.load(mainPdf);
+  const projectStartPageByLink = new Map<string, number>();
+  let nextProjectPageIndex = pdfDocument.getPageCount();
+
+  for (const entry of projectEntries) {
+    const projectPdf = await PDFDocument.load(entry.pdf);
+    const copiedPages = await pdfDocument.copyPages(projectPdf, projectPdf.getPageIndices());
+
+    projectStartPageByLink.set(entry.filename, nextProjectPageIndex);
+    copiedPages.forEach((page) => pdfDocument.addPage(page));
+    nextProjectPageIndex += copiedPages.length;
+  }
+
+  rewriteProjectLinkAnnotations(pdfDocument, projectStartPageByLink);
+
+  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
+}
+
+function rewriteProjectLinkAnnotations(
+  pdfDocument: PDFDocument,
+  projectStartPageByLink: Map<string, number>
+) {
   const projectPdfLinks = Object.values(getProjectPdfLinks());
-  let didRewrite = false;
 
   for (const page of pdfDocument.getPages()) {
     const annotations = page.node.Annots();
@@ -263,24 +299,36 @@ async function rewriteProjectLinkAnnotations(pdf: Uint8Array) {
       }
 
       const uriObject = action.get(PDFName.of("URI"));
+      const fileObject = action.get(PDFName.of("F"));
       const uri = decodePdfText(uriObject);
-      const relativePdfPath = projectPdfLinks.find((link) => uri.endsWith(`/${link}`));
+      const filePath = decodePdfText(fileObject);
+      const relativePdfPath = projectPdfLinks.find(
+        (link) => uri === link || uri.endsWith(`/${link}`) || filePath === link
+      );
+      const startPageIndex = relativePdfPath
+        ? projectStartPageByLink.get(relativePdfPath)
+        : undefined;
 
-      if (relativePdfPath) {
-        action.set(PDFName.of("S"), PDFName.of("GoToR"));
-        action.set(PDFName.of("F"), PDFString.of(relativePdfPath));
-        action.set(PDFName.of("D"), pdfDocument.context.obj([0, PDFName.of("Fit")]));
+      if (startPageIndex !== undefined) {
+        const targetPage = pdfDocument.getPage(startPageIndex);
+
+        action.set(PDFName.of("S"), PDFName.of("GoTo"));
+        action.set(PDFName.of("D"), pdfDocument.context.obj([targetPage.ref, PDFName.of("Fit")]));
         action.delete(PDFName.of("URI"));
-        didRewrite = true;
+        action.delete(PDFName.of("F"));
+        continue;
+      }
+
+      if (uri === "#projects" || uri.endsWith("/#projects")) {
+        const targetPage = pdfDocument.getPage(0);
+
+        action.set(PDFName.of("S"), PDFName.of("GoTo"));
+        action.set(PDFName.of("D"), pdfDocument.context.obj([targetPage.ref, PDFName.of("Fit")]));
+        action.delete(PDFName.of("URI"));
+        action.delete(PDFName.of("F"));
       }
     }
   }
-
-  if (!didRewrite) {
-    return pdf;
-  }
-
-  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
 }
 
 function decodePdfText(value: unknown) {

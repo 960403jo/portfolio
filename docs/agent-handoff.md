@@ -164,6 +164,9 @@ Agent 간 전달사항을 기록한다.
 - Local 확인: 일반 화면 desktop/390/360px에서 더보기 접힘/열림 정상, PDF zip main PDF 프로젝트 링크 10개 모두 `/GoToR`, 추가 프로젝트 6개가 PDF 렌더링 이미지에 노출
 - Production 재배포 확인: `https://portfolio-mjvimk9c9-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: zip 내부 PDF 11개, main PDF 프로젝트 링크 10개 모두 `/GoToR`, failures 0
+- macOS Preview 권한 오류 대응: main PDF가 외부 `projects/*.pdf`를 열지 않도록 변경. main PDF 뒤에 프로젝트 상세 PDF 10개를 append하고, 프로젝트 카드 링크는 같은 PDF 내부 page destination(`/GoTo`)으로 이동
+- 프로젝트 상세 페이지의 목록 복귀 링크도 외부 URL이 아닌 main PDF 1페이지 내부 이동으로 변경
+- Local 확인: zip 내부 PDF 11개 유지, `00-joinseong-portfolio-main.pdf`는 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, `/GoToR`/URI/file action 0개
 ```
 
 ### 확인 필요

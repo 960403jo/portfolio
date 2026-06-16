@@ -1580,3 +1580,33 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 PDF main 페이지 Projects 영역 하단에 추가 프로젝트 6개가 정적 카드로 보이는지 확인해주세요.
 - 압축 해제 후 main PDF의 전체 프로젝트 카드 10개가 각각 `projects/*.pdf` 상세 PDF로 이동하는지 확인해주세요.
 ```
+
+## 2026-06-16 16:55 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 main PDF에서 `05-traffic-safety-infra.pdf`를 열 때 macOS Preview 권한 오류가 난다고 보고했습니다.
+원인은 main PDF가 ZIP 내부의 다른 PDF 파일을 여는 remote go-to(`/GoToR`) 방식에 의존해 Preview의 파일 접근 권한 정책을 타는 구조였기 때문입니다.
+main PDF 뒤에 프로젝트 상세 PDF 10개를 append해 `00-joinseong-portfolio-main.pdf` 자체를 11페이지 완성본으로 만들었습니다.
+프로젝트 카드 링크 10개는 외부 파일 열기가 아니라 같은 PDF 내부 상세 페이지로 이동하는 `/GoTo` action으로 변경했습니다.
+상세 페이지의 목록 복귀 링크 10개도 외부 `#projects` URL 대신 main PDF 1페이지 내부 이동으로 변경했습니다.
+Local PDF zip에서 zip 내부 PDF 11개 유지, main PDF 11페이지, 프로젝트 내부 이동 10개, 목록 복귀 내부 이동 10개, 외부 URL/file action 0개를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 `00-joinseong-portfolio-main.pdf` 안에서 프로젝트 카드 클릭이 같은 PDF 내부 상세 페이지로 이동하는지 확인해주세요.
+- macOS Preview에서 `projects/*.pdf` 외부 파일 권한 오류가 더 이상 발생하지 않는지 확인해주세요.
+```

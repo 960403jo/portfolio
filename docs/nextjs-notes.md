@@ -1374,6 +1374,31 @@
 - Production main PDF 프로젝트 링크 10개 모두 `/GoToR`, failures 0
 ```
 
+## 2026-06-16 16:55 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- macOS Preview의 ZIP 내부 상세 PDF 권한 오류 대응
+- `00-joinseong-portfolio-main.pdf` 뒤에 프로젝트 상세 PDF 10개를 append해 11페이지 완성본으로 생성
+- main PDF 프로젝트 카드 링크를 external remote go-to(`/GoToR`)에서 same-document go-to(`/GoTo`)로 변경
+- 프로젝트 상세 페이지의 목록 복귀 링크도 external `#projects` URI에서 same-document 1페이지 이동으로 변경
+- ZIP 내부 개별 `projects/*.pdf` 파일은 별도 열람용으로 유지
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 11
+- Local main PDF 프로젝트 내부 이동 `/GoTo` 10개
+- Local main PDF 목록 복귀 내부 이동 `/GoTo` 10개
+- Local main PDF 외부 URL/file action 0개
+```
+
 ### Production 검증
 
 ```text
