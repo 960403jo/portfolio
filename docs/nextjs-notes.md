@@ -939,3 +939,27 @@
 - Mobile 390px: portrait background 300x420, opacity 0.1, blur 6px, sharp profile card 0개, overflowX 0, console error 0
 - 스크린샷 확인: tmp/qa/hero-profile-opacity-010-desktop.png, tmp/qa/hero-profile-opacity-010-mobile.png
 ```
+
+## 2026-06-16 09:58 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- Hero 프로필 배경의 투명도와 blur 효과 제거
+- `hero-portrait-bg` opacity를 0.1에서 1로 변경
+- `hero-portrait-bg` mask-image를 none으로 변경해 edge fade 제거
+- `hero-portrait-bg::before`를 display none으로 변경해 glow blur 제거
+- `hero-portrait-bg__image` filter를 none으로 변경해 이미지 blur/saturation/contrast 보정 제거
+- 모바일에서는 선명 이미지가 헤드라인과 직접 겹치지 않도록 top을 250px에서 300px로 하향 조정
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- 현재 빌드 서버 http://127.0.0.1:3006 확인
+- Desktop 1440px: portrait background 480x620, opacity 1, filter none, mask none, glow pseudo display none, overflowX 0, console error 0
+- Mobile 390px: portrait background 300x420, top 300px, opacity 1, filter none, mask none, glow pseudo display none, overflowX 0, console error 0
+- 스크린샷 확인: tmp/qa/hero-profile-no-effects-desktop.png, tmp/qa/hero-profile-no-effects-mobile.png
+```
