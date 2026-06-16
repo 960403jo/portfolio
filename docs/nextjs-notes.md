@@ -1495,6 +1495,33 @@
 - Production unexpected action 0개
 ```
 
+## 2026-06-16 18:05 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 웹 PDF 뷰어에서 ZIP 내부 remote PDF action(`/GoToR`) 클릭 이동이 불안정한 문제 대응
+- PDF 후처리에서 main/detail 링크를 `projects/*.pdf`, `../00-joinseong-portfolio-main.pdf`로 바꾸던 로직 제거
+- Chromium이 HTML 링크 기준으로 생성하는 웹 URL annotation 유지
+- main PDF는 1440px 웹 비율을 유지하되 1200px 높이 기준으로 페이지 분할해 브라우저 PDF 렌더링 부담 완화
+- 프로젝트/Q&A/상세 카드가 PDF 페이지 경계에서 잘리지 않도록 break-inside 방지 보강
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local `/api/portfolio-pdf-zip` 응답 200
+- Local zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 6
+- Local main PDF 고유 프로젝트 웹 URL 10개: `/projects/[slug]`
+- Local 상세 PDF 10개 모두 pageCount 1
+- Local 상세 PDF back URL 10개: `/#projects`
+- Local remote PDF action(`/GoToR`) 0개
+- Local unexpected action 0개
+```
+
 ### Production 검증
 
 ```text

@@ -1,7 +1,6 @@
 import { existsSync } from "node:fs";
 import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
-import { PDFDict, PDFDocument, PDFHexString, PDFName, PDFString } from "pdf-lib";
 import puppeteer, { type Browser, type Page } from "puppeteer-core";
 import { projects } from "@/data/portfolio";
 
@@ -85,10 +84,11 @@ async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedP
     await prepareHtmlForPdf(page);
 
     const pageHeight = await getPageHeight(page);
+    const pdfHeight = target.kind === "main" ? pdfViewport.height : pageHeight;
 
     const pdf = await page.pdf({
       width: `${pdfViewport.width}px`,
-      height: `${pageHeight}px`,
+      height: `${pdfHeight}px`,
       margin: {
         top: "0",
         right: "0",
@@ -104,7 +104,7 @@ async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedP
       filename: target.filename,
       kind: target.kind,
       url: target.url,
-      pdf: await rewriteZipNavigationLinks(pdfBytes, target)
+      pdf: pdfBytes
     };
   } finally {
     await page.close();
@@ -217,6 +217,14 @@ async function prepareHtmlForPdf(page: Page) {
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
+
+      .section--projects .project-card,
+      .section--interview .interview-card,
+      .project-detail-page .detail-panel,
+      .project-detail-page .project-kpi-card {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
     `
   });
 
@@ -243,90 +251,6 @@ async function prepareHtmlForPdf(page: Page) {
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
     window.scrollTo(0, 0);
   });
-}
-
-function getProjectPdfLinks() {
-  return Object.fromEntries(
-    projects.map((project, index) => [
-      project.slug,
-      `projects/${String(index + 1).padStart(2, "0")}-${project.slug}.pdf`
-    ])
-  );
-}
-
-async function rewriteZipNavigationLinks(pdf: Uint8Array, target: PdfTarget) {
-  const pdfDocument = await PDFDocument.load(pdf);
-  const projectPdfLinks = getProjectPdfLinks();
-  let didRewrite = false;
-
-  for (const page of pdfDocument.getPages()) {
-    const annotations = page.node.Annots();
-
-    if (!annotations) {
-      continue;
-    }
-
-    for (let index = 0; index < annotations.size(); index += 1) {
-      const annotation = pdfDocument.context.lookup(annotations.get(index));
-
-      if (!(annotation instanceof PDFDict)) {
-        continue;
-      }
-
-      const action = pdfDocument.context.lookup(annotation.get(PDFName.of("A")));
-
-      if (!(action instanceof PDFDict)) {
-        continue;
-      }
-
-      const uri = decodePdfText(action.get(PDFName.of("URI")));
-      const projectLink = target.kind === "main" ? findProjectPdfLink(uri, projectPdfLinks) : null;
-
-      if (projectLink) {
-        setRemotePdfAction(pdfDocument, action, projectLink);
-        didRewrite = true;
-        continue;
-      }
-
-      if (target.kind === "project" && (uri === "#projects" || uri.endsWith("/#projects"))) {
-        setRemotePdfAction(pdfDocument, action, "../00-joinseong-portfolio-main.pdf");
-        didRewrite = true;
-      }
-    }
-  }
-
-  if (!didRewrite) {
-    return pdf;
-  }
-
-  return new Uint8Array(await pdfDocument.save({ useObjectStreams: false }));
-}
-
-function findProjectPdfLink(uri: string, projectPdfLinks: Record<string, string>) {
-  const match = Object.entries(projectPdfLinks).find(
-    ([slug, pdfPath]) =>
-      uri.endsWith(`/projects/${slug}`) ||
-      uri.endsWith(`/projects/${slug}/`) ||
-      uri === pdfPath ||
-      uri.endsWith(`/${pdfPath}`)
-  );
-
-  return match?.[1] ?? null;
-}
-
-function setRemotePdfAction(pdfDocument: PDFDocument, action: PDFDict, filePath: string) {
-  action.set(PDFName.of("S"), PDFName.of("GoToR"));
-  action.set(PDFName.of("F"), PDFString.of(filePath));
-  action.set(PDFName.of("D"), pdfDocument.context.obj([0, PDFName.of("Fit")]));
-  action.delete(PDFName.of("URI"));
-}
-
-function decodePdfText(value: unknown) {
-  if (value instanceof PDFString || value instanceof PDFHexString) {
-    return value.decodeText();
-  }
-
-  return "";
 }
 
 async function getPageHeight(page: Page) {

@@ -1700,3 +1700,35 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 ZIP 압축 해제 후 main PDF 프로젝트 카드가 `projects/*.pdf`로 이동하는지 확인해주세요.
 - QA 시 상세 PDF의 `프로젝트 목록` 링크가 `../00-joinseong-portfolio-main.pdf`로 이동하는지 확인해주세요.
 ```
+
+## 2026-06-16 18:05 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 웹 PDF 뷰어에서 PDF가 버벅이고 프로젝트 카드 클릭 시 상세 화면으로 이동하지 않는다고 보고했습니다.
+원인은 ZIP 내부 PDF를 여는 remote go-to(`/GoToR`) action이 Chrome/웹 PDF 뷰어에서 안정적으로 동작하지 않고, main PDF가 긴 단일 페이지로 생성되어 브라우저 렌더링 부담이 큰 구조였기 때문입니다.
+PDF 후처리에서 main 프로젝트 링크를 `projects/*.pdf`, 상세 목록 링크를 `../00-joinseong-portfolio-main.pdf`로 바꾸던 로직을 제거했습니다.
+이제 PDF 내부 링크는 HTML 원본 링크 기준 웹 URL annotation으로 유지됩니다: main은 `/projects/[slug]`, 상세는 `/#projects`.
+main PDF는 1440px 웹 비율을 유지하되 1200px 높이 기준으로 6페이지 분할해 브라우저 PDF 뷰어 부담을 낮췄습니다.
+PDF 캡처 전용 CSS에 project/interview/detail card page-break 방지를 추가했습니다.
+Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 웹 PDF 뷰어에서 main PDF 프로젝트 카드 클릭이 웹 상세 페이지(`/projects/[slug]`)로 이동하는지 확인해주세요.
+- QA 시 상세 PDF의 `프로젝트 목록` 클릭이 웹 메인 `/#projects`로 이동하는지 확인해주세요.
+- QA 시 main PDF가 긴 단일 페이지가 아니라 여러 페이지로 나뉘어 브라우저 뷰어에서 덜 버벅이는지 확인해주세요.
+```

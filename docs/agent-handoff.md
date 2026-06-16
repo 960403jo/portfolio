@@ -184,6 +184,10 @@ Agent 간 전달사항을 기록한다.
 - Local 확인: zip 내부 PDF 11개, main pageCount 1/action 10, 상세 PDF 10개 모두 pageCount 1/action 1, `05-traffic-safety-infra.pdf` 회색 배경 미노출
 - Production 재배포 확인: `https://portfolio-d6oiqke48-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: zip 내부 PDF 11개, main project link 10개, detail back link 10개, unexpected action 0개
+- 웹 PDF 뷰어 기준 PDF 이동 안정화: ZIP 내부 remote PDF action(`/GoToR`) 후처리를 제거하고 main/detail PDF 링크를 웹 URL annotation으로 유지
+- main PDF는 한 장짜리 긴 페이지 대신 1200px 높이 기준 6페이지로 분할해 브라우저 PDF 렌더링 부담 완화
+- PDF 캡처 전용 CSS에서 project/interview/detail card의 page break 방지 적용
+- Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개
 ```
 
 ### 확인 필요
@@ -224,6 +228,8 @@ Agent 간 전달사항을 기록한다.
 - Skills에서 AI Development 카드 제거 후 빈 공간이 어색하지 않고 5개 스킬 그룹 균형이 맞는지 확인 필요
 - Contact form과 Contact 영역은 사용자 요청으로 미구현/미노출
 - Footer zip 다운로드를 실제 브라우저에서 클릭했을 때 다운로드 UX, 압축 파일명, 내부 PDF 파일명, 페이지 분할이 제출 용도에 적절한지 확인 필요
+- 웹 PDF 뷰어에서 `00-joinseong-portfolio-main.pdf` 프로젝트 카드 클릭 시 웹 상세 페이지(`/projects/[slug]`)로 이동하는지 확인 필요
+- 웹 PDF 뷰어에서 상세 PDF의 `프로젝트 목록` 클릭 시 웹 메인 `/#projects`로 이동하는지 확인 필요
 ```
 
 ---
