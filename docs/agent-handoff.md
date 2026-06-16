@@ -188,6 +188,8 @@ Agent 간 전달사항을 기록한다.
 - main PDF는 한 장짜리 긴 페이지 대신 1200px 높이 기준 6페이지로 분할해 브라우저 PDF 렌더링 부담 완화
 - PDF 캡처 전용 CSS에서 project/interview/detail card의 page break 방지 적용
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개
+- Production 재배포 확인: `https://portfolio-461gleeyx-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개
 ```
 
 ### 확인 필요

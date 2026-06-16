@@ -1520,6 +1520,15 @@
 - Local 상세 PDF back URL 10개: `/#projects`
 - Local remote PDF action(`/GoToR`) 0개
 - Local unexpected action 0개
+- Production deployment: https://portfolio-461gleeyx-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 6
+- Production main PDF 고유 프로젝트 웹 URL 10개: `/projects/[slug]`
+- Production 상세 PDF 10개 모두 pageCount 1
+- Production 상세 PDF back URL 10개: `/#projects`
+- Production remote PDF action(`/GoToR`) 0개
+- Production unexpected action 0개
 ```
 
 ### Production 검증

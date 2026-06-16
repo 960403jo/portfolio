@@ -1713,6 +1713,7 @@ PDF 후처리에서 main 프로젝트 링크를 `projects/*.pdf`, 상세 목록 
 main PDF는 1440px 웹 비율을 유지하되 1200px 높이 기준으로 6페이지 분할해 브라우저 PDF 뷰어 부담을 낮췄습니다.
 PDF 캡처 전용 CSS에 project/interview/detail card page-break 방지를 추가했습니다.
 Local PDF zip에서 PDF 11개, main pageCount 6, 고유 프로젝트 웹 URL 10개, 상세 PDF 10개 모두 pageCount 1, 상세 back URL 10개, `/GoToR` 0개, unexpected action 0개를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-461gleeyx-joinseong-s-projects.vercel.app`로 재배포했고, 동일 기준으로 재검증했습니다.
 ```
 
 ### Related Files
