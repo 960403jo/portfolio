@@ -6,9 +6,10 @@ export const maxDuration = 120;
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
+  const revealEmailParam = requestUrl.searchParams.get("revealEmail");
   const zip = await createPortfolioPdfZip(requestUrl.origin, {
     linkMode: requestUrl.searchParams.get("viewer") === "preview" ? "preview" : "web",
-    revealEmail: requestUrl.searchParams.get("revealEmail") === "1"
+    revealEmail: revealEmailParam === "0" ? false : true
   });
 
   return new Response(zip, {

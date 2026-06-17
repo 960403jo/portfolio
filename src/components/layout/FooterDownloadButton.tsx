@@ -16,13 +16,7 @@ export function FooterDownloadButton() {
     setStatus("loading");
 
     try {
-      const emailButton = document.querySelector<HTMLElement>("[data-email-reveal-button]");
-      const shouldRevealEmail = emailButton?.dataset.emailVisible === "true";
-      const searchParams = new URLSearchParams({ viewer: "web" });
-
-      if (shouldRevealEmail) {
-        searchParams.set("revealEmail", "1");
-      }
+      const searchParams = new URLSearchParams({ viewer: "web", revealEmail: "1" });
 
       const downloadUrl = `/api/portfolio-pdf-zip?${searchParams.toString()}`;
       const response = await fetch(downloadUrl, {

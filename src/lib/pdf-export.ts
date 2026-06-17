@@ -299,16 +299,30 @@ async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
   });
 
   await page.evaluate(async ({ revealEmail, email }) => {
-    if (revealEmail) {
+    const revealEmailButton = () => {
       const emailButton = document.querySelector<HTMLElement>("[data-email-reveal-button]");
-      const emailLabel = emailButton?.querySelector("span");
+      const emailLabel = emailButton?.querySelector<HTMLElement>("span[aria-live], span");
 
-      if (emailButton && emailLabel) {
-        emailButton.dataset.emailVisible = "true";
-        emailButton.setAttribute("aria-pressed", "true");
-        emailButton.setAttribute("aria-label", `이메일 주소 ${email}`);
+      if (!emailButton) {
+        return;
+      }
+
+      emailButton.dataset.emailVisible = "true";
+      emailButton.dataset.emailValue = email;
+      emailButton.setAttribute("aria-pressed", "true");
+      emailButton.setAttribute("aria-label", `이메일 주소 ${email}`);
+
+      if (emailLabel) {
         emailLabel.textContent = email;
       }
+    };
+
+    const waitForFrame = () => new Promise<void>((resolve) => {
+      window.requestAnimationFrame(() => resolve());
+    });
+
+    if (revealEmail) {
+      revealEmailButton();
     }
 
     await Promise.all([
@@ -331,6 +345,13 @@ async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
     );
 
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
+
+    if (revealEmail) {
+      await waitForFrame();
+      await waitForFrame();
+      revealEmailButton();
+    }
+
     window.scrollTo(0, 0);
   }, { revealEmail: options.revealEmail === true, email: profile.email });
 }

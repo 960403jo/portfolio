@@ -1713,3 +1713,26 @@
 - Production FileSpec action 0개
 - Production Chrome PDF viewer screenshot: Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작
 ```
+
+## 2026-06-17 11:44 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 다운로드 시 이메일 CTA가 `이메일`로 남는 문제 보정
+- Footer 다운로드는 이메일 버튼 클릭 여부와 무관하게 `revealEmail=1`을 API에 전달
+- API는 `revealEmail=0` 명시가 아닌 경우 기본적으로 PDF에서 이메일 주소를 노출
+- PDF 생성 중 React hydration이 버튼 텍스트를 되돌리는 경우를 막기 위해, 폰트/이미지 대기 후 캡처 직전에 이메일 버튼 텍스트를 다시 `joinsseong@gmail.com`으로 치환
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local web mode `/api/portfolio-pdf-zip?viewer=web`: zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 7
+- Local main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Local FileSpec action 0개
+- Local Chrome PDF viewer screenshot: main PDF 첫 페이지 이메일 CTA에 `joinsseong@gmail.com` 노출
+```
