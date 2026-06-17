@@ -1832,3 +1832,32 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 웹 PDF 뷰어에서 main PDF 프로젝트 카드가 `projects/01-*.pdf` 상대 URI로 열리는지 확인해주세요.
 - QA 시 main PDF About 영역에서 `Data UX`와 `Ownership` 카드가 겹치지 않는지 확인해주세요.
 ```
+
+## 2026-06-17 09:53 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 PDF 다운로드 시 Skills/Projects 라벨과 본문 사이 간격이 과하게 넓게 표출된다고 보고했습니다.
+PDF 캡처 전용 CSS에서 Skills/Projects section header의 margin-bottom을 14px로 축소했습니다.
+또한 section header에는 break-after 방지, skill grid/project showcase에는 break-before 방지를 적용해 라벨과 본문이 PDF 페이지 분할로 떨어지는 현상을 완화했습니다.
+Local 검증에서 lint/build 통과, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 확인했습니다.
+PDF 캡처 조건 DOM에서 Skills header-body gap 14px, Projects header-body gap 14px를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 main PDF의 Skills/Projects 라벨과 본문 사이 간격이 과하게 벌어지지 않는지 확인해주세요.
+- QA 시 프로젝트 링크 web mode 상대 URI 구조가 유지되는지 확인해주세요.
+```

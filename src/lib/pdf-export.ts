@@ -167,6 +167,20 @@ async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
         contain: layout paint;
       }
 
+      .section--skills .section-header,
+      .section--projects .section-header {
+        margin-bottom: 14px !important;
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+
+      .section--skills .skill-grid,
+      .section--projects .project-showcase {
+        margin-top: 0 !important;
+        break-before: avoid !important;
+        page-break-before: avoid !important;
+      }
+
       .section--about,
       .section--about .developer-board,
       .section--about .developer-signal-grid,

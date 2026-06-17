@@ -206,6 +206,8 @@ Agent 간 전달사항을 기록한다.
 - Local 검증: `npm run lint`, `npm run build`, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0
 - Production 재배포 확인: `https://portfolio-aly2fneeh-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
+- PDF 다운로드 시 Skills/Projects 라벨과 본문 사이 간격 과다 문제 보정: PDF 캡처 전용 CSS에서 해당 section header margin-bottom을 14px로 축소하고 header/body page-break 분리 방지 적용
+- Local 검증: `npm run lint`, `npm run build`, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개, Skills/Projects header-body gap 14px
 ```
 
 ### 확인 필요
@@ -250,6 +252,7 @@ Agent 간 전달사항을 기록한다.
 - ZIP 압축 해제 후 상세 PDF의 `프로젝트 목록` 클릭 시 `../00-joinseong-portfolio-main.pdf` 상대 파일로 이동하는지 확인 필요
 - 이메일 버튼 클릭 후 PDF 다운로드 시 main PDF에 `joinsseong@gmail.com`이 노출되는지 확인 필요
 - main PDF의 About 영역에서 `Data UX`와 `Ownership` 카드가 겹치지 않는지 확인 필요
+- main PDF의 Skills/Projects 라벨과 본문 사이 간격이 과하게 벌어지지 않는지 확인 필요
 ```
 
 ---

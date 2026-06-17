@@ -1636,6 +1636,30 @@
 - Production FileSpec action 0개
 ```
 
+## 2026-06-17 09:53 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 다운로드 시 Skills/Projects 라벨과 본문 사이 간격이 과하게 보이는 문제 보정
+- PDF 캡처 전용 CSS에서 `.section--skills .section-header`, `.section--projects .section-header` margin-bottom을 14px로 축소
+- `.skill-grid`, `.project-showcase`에 break-before 방지, section header에 break-after 방지를 적용해 라벨과 본문이 페이지 분할로 떨어지는 현상 완화
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local web mode zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 7
+- Local main PDF 프로젝트 상대 URI 10개
+- Local detail back URI 10개
+- Local FileSpec action 0개
+- PDF 캡처 조건 DOM에서 Skills header-body gap 14px
+- PDF 캡처 조건 DOM에서 Projects header-body gap 14px
+```
+
 ### Production 검증
 
 ```text
