@@ -210,6 +210,9 @@ Agent 간 전달사항을 기록한다.
 - Local 검증: `npm run lint`, `npm run build`, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개, Skills/Projects header-body gap 14px
 - Production 재배포 확인: `https://portfolio-izg7e5wev-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
+- PDF Skills 라벨 페이지 분리 보정: Skills 라벨만 이전 페이지에 남고 카드가 다음 페이지로 밀리는 문제를 막기 위해 PDF 캡처 전용 CSS에서 `.section--skills`를 새 PDF 페이지에서 시작하도록 고정
+- Local 검증: `npm run lint`, `npm run build`, web mode zip 내부 PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
+- Local Chrome PDF viewer 스크린샷 확인: Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작
 ```
 
 ### 확인 필요

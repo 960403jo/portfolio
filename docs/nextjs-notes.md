@@ -1677,3 +1677,26 @@
 - `.project-detail-hero .eyebrow` 0개
 - console error 0
 ```
+
+## 2026-06-17 10:06 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- PDF 다운로드 시 Skills 라벨만 이전 페이지에 남고 스킬 카드가 다음 페이지로 밀리는 문제 보정
+- 기존 margin 조정만으로는 Chrome PDF viewer의 실제 페이지 분할을 막지 못해 PDF 캡처 전용 CSS에서 `.section--skills`를 새 PDF 페이지에서 시작하도록 고정
+- 웹 화면 레이아웃에는 영향이 없도록 Puppeteer PDF 준비 단계에만 적용
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local web mode `/api/portfolio-pdf-zip?viewer=web&revealEmail=1`: zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 7
+- Local main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Local detail back URI 10개: `../00-joinseong-portfolio-main.pdf`
+- Local FileSpec action 0개
+- Local Chrome PDF viewer screenshot: Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작
+```

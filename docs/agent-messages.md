@@ -1862,3 +1862,31 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 main PDF의 Skills/Projects 라벨과 본문 사이 간격이 과하게 벌어지지 않는지 확인해주세요.
 - QA 시 프로젝트 링크 web mode 상대 URI 구조가 유지되는지 확인해주세요.
 ```
+
+## 2026-06-17 10:06 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자 스크린샷 기준 Projects는 보정됐지만 Skills 라벨이 PDF 이전 페이지에 단독으로 남는 문제가 확인됐습니다.
+단순 margin 문제가 아니라 PDF 페이지 분할 문제로 판단해, PDF 캡처 전용 CSS에서 `.section--skills`를 새 PDF 페이지에서 시작하도록 고정했습니다.
+Local 검증에서 lint/build 통과, web mode zip 내부 PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 확인했습니다.
+Chrome PDF viewer 스크린샷에서도 Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작하는 것을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 main PDF의 Skills 라벨이 이전 페이지 하단에 단독으로 남지 않는지 확인해주세요.
+- QA 시 Projects 라벨과 본문 간격 보정, 상대 URI 링크 구조가 유지되는지 함께 확인해주세요.
+```
