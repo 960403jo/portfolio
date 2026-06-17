@@ -1843,6 +1843,7 @@ PDF 캡처 전용 CSS에서 Skills/Projects section header의 margin-bottom을 1
 또한 section header에는 break-after 방지, skill grid/project showcase에는 break-before 방지를 적용해 라벨과 본문이 PDF 페이지 분할로 떨어지는 현상을 완화했습니다.
 Local 검증에서 lint/build 통과, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 확인했습니다.
 PDF 캡처 조건 DOM에서 Skills header-body gap 14px, Projects header-body gap 14px를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-izg7e5wev-joinseong-s-projects.vercel.app`로 재배포했고, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 재검증했습니다.
 ```
 
 ### Related Files

@@ -208,6 +208,8 @@ Agent 간 전달사항을 기록한다.
 - Production alias PDF 확인: web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
 - PDF 다운로드 시 Skills/Projects 라벨과 본문 사이 간격 과다 문제 보정: PDF 캡처 전용 CSS에서 해당 section header margin-bottom을 14px로 축소하고 header/body page-break 분리 방지 적용
 - Local 검증: `npm run lint`, `npm run build`, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개, Skills/Projects header-body gap 14px
+- Production 재배포 확인: `https://portfolio-izg7e5wev-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
 ```
 
 ### 확인 필요

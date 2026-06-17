@@ -1658,6 +1658,13 @@
 - Local FileSpec action 0개
 - PDF 캡처 조건 DOM에서 Skills header-body gap 14px
 - PDF 캡처 조건 DOM에서 Projects header-body gap 14px
+- Production deployment: https://portfolio-izg7e5wev-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production web mode zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 7
+- Production main PDF 프로젝트 상대 URI 10개
+- Production detail back URI 10개
+- Production FileSpec action 0개
 ```
 
 ### Production 검증
