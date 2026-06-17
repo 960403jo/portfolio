@@ -1796,3 +1796,38 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 상세 PDF의 `프로젝트 목록` 클릭이 `../00-joinseong-portfolio-main.pdf`를 여는지 확인해주세요.
 - Preview가 외부 파일 접근 자체를 차단할 경우 self-contained internal navigation PDF 또는 웹 URL 링크 방식으로 fallback 여부를 사용자에게 확인해주세요.
 ```
+
+## 2026-06-17 09:30 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 이메일 버튼 클릭 상태가 PDF 다운로드에 반영되지 않고, PDF에서 About `Data UX` / `Ownership` 카드가 겹치며, 웹 PDF 뷰어에서 프로젝트 카드 클릭 시 대상 PDF가 열리지 않는다고 보고했습니다.
+이메일 버튼에 `data-email-visible` 상태를 추가하고, Footer 다운로드 버튼이 해당 상태를 읽어 `revealEmail=1`을 API에 전달하도록 변경했습니다.
+PDF 캡처 단계에서는 `revealEmail=1`일 때 이메일 버튼 텍스트와 aria label을 `joinsseong@gmail.com`으로 강제 변경합니다.
+웹 PDF 뷰어는 FileSpec `/GoToR`를 지원하지 않는 경우가 있어 기본 다운로드를 `viewer=web` 상대 `/URI` 링크 모드로 전환했습니다.
+Preview 호환이 필요한 경우 `/api/portfolio-pdf-zip?viewer=preview`에서 FileSpec `/GoToR` 모드를 유지합니다.
+PDF 캡처 전용 CSS에서 About developer signal grid gap/min-height/page-break를 고정해 `Data UX`와 `Ownership` 겹침을 방지했습니다.
+Local 검증에서 lint/build 통과, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0을 확인했습니다.
+```
+
+### Related Files
+
+```text
+- app/api/portfolio-pdf-zip/route.ts
+- src/components/layout/FooterDownloadButton.tsx
+- src/components/sections/HeroSection.tsx
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 이메일 버튼 클릭 후 PDF 다운로드 시 main PDF에 `joinsseong@gmail.com`이 노출되는지 확인해주세요.
+- QA 시 웹 PDF 뷰어에서 main PDF 프로젝트 카드가 `projects/01-*.pdf` 상대 URI로 열리는지 확인해주세요.
+- QA 시 main PDF About 영역에서 `Data UX`와 `Ownership` 카드가 겹치지 않는지 확인해주세요.
+```

@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-16 18:30 KST
+Last Updated: 2026-06-17 09:30 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-16 18:30 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-17 09:30 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-16 18:30 KST
+Updated At: 2026-06-17 09:30 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -256,6 +256,10 @@ Summary:
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
 - Production 재배포 완료: `https://portfolio-ck8h6iwp4-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
+- 웹 PDF 뷰어에서 FileSpec `/GoToR`가 열리지 않는 문제 대응: 기본 PDF 다운로드를 `viewer=web` 상대 `/URI` 링크 모드로 전환하고 `viewer=preview` 옵션에서만 FileSpec 링크 사용
+- 이메일 버튼 클릭 후 PDF 다운로드 시 `revealEmail=1`로 상태를 전달해 PDF 캡처에서 이메일 주소가 노출되도록 처리
+- PDF 캡처 전용 CSS에서 About `Data UX` / `Ownership` 카드 grid gap/min-height/page-break를 고정해 겹침 방지
+- Local 검증: `npm run lint`, `npm run build`, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0
 Blocker:
 - 없음
 Next:

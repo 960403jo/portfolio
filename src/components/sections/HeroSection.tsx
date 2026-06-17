@@ -56,6 +56,10 @@ export function HeroSection() {
               type="button"
               className="button-link button-link--secondary"
               aria-label={isEmailVisible ? `이메일 주소 ${profile.email}` : "이메일 주소 보기"}
+              aria-pressed={isEmailVisible}
+              data-email-reveal-button
+              data-email-value={profile.email}
+              data-email-visible={isEmailVisible ? "true" : "false"}
               onClick={() => setIsEmailVisible(true)}
             >
               <Mail aria-hidden="true" size={18} />

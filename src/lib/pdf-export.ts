@@ -3,12 +3,19 @@ import chromiumPack from "@sparticuz/chromium";
 import { zipSync } from "fflate";
 import { PDFDict, PDFDocument, PDFHexString, PDFName, PDFString } from "pdf-lib";
 import puppeteer, { type Browser, type Page } from "puppeteer-core";
-import { projects } from "@/data/portfolio";
+import { profile, projects } from "@/data/portfolio";
 
 type PdfTarget = {
   filename: string;
   kind: "main" | "project";
   url: string;
+};
+
+type PdfLinkMode = "preview" | "web";
+
+type PdfExportOptions = {
+  linkMode?: PdfLinkMode;
+  revealEmail?: boolean;
 };
 
 type RenderedPdf = PdfTarget & {
@@ -29,7 +36,7 @@ const localChromePaths = [
   "/usr/bin/chromium-browser"
 ];
 
-export async function createPortfolioPdfZip(origin: string) {
+export async function createPortfolioPdfZip(origin: string, options: PdfExportOptions = {}) {
   const browser = await launchBrowser();
 
   try {
@@ -39,7 +46,9 @@ export async function createPortfolioPdfZip(origin: string) {
 
     for (let index = 0; index < targets.length; index += batchSize) {
       const batch = targets.slice(index, index + batchSize);
-      const batchEntries = await Promise.all(batch.map((target) => renderPdf(browser, target)));
+      const batchEntries = await Promise.all(
+        batch.map((target) => renderPdf(browser, target, options))
+      );
 
       batchEntries.forEach(({ filename, pdf }) => {
         files[filename] = pdf;
@@ -67,7 +76,11 @@ function getPdfTargets(origin: string): PdfTarget[] {
   ];
 }
 
-async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedPdf> {
+async function renderPdf(
+  browser: Browser,
+  target: PdfTarget,
+  options: PdfExportOptions
+): Promise<RenderedPdf> {
   const page = await browser.newPage();
 
   try {
@@ -82,7 +95,7 @@ async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedP
       waitUntil: "domcontentloaded",
       timeout: 20_000
     });
-    await prepareHtmlForPdf(page);
+    await prepareHtmlForPdf(page, options);
 
     const pageHeight = await getPageHeight(page);
     const pdfHeight = target.kind === "main" ? pdfViewport.height : pageHeight;
@@ -105,14 +118,14 @@ async function renderPdf(browser: Browser, target: PdfTarget): Promise<RenderedP
       filename: target.filename,
       kind: target.kind,
       url: target.url,
-      pdf: await rewriteRelativeNavigationLinks(pdfBytes, target)
+      pdf: await rewriteNavigationLinks(pdfBytes, target, options.linkMode ?? "web")
     };
   } finally {
     await page.close();
   }
 }
 
-async function prepareHtmlForPdf(page: Page) {
+async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
   await page.addStyleTag({
     content: `
       html {
@@ -152,6 +165,42 @@ async function prepareHtmlForPdf(page: Page) {
 
       .project-showcase {
         contain: layout paint;
+      }
+
+      .section--about,
+      .section--about .developer-board,
+      .section--about .developer-signal-grid,
+      .section--about .developer-signal-card {
+        overflow: visible !important;
+      }
+
+      .section--about .developer-board {
+        display: grid !important;
+        grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr) !important;
+        gap: 24px !important;
+        align-items: start !important;
+      }
+
+      .section--about .developer-signal-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+        align-content: start !important;
+      }
+
+      .section--about .developer-signal-card {
+        display: grid !important;
+        grid-template-columns: 132px minmax(0, 1fr) !important;
+        gap: 10px 20px !important;
+        min-height: 188px !important;
+        height: auto !important;
+        padding: 20px 22px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .section--about .developer-signal-card p {
+        line-height: 1.5 !important;
       }
 
       .section--projects,
@@ -229,7 +278,19 @@ async function prepareHtmlForPdf(page: Page) {
     `
   });
 
-  await page.evaluate(async () => {
+  await page.evaluate(async ({ revealEmail, email }) => {
+    if (revealEmail) {
+      const emailButton = document.querySelector<HTMLElement>("[data-email-reveal-button]");
+      const emailLabel = emailButton?.querySelector("span");
+
+      if (emailButton && emailLabel) {
+        emailButton.dataset.emailVisible = "true";
+        emailButton.setAttribute("aria-pressed", "true");
+        emailButton.setAttribute("aria-label", `이메일 주소 ${email}`);
+        emailLabel.textContent = email;
+      }
+    }
+
     await Promise.all([
       document.fonts.load('400 16px "Noto Sans KR Variable"', "한글"),
       document.fonts.load('700 24px "Noto Sans KR Variable"', "프로젝트"),
@@ -251,7 +312,7 @@ async function prepareHtmlForPdf(page: Page) {
 
     await Promise.race([waitForImages, new Promise((resolve) => window.setTimeout(resolve, 2500))]);
     window.scrollTo(0, 0);
-  });
+  }, { revealEmail: options.revealEmail === true, email: profile.email });
 }
 
 function getProjectPdfLinks() {
@@ -263,7 +324,7 @@ function getProjectPdfLinks() {
   );
 }
 
-async function rewriteRelativeNavigationLinks(pdf: Uint8Array, target: PdfTarget) {
+async function rewriteNavigationLinks(pdf: Uint8Array, target: PdfTarget, linkMode: PdfLinkMode) {
   const pdfDocument = await PDFDocument.load(pdf);
   const projectPdfLinks = getProjectPdfLinks();
   let didRewrite = false;
@@ -292,13 +353,18 @@ async function rewriteRelativeNavigationLinks(pdf: Uint8Array, target: PdfTarget
       const projectLink = target.kind === "main" ? findProjectPdfLink(uri, projectPdfLinks) : null;
 
       if (projectLink) {
-        setRelativeFileAction(pdfDocument, action, projectLink);
+        setRelativeNavigationAction(pdfDocument, action, projectLink, linkMode);
         didRewrite = true;
         continue;
       }
 
       if (target.kind === "project" && (uri === "#projects" || uri.endsWith("/#projects"))) {
-        setRelativeFileAction(pdfDocument, action, "../00-joinseong-portfolio-main.pdf");
+        setRelativeNavigationAction(
+          pdfDocument,
+          action,
+          "../00-joinseong-portfolio-main.pdf",
+          linkMode
+        );
         didRewrite = true;
       }
     }
@@ -321,6 +387,27 @@ function findProjectPdfLink(uri: string, projectPdfLinks: Record<string, string>
   );
 
   return match?.[1] ?? null;
+}
+
+function setRelativeNavigationAction(
+  pdfDocument: PDFDocument,
+  action: PDFDict,
+  filePath: string,
+  linkMode: PdfLinkMode
+) {
+  if (linkMode === "web") {
+    setRelativeUriAction(action, filePath);
+    return;
+  }
+
+  setRelativeFileAction(pdfDocument, action, filePath);
+}
+
+function setRelativeUriAction(action: PDFDict, filePath: string) {
+  action.set(PDFName.of("S"), PDFName.of("URI"));
+  action.set(PDFName.of("URI"), PDFString.of(filePath));
+  action.delete(PDFName.of("F"));
+  action.delete(PDFName.of("D"));
 }
 
 function setRelativeFileAction(pdfDocument: PDFDocument, action: PDFDict, filePath: string) {

@@ -200,6 +200,10 @@ Agent 간 전달사항을 기록한다.
 - Local PDF zip 재검증: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
 - Production 재배포 확인: `https://portfolio-ck8h6iwp4-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
 - Production alias PDF 확인: zip 내부 PDF 11개, main pageCount 6, 고유 프로젝트 FileSpec 10개, 상세 back FileSpec 10개, URI action 0개, unexpected action 0개
+- 웹 PDF 뷰어에서 FileSpec `/GoToR`가 열리지 않는 문제 대응: 기본 PDF 다운로드를 `viewer=web` 상대 `/URI` 링크 모드로 전환하고 `viewer=preview` 옵션에서만 FileSpec 링크 사용
+- 이메일 버튼 클릭 후 PDF 다운로드 시 `revealEmail=1`로 상태를 전달해 PDF 캡처에서 이메일 주소가 노출되도록 처리
+- PDF 캡처 전용 CSS에서 About `Data UX` / `Ownership` 카드 grid gap/min-height/page-break를 고정해 겹침 방지
+- Local 검증: `npm run lint`, `npm run build`, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0
 ```
 
 ### 확인 필요
@@ -242,6 +246,8 @@ Agent 간 전달사항을 기록한다.
 - Footer zip 다운로드를 실제 브라우저에서 클릭했을 때 다운로드 UX, 압축 파일명, 내부 PDF 파일명, 페이지 분할이 제출 용도에 적절한지 확인 필요
 - ZIP 압축 해제 후 웹 PDF 뷰어에서 `00-joinseong-portfolio-main.pdf` 프로젝트 카드 클릭 시 `projects/01-*.pdf` 상대 파일로 이동하는지 확인 필요
 - ZIP 압축 해제 후 상세 PDF의 `프로젝트 목록` 클릭 시 `../00-joinseong-portfolio-main.pdf` 상대 파일로 이동하는지 확인 필요
+- 이메일 버튼 클릭 후 PDF 다운로드 시 main PDF에 `joinsseong@gmail.com`이 노출되는지 확인 필요
+- main PDF의 About 영역에서 `Data UX`와 `Ownership` 카드가 겹치지 않는지 확인 필요
 ```
 
 ---

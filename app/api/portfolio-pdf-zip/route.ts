@@ -5,8 +5,11 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 120;
 
 export async function GET(request: Request) {
-  const origin = new URL(request.url).origin;
-  const zip = await createPortfolioPdfZip(origin);
+  const requestUrl = new URL(request.url);
+  const zip = await createPortfolioPdfZip(requestUrl.origin, {
+    linkMode: requestUrl.searchParams.get("viewer") === "preview" ? "preview" : "web",
+    revealEmail: requestUrl.searchParams.get("revealEmail") === "1"
+  });
 
   return new Response(zip, {
     headers: {

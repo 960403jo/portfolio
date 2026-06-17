@@ -1606,6 +1606,29 @@
 - Production unexpected action 0개
 ```
 
+## 2026-06-17 09:30 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 웹 PDF 뷰어에서 FileSpec `/GoToR` 프로젝트 링크가 열리지 않는 문제 대응
+- 기본 PDF 다운로드는 `viewer=web`으로 호출하고, 프로젝트/목록 링크를 상대 `/URI`로 생성
+- Preview 호환이 필요한 경우 `/api/portfolio-pdf-zip?viewer=preview`에서 FileSpec `/GoToR` 모드 유지
+- 이메일 버튼 클릭 후 PDF 다운로드 시 `revealEmail=1`을 전달하고 PDF 캡처 단계에서 이메일 버튼 텍스트를 `joinsseong@gmail.com`으로 강제 노출
+- PDF 캡처 전용 CSS에서 About `Data UX` / `Ownership` 카드의 grid gap, min-height, page-break를 고정해 카드 겹침 방지
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local web mode `/api/portfolio-pdf-zip?viewer=web&revealEmail=1`: zip 내부 PDF 11개, main 상대 URI 10개, detail back URI 10개, FileSpec 0개
+- Local preview mode `/api/portfolio-pdf-zip?viewer=preview&revealEmail=1`: zip 내부 PDF 11개, main FileSpec 10개, detail back FileSpec 10개, 상대 URI 0개
+- 이메일 버튼 클릭 후 footer 다운로드 API URL: `/api/portfolio-pdf-zip?viewer=web&revealEmail=1`
+- PDF 캡처 조건 DOM에서 About `Data UX` / `Ownership` 카드 overlapY 0
+```
+
 ### Production 검증
 
 ```text
