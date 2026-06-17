@@ -1872,6 +1872,8 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 단순 margin 문제가 아니라 PDF 페이지 분할 문제로 판단해, PDF 캡처 전용 CSS에서 `.section--skills`를 새 PDF 페이지에서 시작하도록 고정했습니다.
 Local 검증에서 lint/build 통과, web mode zip 내부 PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 확인했습니다.
 Chrome PDF viewer 스크린샷에서도 Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작하는 것을 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-2yrg7fnf6-joinseong-s-projects.vercel.app`로 재배포했고, production zip에서도 PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 재검증했습니다.
+Production Chrome PDF viewer 스크린샷에서도 Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작하는 것을 확인했습니다.
 ```
 
 ### Related Files

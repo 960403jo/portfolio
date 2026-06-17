@@ -1700,3 +1700,16 @@
 - Local FileSpec action 0개
 - Local Chrome PDF viewer screenshot: Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작
 ```
+
+### Production 검증
+
+```text
+- Production deployment: https://portfolio-2yrg7fnf6-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production web mode `/api/portfolio-pdf-zip?viewer=web&revealEmail=1`: zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 7
+- Production main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Production detail back URI 10개: `../00-joinseong-portfolio-main.pdf`
+- Production FileSpec action 0개
+- Production Chrome PDF viewer screenshot: Skills 라벨과 스킬 카드가 같은 PDF 페이지 상단에서 함께 시작
+```
