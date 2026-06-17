@@ -219,6 +219,8 @@ Agent 간 전달사항을 기록한다.
 - PDF 이메일 예외 처리: footer 다운로드는 항상 `revealEmail=1`을 전달하고, API는 `revealEmail=0` 명시가 아닌 경우 기본적으로 이메일 주소를 노출
 - PDF 캡처 직전 이메일 버튼 텍스트를 재치환해 React hydration 이후에도 `joinsseong@gmail.com`이 유지되도록 보정
 - Local 확인: `viewer=web`만 호출한 PDF zip에서 Chrome PDF viewer 첫 페이지 이메일 주소 노출, main pageCount 7, 고유 프로젝트 상대 URI 10개, FileSpec action 0개
+- Production 재배포 확인: `https://portfolio-6zc2ehsag-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: `viewer=web`만 호출한 zip 내부 PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, FileSpec action 0개, Chrome PDF viewer 첫 페이지 이메일 주소 노출
 ```
 
 ### 확인 필요

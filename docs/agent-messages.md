@@ -1903,6 +1903,7 @@ Footer 다운로드 버튼은 이메일 버튼 클릭 상태와 무관하게 `re
 API는 `revealEmail=0`이 명시되지 않는 한 기본적으로 PDF에서 이메일 주소를 노출하도록 방어 처리했습니다.
 PDF 생성 중 React hydration이 버튼 텍스트를 다시 `이메일`로 덮는 경우를 막기 위해, 폰트/이미지 대기 후 캡처 직전에 이메일 버튼 텍스트를 `joinsseong@gmail.com`으로 재치환하도록 보정했습니다.
 Local 검증에서 lint/build 통과, `viewer=web`만 호출한 PDF zip의 Chrome PDF viewer 첫 페이지에서 이메일 주소 노출을 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-6zc2ehsag-joinseong-s-projects.vercel.app`로 재배포했고, `viewer=web`만 호출한 production PDF zip에서도 첫 페이지 이메일 주소 노출, PDF 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, FileSpec action 0개를 확인했습니다.
 ```
 
 ### Related Files

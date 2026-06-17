@@ -1736,3 +1736,15 @@
 - Local FileSpec action 0개
 - Local Chrome PDF viewer screenshot: main PDF 첫 페이지 이메일 CTA에 `joinsseong@gmail.com` 노출
 ```
+
+### Production 검증
+
+```text
+- Production deployment: https://portfolio-6zc2ehsag-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production web mode `/api/portfolio-pdf-zip?viewer=web`: zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 7
+- Production main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Production FileSpec action 0개
+- Production Chrome PDF viewer screenshot: main PDF 첫 페이지 이메일 CTA에 `joinsseong@gmail.com` 노출
+```
