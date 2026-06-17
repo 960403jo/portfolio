@@ -1809,6 +1809,7 @@ PDF 캡처 단계에서는 `revealEmail=1`일 때 이메일 버튼 텍스트와 
 Preview 호환이 필요한 경우 `/api/portfolio-pdf-zip?viewer=preview`에서 FileSpec `/GoToR` 모드를 유지합니다.
 PDF 캡처 전용 CSS에서 About developer signal grid gap/min-height/page-break를 고정해 `Data UX`와 `Ownership` 겹침을 방지했습니다.
 Local 검증에서 lint/build 통과, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0을 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-aly2fneeh-joinseong-s-projects.vercel.app`로 재배포했고, web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개를 재검증했습니다.
 ```
 
 ### Related Files

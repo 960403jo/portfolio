@@ -204,6 +204,8 @@ Agent 간 전달사항을 기록한다.
 - 이메일 버튼 클릭 후 PDF 다운로드 시 `revealEmail=1`로 상태를 전달해 PDF 캡처에서 이메일 주소가 노출되도록 처리
 - PDF 캡처 전용 CSS에서 About `Data UX` / `Ownership` 카드 grid gap/min-height/page-break를 고정해 겹침 방지
 - Local 검증: `npm run lint`, `npm run build`, web mode 상대 URI 10개/detail back URI 10개, preview mode FileSpec 10개/detail back FileSpec 10개, 이메일 클릭 후 API `viewer=web&revealEmail=1`, About 카드 overlapY 0
+- Production 재배포 확인: `https://portfolio-aly2fneeh-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production alias PDF 확인: web mode zip 내부 PDF 11개, main pageCount 7, 프로젝트 상대 URI 10개, detail back URI 10개, FileSpec action 0개
 ```
 
 ### 확인 필요

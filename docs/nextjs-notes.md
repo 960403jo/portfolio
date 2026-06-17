@@ -1627,6 +1627,13 @@
 - Local preview mode `/api/portfolio-pdf-zip?viewer=preview&revealEmail=1`: zip 내부 PDF 11개, main FileSpec 10개, detail back FileSpec 10개, 상대 URI 0개
 - 이메일 버튼 클릭 후 footer 다운로드 API URL: `/api/portfolio-pdf-zip?viewer=web&revealEmail=1`
 - PDF 캡처 조건 DOM에서 About `Data UX` / `Ownership` 카드 overlapY 0
+- Production deployment: https://portfolio-aly2fneeh-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production web mode zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 7
+- Production main PDF 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Production detail back URI 10개: `../00-joinseong-portfolio-main.pdf`
+- Production FileSpec action 0개
 ```
 
 ### Production 검증
