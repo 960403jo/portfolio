@@ -1935,6 +1935,7 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 프로젝트 상세 페이지에는 KPI보다 앞에 `Case Focus` 블록을 배치해 문제 상황, 구현 접근, 결과를 먼저 보여주도록 변경했습니다.
 메인 About 영역의 개발자 포지셔닝 문구도 복잡한 운영 화면, 상태/API/지도 데이터 흐름, 문제 정의와 운영 UI 검증 중심으로 정리했습니다.
 Local 검증에서 lint/build 통과, desktop/mobile main/detail overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개 및 철도 상세 PDF 1페이지 유지를 확인했습니다.
+Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfolio-6tbs35qud-joinseong-s-projects.vercel.app`로 재배포했고, production에서도 main/detail desktop/mobile overflowX 0, console error 0, 상세 Case Focus 3개 카드, PDF zip 11개, main pageCount 7, 철도 상세 PDF 1페이지 유지를 확인했습니다.
 ```
 
 ### Related Files

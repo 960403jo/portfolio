@@ -1774,3 +1774,17 @@
 - Local FileSpec action 0개
 - Local `projects/02-railway-standards-platform.pdf` pageCount 1, Case Focus 노출
 ```
+
+### Production 검증
+
+```text
+- Production deployment: https://portfolio-6tbs35qud-joinseong-s-projects.vercel.app
+- Production alias: https://portfolio-ashy-five-87.vercel.app
+- Production desktop/mobile `/`: overflowX 0, console error 0, About 보완 문구 노출
+- Production desktop/mobile `/projects/railway-standards-platform`: overflowX 0, console error 0, Case Focus 3개 카드 노출
+- Production web mode `/api/portfolio-pdf-zip?viewer=web`: zip 내부 PDF 11개
+- Production `00-joinseong-portfolio-main.pdf` pageCount 7
+- Production main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Production FileSpec action 0개
+- Production `projects/02-railway-standards-platform.pdf` pageCount 1
+```

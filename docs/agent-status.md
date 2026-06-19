@@ -5,7 +5,7 @@
 ```text
 Status: In Progress
 Current Phase: Phase 3 - Next.js App Development
-Last Updated: 2026-06-19 15:29 KST
+Last Updated: 2026-06-19 15:35 KST
 Owner: Human Tech Lead
 ```
 
@@ -15,7 +15,7 @@ Owner: Human Tech Lead
 |---|---|---|---|---|---|
 | Phase 1 | Notion Analysis Agent | Done | feature/portfolio-notion-analysis | 2026-06-11 13:47 KST | - |
 | Phase 2 | Planning Agent | Pending | feature/portfolio-planning | - | 상세 기획 문서화 필요 |
-| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-19 15:29 KST | - |
+| Phase 3 | Next.js App Agent | Done | feature/portfolio-nextjs-app | 2026-06-19 15:35 KST | - |
 | Phase 3 | Supabase Agent | Pending | feature/portfolio-supabase | - | Supabase 사용 여부 확인 필요 |
 | Phase 4 | QA-Security Agent | Pending | feature/portfolio-qa-security | - | 개발 완료 필요 |
 | Phase 5 | Release-Review Agent | Pending | feature/portfolio-release-review | - | QA/Security 필요 |
@@ -52,7 +52,7 @@ Next:
 
 ```text
 Status: Done
-Updated At: 2026-06-19 15:29 KST
+Updated At: 2026-06-19 15:35 KST
 Summary:
 - 메인 포트폴리오 페이지와 프로젝트 상세 페이지 구현
 - Notion 원본 기반 프로필, 기술, 프로젝트, 경력 데이터 반영
@@ -280,6 +280,8 @@ Summary:
 - 포트폴리오 설득력 보완: 프로젝트별 `Problem / Build / Impact` case study 데이터를 추가하고 상세 페이지 상단 `Case Focus` 블록으로 노출
 - About 개발자 포지셔닝 문구를 문제 정의, 상태/API 설계, 운영 UI 검증 중심으로 재정리
 - Local 검증: `npm run lint`, `npm run build`, desktop/mobile main/detail overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개 및 상세 PDF 1페이지 유지 확인
+- Production 재배포 완료: `https://portfolio-6tbs35qud-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production 검증: desktop/mobile main/detail overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, 철도 상세 PDF 1페이지 유지
 Blocker:
 - 없음
 Next:

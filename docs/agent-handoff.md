@@ -224,6 +224,8 @@ Agent 간 전달사항을 기록한다.
 - 포트폴리오 보완: 프로젝트별 `Problem / Build / Impact` case study 데이터를 추가하고 상세 페이지 상단에 `Case Focus` 블록으로 노출
 - About 개발자 포지셔닝: 복잡한 운영 화면, 상태/API/지도 데이터 흐름, 문제 정의와 운영 UI 검증 중심으로 카피 정리
 - Local 확인: `npm run lint`, `npm run build`, main/detail desktop/mobile overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개 및 철도 상세 PDF 1페이지 유지
+- Production 재배포 확인: `https://portfolio-6tbs35qud-joinseong-s-projects.vercel.app`, alias `https://portfolio-ashy-five-87.vercel.app`
+- Production 확인: main/detail desktop/mobile overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개, main pageCount 7, 고유 프로젝트 상대 URI 10개, 철도 상세 PDF 1페이지 유지
 ```
 
 ### 확인 필요
