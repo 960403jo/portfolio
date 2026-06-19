@@ -29,14 +29,14 @@ export const profile = {
 };
 
 export const aboutContent = {
-  title: "사용자가 빠르게 이해하는 UI 흐름",
-  body: "데이터 조회, 권한, 인터랙션의 자연스러운 연결",
+  title: "복잡한 운영 화면을 판단 가능한 구조로 전환",
+  body: "상태·API·지도 데이터를 한 흐름으로 연결",
   paragraphs: [
     "웹 서비스 및 백오피스 시스템 개발, 성능 최적화, 사용자 경험 개선",
     "주요 프로젝트 메인 개발, 일정 관리, 코드 리뷰, 공통 컴포넌트, 요구사항 조율",
     "새로운 라이브러리와 개발 방식의 실무 적용 검증"
   ],
-  highlights: ["상태·API 흐름", "지도·관제 UI", "메인 개발 역할"]
+  highlights: ["문제 정의", "상태·API 설계", "운영 UI 검증"]
 };
 
 export const heroSignals = [
@@ -60,24 +60,24 @@ export const heroSignals = [
 export const developerSignals: DeveloperSignal[] = [
   {
     label: "Architecture",
-    title: "복잡한 도메인을 기능 단위 구조로 분해",
+    title: "문제 흐름을 화면 단위로 분해",
     body:
-      "철도 표준, 자율주행 관제, 버스 노선, 교통안전시설 UI의 컴포넌트·상태·API 흐름 분리",
-    tags: ["기능 단위 구조", "상태 관리", "API 흐름"]
+      "요구사항, 권한, API 상태, 지도 인터랙션을 컴포넌트·상태·서버 데이터 기준으로 분리",
+    tags: ["문제 정의", "상태 관리", "API 흐름"]
   },
   {
     label: "Data UX",
-    title: "지도·관제·문서 기반 UI 경험",
+    title: "운영자가 먼저 봐야 할 상태 우선",
     body:
-      "Kakao Map, Leaflet, Naver Map, Dgraph 기반 위치 정보·계층형 문서·반복 조회 화면",
-    tags: ["Map SDK", "Dgraph"]
+      "지도 위치, 시설물 상태, 문서 관계, 반복 조회를 판단 순서에 맞춰 구성",
+    tags: ["Map SDK", "관제 화면", "문서 구조"]
   },
   {
     label: "Ownership",
-    title: "메인 개발자 역할과 협업 실행",
+    title: "요구사항과 구현 범위 조율",
     body:
-      "주요 프로젝트 메인 개발, 일정 관리, 코드 리뷰, 공통 컴포넌트, 요구사항 조율",
-    tags: ["일정 관리", "코드 리뷰", "공통 컴포넌트"]
+      "PM, 백엔드, 디자인, 퍼블리싱과 일정·리뷰·공통 컴포넌트 기준 정렬",
+    tags: ["협업 조율", "코드 리뷰", "공통 컴포넌트"]
   },
   {
     label: "Delivery",
@@ -172,6 +172,23 @@ export const projects: Project[] = [
         detail: "공통 컴포넌트와 상태관리 구조의 일관성 유지"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "스마트시티 화면의 반복 구조와 확장성",
+        detail: "인프라 모니터링 화면은 기능이 늘어날수록 상태, API, UI 구조가 섞이기 쉬운 조건"
+      },
+      {
+        label: "Build",
+        title: "기능 단위 화면 구조와 공통 규칙",
+        detail: "화면, 상태, API 로직을 역할 기준으로 분리하고 반복 UI는 규칙 기반 생성 흐름으로 정리"
+      },
+      {
+        label: "Impact",
+        title: "반복 개발의 기준선 확보",
+        detail: "공통 컴포넌트와 상태관리 구조의 일관성을 유지하며 이후 화면 확장 비용을 낮추는 기반 마련"
+      }
+    ],
     responsibilities: [
       "기능 단위 화면과 상태 구조 분리",
       "공통 영역, 기능, 페이지 단위 구조를 고려해 유지보수성과 확장성 개선",
@@ -221,6 +238,23 @@ export const projects: Project[] = [
         detail: "대용량 문서 검증 및 데이터 처리 자동화 경험"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "문서·버전·참조 관계 관리",
+        detail: "철도 기술기준 문서, 목차, 요구사항, 버전 관계를 일반 목록 UI만으로 탐색하기 어려운 구조"
+      },
+      {
+        label: "Build",
+        title: "계층형 데이터 탐색과 비동기 상태 연결",
+        detail: "Next.js 기반 화면에 Dgraph 참조 관계, TanStack Query 서버 상태, RabbitMQ 검증 상태를 연결"
+      },
+      {
+        label: "Impact",
+        title: "문서 흐름과 처리 상태를 함께 확인",
+        detail: "운영자가 문서 구조, 참조 관계, 검증 결과를 같은 업무 맥락에서 확인하는 화면 흐름 구현"
+      }
+    ],
     responsibilities: [
       "React, Next.js, TypeScript 기반 철도 기술기준 플랫폼 및 포털 서비스 개발",
       "공통 레이아웃, 공통 컴포넌트, 상태관리, API 연동 구조 설계",
@@ -260,6 +294,23 @@ export const projects: Project[] = [
         label: "State",
         value: "TanStack Query + Zustand",
         detail: "데이터 패칭과 상태 관리 구조를 프로젝트에 적용"
+      }
+    ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "권한·인증·모바일 연계가 섞인 관리자 화면",
+        detail: "관리자 권한, PASS 인증, WebView 연동, OS별 이슈가 한 흐름 안에서 함께 처리돼야 하는 조건"
+      },
+      {
+        label: "Build",
+        title: "권한 기준 화면 분리와 서버 상태 정리",
+        detail: "Public/Private Page를 분리하고 TanStack Query, Zustand, 쿠키 토큰 검증 흐름으로 상태 기준 정리"
+      },
+      {
+        label: "Impact",
+        title: "관리자 접근 흐름과 모바일 대응력 강화",
+        detail: "권한 기반 화면 노출과 모바일 환경 차이를 고려한 관리자 서비스 흐름을 안정적으로 구성"
       }
     ],
     responsibilities: [
@@ -303,6 +354,23 @@ export const projects: Project[] = [
         detail: "반복 조회 화면의 데이터 캐싱 구조 적용"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "버스 노선 정보를 표만으로 파악하기 어려운 화면",
+        detail: "노선, 정류장, 경로, 지도 캡처가 함께 필요한 운영 업무에서 위치 맥락이 핵심"
+      },
+      {
+        label: "Build",
+        title: "지도 시각화와 반복 관리 화면 결합",
+        detail: "Kakao Map Marker, Polyline, html2canvas 캡처, 옵션 기반 Grid Component를 함께 구현"
+      },
+      {
+        label: "Impact",
+        title: "운영자의 노선 확인 흐름 개선",
+        detail: "지도 기반 시각화와 공통 Grid 구조로 버스 노선 관리 정보를 더 빠르게 확인하는 화면 구성"
+      }
+    ],
     responsibilities: [
       "군산-익산 광역 BIS/BMS 버스 노선 관리 Back Office 서비스 개발",
       "옵션 기반 Grid Component 등 반복 관리 화면을 위한 공통 컴포넌트 개발",
@@ -342,6 +410,23 @@ export const projects: Project[] = [
         label: "Visualization",
         value: "Leaflet Map",
         detail: "Marker, Polyline, Polygon 기반 데이터 시각화 구현"
+      }
+    ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "정밀지도 기반 시설물 데이터를 운영 화면으로 전환",
+        detail: "JSP 데모 수준의 화면과 공공 인프라 데이터를 실제 관리 가능한 React 서비스로 정리할 필요"
+      },
+      {
+        label: "Build",
+        title: "React 전환, DB 모델링, Leaflet 시각화",
+        detail: "교통안전시설 데이터 모델링과 백엔드 연계를 함께 고려하며 지도 기반 관리 화면 구현"
+      },
+      {
+        label: "Impact",
+        title: "지도와 관리 대장을 연결한 운영 흐름",
+        detail: "시설물 위치와 관리 정보를 한 화면 흐름에서 확인하도록 구성하고 전시·시연 가능한 서비스로 완성"
       }
     ],
     responsibilities: [
@@ -397,6 +482,23 @@ export const projects: Project[] = [
         detail: "운영 환경 인증 흐름과 맞물린 화면 개발 경험"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "복수 관제 화면과 실시간 상태를 하나의 운영 흐름으로 정리",
+        detail: "관제 모니터링, 운영 단말, 테스트랩이 분리된 상태에서 차량·시설물 상태를 빠르게 읽어야 하는 조건"
+      },
+      {
+        label: "Build",
+        title: "상태 모니터링 UI와 SSO 흐름 구현",
+        detail: "차량 상태, 돌발·긴급 상황, 시설물 데이터 화면을 구현하고 Keycloak SSO와 초기 로딩 이슈 대응"
+      },
+      {
+        label: "Impact",
+        title: "자율주행 운영 화면의 판단 흐름 정리",
+        detail: "분리된 업무 화면을 하나의 로그인·운영 맥락으로 묶고 관제자가 필요한 상태를 빠르게 확인하도록 구성"
+      }
+    ],
     responsibilities: [
       "자율주행 버스 관련 관제 모니터링, 운영 단말, 테스트랩 웹 서비스 개발",
       "차량 실시간 상태, 돌발 상황, 긴급 상황을 확인하는 관제 화면 구현",
@@ -437,6 +539,23 @@ export const projects: Project[] = [
         detail: "Hook 기반 상태와 화면 로직 관리"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "앱 운영을 위한 반복 관리자 화면",
+        detail: "이벤트 관리와 반복 입력 화면에서 같은 UI 패턴이 계속 필요한 관리자 서비스"
+      },
+      {
+        label: "Build",
+        title: "공통 컴포넌트와 Hook 기반 화면 로직",
+        detail: "Grid, DatePicker, DropDownList 등 운영 화면에 필요한 공통 UI와 상태 흐름 구현"
+      },
+      {
+        label: "Impact",
+        title: "관리자 화면 재사용 기반 경험",
+        detail: "반복 관리 기능을 공통 컴포넌트 기준으로 구성하며 백오피스 UI 개발 경험 확보"
+      }
+    ],
     responsibilities: [
       "Grid, DatePicker, DropDownList 등 공통 컴포넌트 개발",
       "앱 이벤트 관리 기능 개발",
@@ -468,6 +587,23 @@ export const projects: Project[] = [
         detail: "사내 첫 React 기반 웹 서비스 개발 경험"
       }
     ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "교통 데이터를 지도와 Open API 업무로 제공",
+        detail: "대규모 교통 데이터 시각화와 공공 정보 Open API 신청 업무가 함께 필요한 웹 서비스"
+      },
+      {
+        label: "Build",
+        title: "React 기반 지도 시각화와 신청 화면",
+        detail: "Naver Map 기반 데이터 시각화와 Open API 신청·고객 응대 화면을 React로 구현"
+      },
+      {
+        label: "Impact",
+        title: "사내 React 웹 도입 경험",
+        detail: "사내 첫 React 기반 웹 서비스를 개발하며 교통 데이터 UI와 지도 화면 구현 경험 확보"
+      }
+    ],
     responsibilities: [
       "대전 교통 빅데이터 플랫폼에서 Naver Map 기반 대규모 데이터 시각화 구현",
       "교통 공공 정보 Open API 신청 및 고객 응대 서비스 개발",
@@ -497,6 +633,23 @@ export const projects: Project[] = [
         label: "Report",
         value: "OZ Report",
         detail: "TCS/ETC 근무 보고서 및 전자결재 시스템 개발"
+      }
+    ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "레거시 영업 시스템의 정산·보고 업무",
+        detail: "고속도로 요금 정산, 근무 보고서, 결제 단말 연계가 함께 맞물린 업무 시스템"
+      },
+      {
+        label: "Build",
+        title: "JSP 화면, Spring API, 전문 통신 연계",
+        detail: "근무자·시스템 관리 화면과 결제 단말 서버 전문 통신, FTP 기반 차량 이미지 관리 흐름 구현"
+      },
+      {
+        label: "Impact",
+        title: "업무 시스템과 리포트 연계 경험",
+        detail: "OZ Report 기반 보고서와 전자결재, Oracle SQL 성능 개선 경험을 통해 레거시 업무 이해도 확보"
       }
     ],
     responsibilities: [
@@ -531,6 +684,23 @@ export const projects: Project[] = [
         label: "Database",
         value: "Oracle SQL",
         detail: "운송 관리 지원 시스템의 기초 SQL 업무 수행"
+      }
+    ],
+    caseStudy: [
+      {
+        label: "Problem",
+        title: "운송 사업 계획과 리포트가 연결된 업무 화면",
+        detail: "운송 관리 정보 입력, 조회, 리포트 출력이 하나의 업무 흐름으로 이어져야 하는 시스템"
+      },
+      {
+        label: "Build",
+        title: "JSP 업무 화면과 OZ Report 서버 연동",
+        detail: "운송 사업 계획 관련 화면을 구현하고 웹과 리포트 도구를 하나의 서버 흐름으로 연결"
+      },
+      {
+        label: "Impact",
+        title: "운송 관리 업무와 리포트 연계 경험",
+        detail: "기초 Oracle SQL과 리포트 서버 연동을 경험하며 교통·운송 업무 시스템 기반 확보"
       }
     ],
     responsibilities: [

@@ -1924,3 +1924,37 @@ Production alias `https://portfolio-ashy-five-87.vercel.app`는 `https://portfol
 - QA 시 이메일 버튼을 누르지 않고 footer PDF 다운로드를 실행해도 main PDF 첫 페이지에 `joinsseong@gmail.com`이 노출되는지 확인해주세요.
 - QA 시 프로젝트 상대 URI 링크 구조와 Skills 페이지 분리 보정이 유지되는지 확인해주세요.
 ```
+
+## 2026-06-19 15:29 - Next.js App Agent → QA-Security Agent
+
+### Message
+
+```text
+사용자가 전체 포트폴리오의 설득력을 높일 수 있는 보완을 요청했습니다.
+면접관이 프로젝트 상세에서 문제 해결 방식을 빠르게 읽을 수 있도록 모든 프로젝트 데이터에 `Problem / Build / Impact` case study 항목을 추가했습니다.
+프로젝트 상세 페이지에는 KPI보다 앞에 `Case Focus` 블록을 배치해 문제 상황, 구현 접근, 결과를 먼저 보여주도록 변경했습니다.
+메인 About 영역의 개발자 포지셔닝 문구도 복잡한 운영 화면, 상태/API/지도 데이터 흐름, 문제 정의와 운영 UI 검증 중심으로 정리했습니다.
+Local 검증에서 lint/build 통과, desktop/mobile main/detail overflowX 0, console error 0, 상세 Case Focus 3개 카드 노출, PDF zip 11개 및 철도 상세 PDF 1페이지 유지를 확인했습니다.
+```
+
+### Related Files
+
+```text
+- app/projects/[slug]/page.tsx
+- app/globals.css
+- src/data/portfolio.ts
+- src/types/portfolio.ts
+- src/lib/pdf-export.ts
+- docs/agent-status.md
+- docs/agent-handoff.md
+- docs/agent-messages.md
+- docs/nextjs-notes.md
+```
+
+### Requested Action
+
+```text
+- QA 시 각 프로젝트 상세의 `Case Focus`가 과장된 정량 성과 없이 원본 기반 역할/경험 범위로 읽히는지 확인해주세요.
+- QA 시 모바일 상세 페이지에서 Case Focus 카드가 잘리지 않고 1열로 자연스럽게 노출되는지 확인해주세요.
+- QA 시 PDF 다운로드에서 상세 PDF가 깨지지 않고 새 Case Focus 블록이 포함되는지 확인해주세요.
+```

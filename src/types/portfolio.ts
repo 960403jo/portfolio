@@ -29,6 +29,12 @@ export type ProjectKpi = {
   detail: string;
 };
 
+export type ProjectCaseStudy = {
+  label: string;
+  title: string;
+  detail: string;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -38,6 +44,7 @@ export type Project = {
   description: string;
   sourceUrl?: string;
   kpis: ProjectKpi[];
+  caseStudy: ProjectCaseStudy[];
   responsibilities: string[];
   outcomes: string[];
 };

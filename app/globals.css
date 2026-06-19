@@ -1923,6 +1923,57 @@ li {
   grid-column: 1 / -1;
 }
 
+.detail-panel--case {
+  grid-column: 1 / -1;
+  border-color: rgba(241, 92, 36, 0.28);
+  background:
+    linear-gradient(135deg, rgba(255, 117, 54, 0.08), rgba(255, 255, 255, 0.94) 42%),
+    var(--paper-strong);
+}
+
+.detail-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detail-case-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 190px;
+  border: 1px solid rgba(35, 31, 28, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 20px;
+}
+
+.detail-case-card span {
+  width: fit-content;
+  border: 1px solid rgba(241, 92, 36, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 117, 54, 0.08);
+  color: var(--orange-strong);
+  font-size: 12px;
+  font-weight: 950;
+  padding: 5px 9px;
+}
+
+.detail-case-card strong {
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.22;
+  word-break: keep-all;
+}
+
+.detail-case-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-weight: 720;
+  line-height: 1.58;
+  word-break: keep-all;
+}
+
 .project-kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2533,6 +2584,7 @@ li {
   .pdf-career-item,
   .pdf-qna-item,
   .project-card,
+  .detail-case-card,
   .detail-panel,
   .timeline-item,
   .workflow-card,
@@ -3154,6 +3206,7 @@ li {
 
   .detail-kpi-grid,
   .project-detail-layout,
+  .detail-case-grid,
   .project-kpi-grid {
     grid-template-columns: 1fr;
   }

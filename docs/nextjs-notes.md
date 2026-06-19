@@ -1748,3 +1748,29 @@
 - Production FileSpec action 0개
 - Production Chrome PDF viewer screenshot: main PDF 첫 페이지 이메일 CTA에 `joinsseong@gmail.com` 노출
 ```
+
+## 2026-06-19 15:29 KST - Next.js App Agent
+
+### 구현 요약
+
+```text
+- 전체 포트폴리오 설득력 보완: 프로젝트 상세에서 문제 해결 방식이 먼저 보이도록 `Case Focus` 추가
+- 모든 프로젝트 데이터에 `Problem / Build / Impact` case study 항목 추가
+- 프로젝트 상세 페이지에서 KPI보다 앞에 문제 상황, 구현 접근, 결과를 3개 카드로 노출
+- About 개발자 포지셔닝 문구를 복잡한 운영 화면, 상태/API/지도 데이터 흐름, 문제 정의와 운영 UI 검증 중심으로 정리
+- PDF 캡처 CSS에 새 case card break/background 규칙 추가
+```
+
+### 검증
+
+```text
+- npm run lint
+- npm run build
+- Local desktop/mobile `/`: overflowX 0, console error 0, About 보완 문구 노출
+- Local desktop/mobile `/projects/railway-standards-platform`: overflowX 0, console error 0, Case Focus 3개 카드 노출
+- Local web mode `/api/portfolio-pdf-zip?viewer=web`: zip 내부 PDF 11개
+- Local `00-joinseong-portfolio-main.pdf` pageCount 7
+- Local main PDF 고유 프로젝트 상대 URI 10개: `projects/01-*.pdf`
+- Local FileSpec action 0개
+- Local `projects/02-railway-standards-platform.pdf` pageCount 1, Case Focus 노출
+```

@@ -235,6 +235,7 @@ async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
       .section--projects .project-showcase,
       .section--interview .interview-grid,
       .project-side-panel,
+      .project-detail-page .detail-case-card,
       .project-detail-page .detail-kpi-grid,
       .project-detail-page .detail-panel,
       .project-detail-page .project-kpi-card {
@@ -290,6 +291,7 @@ async function prepareHtmlForPdf(page: Page, options: PdfExportOptions) {
 
       .section--projects .project-card,
       .section--interview .interview-card,
+      .project-detail-page .detail-case-card,
       .project-detail-page .detail-panel,
       .project-detail-page .project-kpi-card {
         break-inside: avoid !important;

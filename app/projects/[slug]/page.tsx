@@ -72,6 +72,22 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
         <section className="section section--light">
           <Container className="project-detail-layout">
+            <article className="detail-panel detail-panel--case">
+              <div className="detail-panel__header">
+                <span>Case Focus</span>
+                <h2>문제 해결 구조</h2>
+              </div>
+              <div className="detail-case-grid">
+                {project.caseStudy.map((item) => (
+                  <div className="detail-case-card" key={`${project.slug}-${item.label}`}>
+                    <span>{item.label}</span>
+                    <strong>{item.title}</strong>
+                    <p>{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
             <article className="detail-panel detail-panel--kpis">
               <div className="detail-panel__header">
                 <span>KPI</span>
